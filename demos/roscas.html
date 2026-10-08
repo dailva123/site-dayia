@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Identificador de Roscas</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+:root{
+  --bg: #14202e;
+  --panel: #1c2c3d;
+  --panel-2: #223649;
+  --grid-line: #24384c;
+  --steel: #7f97ad;
+  --steel-dim: #52687c;
+  --text: #e7eef4;
+  --text-dim: #9fb2c3;
+  --orange: #ff6a2b;
+  --orange-dim: #b9451a;
+  --brass: #d9b26a;
+  --ok: #5fbf8f;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background:
+    linear-gradient(var(--grid-line) 1px, transparent 1px) 0 0/40px 40px,
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px) 0 0/40px 40px,
+    var(--bg);
+  color:var(--text);
+  font-family:'IBM Plex Mono', monospace;
+  padding:28px 18px 60px;
+}
+
+.wrap{max-width:980px;margin:0 auto;}
+
+/* HEADER — nameplate style */
+.nameplate{
+  border:2px solid var(--steel-dim);
+  background:var(--panel);
+  border-radius:4px;
+  padding:20px 24px;
+  margin-bottom:20px;
+  position:relative;
+  overflow:hidden;
+}
+.nameplate::before{
+  content:"";
+  position:absolute; top:0; left:0; right:0; height:4px;
+  background:repeating-linear-gradient(90deg, var(--orange) 0 14px, transparent 14px 28px);
+}
+.nameplate .eyebrow{
+  font-size:11px; letter-spacing:.18em; color:var(--orange);
+  font-weight:600; margin-bottom:6px;
+}
+.nameplate h1{
+  font-family:'Oswald',sans-serif;
+  font-weight:700;
+  font-size:clamp(26px,5vw,38px);
+  letter-spacing:.02em;
+  margin:0 0 6px;
+  text-transform:uppercase;
+  color:var(--text);
+}
+.nameplate p{
+  margin:0; color:var(--text-dim); font-size:13.5px; line-height:1.5; max-width:640px;
+}
+
+/* SEARCH */
+.search-row{
+  display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap;
+}
+.search-box{
+  flex:1; min-width:220px;
+  background:var(--panel);
+  border:1.5px solid var(--steel-dim);
+  border-radius:4px;
+  display:flex; align-items:center; gap:10px;
+  padding:0 14px;
+}
+.search-box svg{flex-shrink:0;}
+.search-box input{
+  flex:1; background:transparent; border:none; outline:none;
+  color:var(--text); font-family:'IBM Plex Mono',monospace; font-size:14.5px;
+  padding:13px 0;
+}
+.search-box input::placeholder{color:var(--steel-dim);}
+
+/* TABS */
+.tabs{
+  display:flex; gap:4px; margin-bottom:14px; flex-wrap:wrap;
+  border-bottom:1.5px solid var(--grid-line);
+}
+.tab{
+  font-family:'Oswald',sans-serif;
+  font-weight:600; font-size:13px; letter-spacing:.05em;
+  color:var(--steel);
+  background:transparent;
+  border:none;
+  padding:11px 16px;
+  cursor:pointer;
+  position:relative;
+  text-transform:uppercase;
+  transition:color .15s;
+}
+.tab:hover{color:var(--text);}
+.tab.active{color:var(--orange);}
+.tab.active::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:-1.5px; height:2.5px;
+  background:var(--orange);
+}
+.tab .tag{
+  font-size:9px; color:var(--steel-dim); display:block; letter-spacing:.1em; margin-top:1px;
+  font-weight:400;
+}
+.tab.active .tag{color:var(--orange-dim);}
+
+/* PANEL / TABLE */
+.panel{
+  background:var(--panel);
+  border:1px solid var(--grid-line);
+  border-radius:4px;
+  overflow:hidden;
+  margin-bottom:22px;
+}
+.panel-head{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 16px; background:var(--panel-2); border-bottom:1px solid var(--grid-line);
+}
+.panel-head .std-name{font-family:'Oswald',sans-serif; font-weight:600; font-size:14px; letter-spacing:.03em; color:var(--text);}
+.panel-head .std-meta{font-size:11px; color:var(--steel);}
+
+table{width:100%; border-collapse:collapse; font-size:13.5px;}
+thead th{
+  text-align:left; font-family:'Oswald',sans-serif; font-weight:500;
+  font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--steel); padding:9px 16px; border-bottom:1px solid var(--grid-line);
+}
+tbody td{padding:9px 16px; border-bottom:1px solid var(--grid-line); color:var(--text-dim);}
+tbody td:first-child{color:var(--text); font-weight:600;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:rgba(255,106,43,0.06);}
+tbody tr:hover td:first-child{color:var(--orange);}
+.no-match{padding:26px 16px; color:var(--steel-dim); font-size:13px; text-align:center;}
+
+/* QUICK ID */
+.quickid{
+  display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;
+}
+@media (max-width:640px){.quickid{grid-template-columns:1fr;}}
+.card{
+  background:var(--panel); border:1px solid var(--grid-line); border-radius:4px; padding:16px 18px;
+}
+.card h3{
+  font-family:'Oswald',sans-serif; font-size:12.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--brass); margin:0 0 12px; display:flex; align-items:center; gap:8px;
+}
+.angle-row{display:flex; gap:10px; align-items:center; margin-bottom:10px;}
+.angle-row svg{flex-shrink:0;}
+.angle-row .label{font-size:12.5px; color:var(--text);}
+.angle-row .desc{font-size:11px; color:var(--steel);}
+.taper-row{display:flex; gap:14px; margin-top:6px;}
+.taper-item{flex:1; text-align:center; padding:10px 8px; border:1px dashed var(--grid-line); border-radius:3px;}
+.taper-item .tname{font-size:11.5px; color:var(--text); font-weight:600; margin-bottom:2px;}
+.taper-item .tstds{font-size:10px; color:var(--steel);}
+
+footer{
+  text-align:center; color:var(--steel-dim); font-size:10.5px; margin-top:10px; letter-spacing:.03em;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="nameplate">
+    <div class="eyebrow">REF. TÉCNICA — ROSCAS DE TUBO E FIXAÇÃO</div>
+    <h1>Identificador de Roscas</h1>
+    <p>Consulte diâmetros, TPI e passo de BSPP, BSPT, NPT, UNC, UNF e Métrica. Digite a designação ou o diâmetro na busca para filtrar em todas as normas.</p>
+  </div>
+
+  <div class="search-row">
+    <div class="search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#52687c" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="searchInput" type="text" placeholder="Buscar por designação ou diâmetro (ex: 1/2, M10, G3/4)...">
+    </div>
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+  <div class="panel" id="tablePanel"></div>
+
+  <div class="quickid">
+    <div class="card">
+      <h3>Ângulo do filete</h3>
+      <div class="angle-row">
+        <svg width="46" height="34" viewBox="0 0 46 34">
+          <path d="M4 30 L23 6 L42 30" fill="none" stroke="#ff6a2b" stroke-width="2.5"/>
+          <path d="M15 30 A 10 10 0 0 1 31 30" fill="none" stroke="#7f97ad" stroke-width="1.3"/>
+        </svg>
+        <div>
+          <div class="label">55° → BSPP · BSPT</div>
+          <div class="desc">Padrão Whitworth (britânico)</div>
+        </div>
+      </div>
+      <div class="angle-row">
+        <svg width="46" height="34" viewBox="0 0 46 34">
+          <path d="M6 30 L23 4 L40 30" fill="none" stroke="#d9b26a" stroke-width="2.5"/>
+          <path d="M14.5 30 A 11 11 0 0 1 31.5 30" fill="none" stroke="#7f97ad" stroke-width="1.3"/>
+        </svg>
+        <div>
+          <div class="label">60° → NPT · UNC · UNF · Métrica</div>
+          <div class="desc">Padrão americano / ISO</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Forma da rosca</h3>
+      <div class="taper-row">
+        <div class="taper-item">
+          <div class="tname">Paralela</div>
+          <div class="tstds">BSPP · UNC · UNF · Métrica<br>vedação por junta/O-ring</div>
+        </div>
+        <div class="taper-item">
+          <div class="tname">Cônica (1:16)</div>
+          <div class="tstds">BSPT · NPT<br>vedação pela própria rosca</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>Valores conforme ISO 228 · ISO 7 · ANSI/ASME B1.20.1 · ASME B1.1 · DIN 13 — confirme com pente de roscas para aplicações críticas.</footer>
+</div>
+
+<script>
+const DATA = {
+  BSPP: {
+    label: "BSPP", tag: "Paralela · ISO 228",
+    meta: "Selagem por junta / O-ring na face",
+    cols: ["Designação","Ø externo (mm)","TPI","Passo (mm)"],
+    rows: [
+      ["G 1/8\"","9,73","28","0,91"],
+      ["G 1/4\"","13,16","19","1,34"],
+      ["G 3/8\"","16,66","19","1,34"],
+      ["G 1/2\"","20,96","14","1,81"],
+      ["G 5/8\"","22,91","14","1,81"],
+      ["G 3/4\"","26,44","14","1,81"],
+      ["G 7/8\"","30,20","14","1,81"],
+      ["G 1\"","33,25","11","2,31"],
+      ["G 1.1/4\"","41,91","11","2,31"],
+      ["G 1.1/2\"","47,80","11","2,31"],
+      ["G 2\"","59,61","11","2,31"],
+      ["G 2.1/2\"","75,18","11","2,31"],
+      ["G 3\"","87,88","11","2,31"],
+      ["G 4\"","113,03","11","2,31"],
+    ]
+  },
+  BSPT: {
+    label: "BSPT", tag: "Cônica 1:16 · ISO 7",
+    meta: "Selagem pela própria rosca (fita/pasta)",
+    cols: ["Designação","Ø maior (mm)","TPI","Passo (mm)"],
+    rows: [
+      ["R 1/8\"","9,73","28","0,91"],
+      ["R 1/4\"","13,16","19","1,34"],
+      ["R 3/8\"","16,66","19","1,34"],
+      ["R 1/2\"","20,96","14","1,81"],
+      ["R 3/4\"","26,44","14","1,81"],
+      ["R 1\"","33,25","11","2,31"],
+      ["R 1.1/4\"","41,91","11","2,31"],
+      ["R 1.1/2\"","47,80","11","2,31"],
+      ["R 2\"","59,61","11","2,31"],
+      ["R 2.1/2\"","75,18","11","2,31"],
+      ["R 3\"","87,88","11","2,31"],
+      ["R 4\"","113,03","11","2,31"],
+    ]
+  },
+  NPT: {
+    label: "NPT", tag: "Cônica 1:16 · ANSI B1.20.1",
+    meta: "Padrão americano — selagem pela rosca",
+    cols: ["Designação","Ø maior (mm)","TPI"],
+    rows: [
+      ["1/16\" NPT","7,94","27"],
+      ["1/8\" NPT","10,29","27"],
+      ["1/4\" NPT","13,72","18"],
+      ["3/8\" NPT","17,15","18"],
+      ["1/2\" NPT","21,34","14"],
+      ["3/4\" NPT","26,67","14"],
+      ["1\" NPT","33,40","11,5"],
+      ["1.1/4\" NPT","42,16","11,5"],
+      ["1.1/2\" NPT","48,26","11,5"],
+      ["2\" NPT","60,33","11,5"],
+      ["2.1/2\" NPT","73,03","8"],
+      ["3\" NPT","88,90","8"],
+      ["4\" NPT","114,30","8"],
+    ]
+  },
+  UNC: {
+    label: "UNC", tag: "Grossa · ASME B1.1",
+    meta: "Rosca de fixação — passo grosso",
+    cols: ["Designação","TPI","Ø nominal (mm)"],
+    rows: [
+      ["#4-40","40","2,85"],
+      ["#6-32","32","3,51"],
+      ["#8-32","32","4,17"],
+      ["#10-24","24","4,83"],
+      ["1/4\"-20","20","6,35"],
+      ["5/16\"-18","18","7,94"],
+      ["3/8\"-16","16","9,53"],
+      ["7/16\"-14","14","11,11"],
+      ["1/2\"-13","13","12,70"],
+      ["9/16\"-12","12","14,29"],
+      ["5/8\"-11","11","15,88"],
+      ["3/4\"-10","10","19,05"],
+      ["7/8\"-9","9","22,23"],
+      ["1\"-8","8","25,40"],
+    ]
+  },
+  UNF: {
+    label: "UNF", tag: "Fina · ASME B1.1",
+    meta: "Rosca de fixação — passo fino",
+    cols: ["Designação","TPI","Ø nominal (mm)"],
+    rows: [
+      ["#4-48","48","2,85"],
+      ["#6-40","40","3,51"],
+      ["#8-36","36","4,17"],
+      ["#10-32","32","4,83"],
+      ["1/4\"-28","28","6,35"],
+      ["5/16\"-24","24","7,94"],
+      ["3/8\"-24","24","9,53"],
+      ["7/16\"-20","20","11,11"],
+      ["1/2\"-20","20","12,70"],
+      ["9/16\"-18","18","14,29"],
+      ["5/8\"-18","18","15,88"],
+      ["3/4\"-16","16","19,05"],
+      ["7/8\"-14","14","22,23"],
+      ["1\"-12","12","25,40"],
+    ]
+  },
+  DIN: {
+    label: "DIN", tag: "Norma alemã · tubo",
+    meta: "Rosca de tubo — mesmos valores de BSPT/BSPP",
+    cols: ["Designação DIN","Tipo","Equivalente","Ø maior (mm)","TPI"],
+    rows: [
+      ["DIN 2999 — R 1/8\"","Cônica","= BSPT R 1/8\"","9,73","28"],
+      ["DIN 2999 — R 1/4\"","Cônica","= BSPT R 1/4\"","13,16","19"],
+      ["DIN 2999 — R 3/8\"","Cônica","= BSPT R 3/8\"","16,66","19"],
+      ["DIN 2999 — R 1/2\"","Cônica","= BSPT R 1/2\"","20,96","14"],
+      ["DIN 2999 — R 3/4\"","Cônica","= BSPT R 3/4\"","26,44","14"],
+      ["DIN 2999 — R 1\"","Cônica","= BSPT R 1\"","33,25","11"],
+      ["DIN 259 — G 1/8\"","Paralela","= BSPP G 1/8\"","9,73","28"],
+      ["DIN 259 — G 1/4\"","Paralela","= BSPP G 1/4\"","13,16","19"],
+      ["DIN 259 — G 3/8\"","Paralela","= BSPP G 3/8\"","16,66","19"],
+      ["DIN 259 — G 1/2\"","Paralela","= BSPP G 1/2\"","20,96","14"],
+      ["DIN 259 — G 3/4\"","Paralela","= BSPP G 3/4\"","26,44","14"],
+      ["DIN 259 — G 1\"","Paralela","= BSPP G 1\"","33,25","11"],
+    ]
+  },
+  SERIES: {
+    label: "Séries Conexão", tag: "Leve · Pesada",
+    meta: "Classificação da rosca de conexão (fitting) — tubo é sempre medido por Ø externo (OD)",
+    cols: ["DN","BSP","Ø externo (mm)","Parede Leve (mm)","Parede Média (mm)","Parede Pesada (mm)"],
+    rows: [
+      ["DN15","1/2\"","21,30","2,35","2,65","3,25"],
+      ["DN20","3/4\"","26,90","2,35","2,65","3,25"],
+      ["DN25","1\"","33,70","2,90","3,25","4,05"],
+      ["DN32","1.1/4\"","42,40","2,90","3,25","4,05"],
+      ["DN40","1.1/2\"","48,30","2,90","3,25","4,05"],
+      ["DN50","2\"","60,30","3,65","3,65","4,50"],
+      ["DN65","2.1/2\"","76,10","3,65","4,50","4,50"],
+      ["DN80","3\"","88,90","4,05","4,85","5,40"],
+      ["DN100","4\"","114,30","4,50","5,40","6,00"],
+    ]
+  },
+  TUBOMET: {
+    label: "Tubo x Rosca", tag: "DIN 2353 · hidráulico",
+    meta: "Ø externo do tubo (OD) → rosca de conexão, série Leve (L) e Pesada (S)",
+    cols: ["Ø do tubo — OD (mm)","Rosca Série Leve (L)","Rosca Série Pesada (S)"],
+    rows: [
+      ["6","M12x1,50","M14x1,50"],
+      ["8","M14x1,50","M16x1,50"],
+      ["10","M16x1,50","M18x1,50"],
+      ["12","M18x1,50","M20x1,50"],
+      ["14","M20x1,50","M22x1,50"],
+      ["15","M22x1,50","—"],
+      ["16","M22x1,50","M24x1,50"],
+      ["18","M26x1,50","—"],
+      ["20","M28x1,50","M30x2,00"],
+      ["22","M30x2,00","—"],
+      ["25","M33x2,00","M36x2,00"],
+      ["28","M36x2,00","—"],
+      ["30","—","M42x2,00"],
+      ["32","M42x2,00","—"],
+      ["35","M45x2,00","—"],
+      ["38","—","M52x2,00"],
+      ["42","M52x2,00","—"],
+    ]
+  },
+  JIC37: {
+    label: "JIC 37°", tag: "SAE J514 · flangeado",
+    meta: "Traço (dash) → tubo OD → rosca UNF classe 2A",
+    cols: ["Traço","Tubo OD (pol)","Tubo OD (mm)","Rosca UNF (classe 2A)"],
+    rows: [
+      ["-4","1/4\"","6,35","7/16-20"],
+      ["-5","5/16\"","7,94","1/2-20"],
+      ["-6","3/8\"","9,53","9/16-18"],
+      ["-8","1/2\"","12,70","3/4-16"],
+      ["-10","5/8\"","15,88","7/8-14"],
+      ["-12","3/4\"","19,05","1.1/16-12"],
+      ["-14","7/8\"","22,23","1.3/16-12"],
+      ["-16","1\"","25,40","1.5/16-12"],
+      ["-20","1.1/4\"","31,75","1.5/8-12"],
+      ["-24","1.1/2\"","38,10","1.7/8-12"],
+      ["-32","2\"","50,80","2.1/2-12"],
+    ]
+  },
+  METRICA: {
+    label: "Métrica", tag: "ISO 261 · DIN 13",
+    meta: "Passo grosso e fino",
+    cols: ["Designação","Ø nominal (mm)","Passo grosso (mm)","Passo fino comum (mm)"],
+    rows: [
+      ["M3","3","0,50","—"],
+      ["M4","4","0,70","—"],
+      ["M5","5","0,80","0,50"],
+      ["M6","6","1,00","0,75"],
+      ["M8","8","1,25","1,00"],
+      ["M10","10","1,50","1,25 / 1,00"],
+      ["M12","12","1,75","1,50 / 1,25"],
+      ["M14","14","2,00","1,50"],
+      ["M16","16","2,00","1,50"],
+      ["M18","18","2,50","1,50"],
+      ["M20","20","2,50","1,50"],
+      ["M22","22","2,50","1,50"],
+      ["M24","24","3,00","2,00"],
+      ["M27","27","3,00","2,00"],
+      ["M30","30","3,50","2,00"],
+      ["M36","36","4,00","3,00"],
+    ]
+  }
+};
+
+let activeTab = "BSPP";
+const tabsEl = document.getElementById("tabs");
+const panelEl = document.getElementById("tablePanel");
+const searchEl = document.getElementById("searchInput");
+
+function renderTabs(){
+  tabsEl.innerHTML = Object.keys(DATA).map(key => {
+    const d = DATA[key];
+    return `<button class="tab ${key===activeTab?'active':''}" data-key="${key}">
+      ${d.label}<span class="tag">${d.tag}</span>
+    </button>`;
+  }).join("");
+  tabsEl.querySelectorAll(".tab").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      activeTab = btn.dataset.key;
+      renderTabs();
+      renderTable();
+    });
+  });
+}
+
+function renderTable(){
+  const d = DATA[activeTab];
+  const q = searchEl.value.trim().toLowerCase();
+  const rows = d.rows.filter(r => !q || r.some(c => c.toLowerCase().includes(q)));
+
+  let html = `<div class="panel-head">
+    <div class="std-name">${d.label}</div>
+    <div class="std-meta">${d.meta}</div>
+  </div>`;
+
+  if(rows.length === 0){
+    html += `<div class="no-match">Nenhuma medida encontrada em ${d.label} para "${searchEl.value}"</div>`;
+  } else {
+    html += `<table><thead><tr>${d.cols.map(c=>`<th>${c}</th>`).join("")}</tr></thead><tbody>`;
+    rows.forEach(r=>{
+      html += `<tr>${r.map(c=>`<td>${c}</td>`).join("")}</tr>`;
+    });
+    html += `</tbody></table>`;
+  }
+  panelEl.innerHTML = html;
+}
+
+searchEl.addEventListener("input", renderTable);
+
+renderTabs();
+renderTable();
+</script>
+</body>
+</html>
