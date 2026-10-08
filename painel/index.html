@@ -246,7 +246,7 @@ No site você também encontra as outras soluções da DayIA. Qualquer dúvida, 
 
 <h3 id="postar">Postar nas redes</h3>
 <p class="sub">Para cada vídeo: baixe, copie a legenda pronta e poste no Instagram (@dayia.app), TikTok (@day.ia5) e Facebook. Marque em "Já postei em" cada rede onde já postou. Use o seletor de rede pra ver só o que falta no Instagram, no TikTok etc. As marcações ficam salvas neste navegador.</p>
-<div class="filtros"><button type="button" class="f on" data-f="todos">Todos</button><button type="button" class="f" data-f="faltam">Faltam postar</button><button type="button" class="f" data-f="feitos">Já postados</button><span style="width:10px"></span><select id="rede" class="sel" aria-label="Rede"><option value="todas">Todas as redes</option><option value="ig">Instagram</option><option value="fb">Facebook</option><option value="tt">TikTok</option><option value="wa">WhatsApp</option><option value="yt">YouTube</option></select><span style="width:10px"></span><button type="button" class="g on" data-g="todos">Todos os formatos</button><button type="button" class="g" data-g="v">📱 Em pé</button><button type="button" class="g" data-g="h">💻 Deitado</button><span id="cont"></span><span id="porRede"></span></div>
+<input id="busca" type="search" placeholder="🔎 Buscar vídeo pelo nome (ex.: central, premiação, roscas)" aria-label="Buscar vídeo" style="width:100%;margin:0 0 10px;background:var(--navy);color:var(--ink);border:1.5px solid var(--sky);border-radius:999px;padding:10px 16px;font:700 15px 'Nunito Sans',sans-serif"><div class="filtros"><button type="button" class="f on" data-f="todos">Todos</button><button type="button" class="f" data-f="faltam">Faltam postar</button><button type="button" class="f" data-f="feitos">Já postados</button><span style="width:10px"></span><select id="rede" class="sel" aria-label="Rede"><option value="todas">Todas as redes</option><option value="ig">Instagram</option><option value="fb">Facebook</option><option value="tt">TikTok</option><option value="wa">WhatsApp</option><option value="yt">YouTube</option></select><span style="width:10px"></span><button type="button" class="g on" data-g="todos">Todos os formatos</button><button type="button" class="g" data-g="v">📱 Em pé</button><button type="button" class="g" data-g="h">💻 Deitado</button><span id="cont"></span><span id="porRede"></span></div>
 <div class="posts"><article class="post" data-id="agenda-facil-vertical" data-fmt="v">
   <div class="ph"><h4>Agenda Fácil</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 3 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
@@ -917,11 +917,13 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
       var bt=p.querySelector('.todas');if(bt)bt.textContent=todo?'Desmarcar todas':'Marcar em todas as redes';
       var alvo;
       if(rede==='todas'){alvo=todo;}else{alvo=rs.indexOf(rede)<0?null:feito(p,rede);}
-      p.hidden=(fmt!=='todos'&&p.dataset.fmt!==fmt)||(rede!=='todas'&&alvo===null)||(filtro==='faltam'&&alvo===true)||(filtro==='feitos'&&alvo!==true);
+      var q=((document.getElementById('busca')||{}).value||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');var nm=(p.querySelector('h4').textContent+' '+p.dataset.id).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+      p.hidden=(q&&nm.indexOf(q)<0)||(fmt!=='todos'&&p.dataset.fmt!==fmt)||(rede!=='todas'&&alvo===null)||(filtro==='faltam'&&alvo===true)||(filtro==='feitos'&&alvo!==true);
     });
     document.getElementById('cont').textContent=ok+' de '+tot+' postados em todas as redes';
     document.getElementById('porRede').textContent=Object.keys(NOMES).filter(function(r){return cont[r]}).map(function(r){return NOMES[r]+' '+cont[r][0]+'/'+cont[r][1]}).join(' · ');
   }
+  document.addEventListener('input',function(e){if(e.target.id==='busca')aplicar()});
   document.addEventListener('change',function(e){var t=e.target;
     if(t.matches('.mr input')){var o=st[t.dataset.id]||{};var p=t.closest('.post');
       if(o.todas){delete o.todas;redesDe(p).forEach(function(r){o[r]=true});}
