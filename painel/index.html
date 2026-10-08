@@ -21,6 +21,8 @@ table{width:100%;border-collapse:collapse;background:var(--navy2);border-radius:
 .sub{color:var(--muted);margin:-4px 0 14px}
 .filtros{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
 .f{font:700 13px "Nunito Sans",sans-serif;background:transparent;color:var(--muted);border:1px solid var(--navy3);border-radius:999px;padding:6px 14px;cursor:pointer}
+[hidden]{display:none!important}
+.g{font-weight:700;font-size:13px;font-family:Nunito Sans,sans-serif;background:transparent;color:var(--muted);border:1px solid var(--navy3);border-radius:999px;padding:6px 14px;cursor:pointer}.g.on{background:var(--sun);color:var(--navy);border-color:var(--sun)}
 .f.on{background:var(--sky);color:var(--navy);border-color:var(--sky)}#cont{color:var(--muted);font-size:14px;margin-left:6px}
 .posts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}@media(max-width:760px){.posts{grid-template-columns:1fr}}
 .post{background:var(--navy2);border:1px solid var(--navy3);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -37,7 +39,7 @@ table{width:100%;border-collapse:collapse;background:var(--navy2);border-radius:
 .abrir{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:1px dashed var(--navy3);padding-top:10px}
 .abrir span{font-size:13px;color:var(--muted);font-weight:700}
 .rede-bt{font-size:13px;font-weight:700;text-decoration:none;color:#fff;padding:7px 12px;border-radius:999px}
-.rede-bt.ig{background:#c13584}.rede-bt.fb{background:#1877f2}.rede-bt.tt{background:#111;border:1px solid #444}.rede-bt.wa{background:#1fa855}
+.rede-bt.ig{background:#c13584}.rede-bt.fb{background:#1877f2}.rede-bt.tt{background:#111;border:1px solid #444}.rede-bt.wa{background:#1fa855}.rede-bt.yt{background:#e62117}
 .ok{width:100%;font-size:14px;font-weight:700;color:var(--ink);display:flex;gap:8px;align-items:center;cursor:pointer;background:var(--navy);border:1px solid var(--navy3);border-radius:10px;padding:8px 12px}
 .ok input{width:18px;height:18px;accent-color:#2ecc71}
 .st{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:rgba(244,180,0,.18);color:var(--sun)}
@@ -232,8 +234,8 @@ No site você também encontra as outras soluções da DayIA. Qualquer dúvida, 
 
 <h3 id="postar">Postar nas redes</h3>
 <p class="sub">Para cada vídeo: baixe, copie a legenda pronta e poste no Instagram (@dayia.app), TikTok (@day.ia5) e Facebook. Marque "Postado" para não se perder. As marcações ficam salvas neste navegador.</p>
-<div class="filtros"><button type="button" class="f on" data-f="todos">Todos</button><button type="button" class="f" data-f="faltam">Faltam postar</button><button type="button" class="f" data-f="feitos">Já postados</button><span id="cont"></span></div>
-<div class="posts"><article class="post" data-id="agenda-facil-vertical">
+<div class="filtros"><button type="button" class="f on" data-f="todos">Todos</button><button type="button" class="f" data-f="faltam">Faltam postar</button><button type="button" class="f" data-f="feitos">Já postados</button><span style="width:10px"></span><button type="button" class="g on" data-g="todos">Todos os formatos</button><button type="button" class="g" data-g="v">📱 Em pé</button><button type="button" class="g" data-g="h">💻 Deitado</button><span id="cont"></span></div>
+<div class="posts"><article class="post" data-id="agenda-facil-vertical" data-fmt="v">
   <div class="ph"><h4>Agenda Fácil</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 3 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="agenda-facil-vertical"> Marcar como postado</label></div>
@@ -250,8 +252,8 @@ Com a Agenda Fácil, o cliente escolhe o serviço, o profissional e o horário l
   <div class="pa"><button type="button" class="b" data-copiar="leg-0">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/agenda-facil-vertical.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/agenda-facil-vertical.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="agenda-facil-tutorial-vertical">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="agenda-facil-tutorial-vertical" data-fmt="v">
   <div class="ph"><h4>Agenda Fácil · Tutorial</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 3 min 16 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="agenda-facil-tutorial-vertical"> Marcar como postado</label></div>
@@ -268,8 +270,8 @@ Cadastre seus serviços, defina os horários e compartilhe o link. Pronto: seus 
   <div class="pa"><button type="button" class="b" data-copiar="leg-1">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/agenda-facil-tutorial-vertical.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/agenda-facil-tutorial-vertical.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="atende-facil-vertical">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="atende-facil-vertical" data-fmt="v">
   <div class="ph"><h4>Atende Fácil</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 2 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="atende-facil-vertical"> Marcar como postado</label></div>
@@ -286,8 +288,8 @@ Teste à vontade no site.
   <div class="pa"><button type="button" class="b" data-copiar="leg-2">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/atende-facil-vertical.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/atende-facil-vertical.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="00-quanto-sobra-geral">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="00-quanto-sobra-geral" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Visão geral</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 35 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="00-quanto-sobra-geral"> Marcar como postado</label></div>
@@ -304,8 +306,8 @@ O Quanto Sobra soma seus custos, mostra o preço certo de venda e o lucro de ver
   <div class="pa"><button type="button" class="b" data-copiar="leg-3">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/00-quanto-sobra-geral.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/00-quanto-sobra-geral.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="01-bar">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="01-bar" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Bar e restaurante</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 29 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="01-bar"> Marcar como postado</label></div>
@@ -322,8 +324,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-4">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/01-bar.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/01-bar.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="02-pecas">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="02-pecas" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Loja de peças</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 14 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="02-pecas"> Marcar como postado</label></div>
@@ -340,8 +342,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-5">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/02-pecas.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/02-pecas.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="03-roupas">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="03-roupas" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Loja de roupas</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 35 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="03-roupas"> Marcar como postado</label></div>
@@ -358,8 +360,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-6">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/03-roupas.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/03-roupas.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="04-mercado">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="04-mercado" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Mercado</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 31 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="04-mercado"> Marcar como postado</label></div>
@@ -376,8 +378,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-7">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/04-mercado.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/04-mercado.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="05-construcao">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="05-construcao" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Material de construção</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 32 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="05-construcao"> Marcar como postado</label></div>
@@ -394,8 +396,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-8">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/05-construcao.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/05-construcao.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="06-autopecas">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="06-autopecas" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Autopeças</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 29 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="06-autopecas"> Marcar como postado</label></div>
@@ -412,8 +414,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-9">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/06-autopecas.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/06-autopecas.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="07-pet">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="07-pet" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Pet shop</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 36 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="07-pet"> Marcar como postado</label></div>
@@ -430,8 +432,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-10">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/07-pet.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/07-pet.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="08-eletronicos">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="08-eletronicos" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Loja de eletrônicos</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 39 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="08-eletronicos"> Marcar como postado</label></div>
@@ -448,8 +450,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-11">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/08-eletronicos.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/08-eletronicos.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="09-confeitaria">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="09-confeitaria" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Confeitaria</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 26 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="09-confeitaria"> Marcar como postado</label></div>
@@ -466,8 +468,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-12">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/09-confeitaria.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/09-confeitaria.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="10-salao">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="10-salao" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Salão de beleza</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 30 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="10-salao"> Marcar como postado</label></div>
@@ -484,8 +486,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-13">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/10-salao.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/10-salao.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="11-oficina">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="11-oficina" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Oficina mecânica</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 26 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="11-oficina"> Marcar como postado</label></div>
@@ -502,8 +504,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-14">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/11-oficina.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/11-oficina.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="12-servicos">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="12-servicos" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Prestação de serviços</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 28 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="12-servicos"> Marcar como postado</label></div>
@@ -520,8 +522,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-15">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/12-servicos.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/12-servicos.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="13-estetica">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="13-estetica" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Clínica de estética</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 31 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="13-estetica"> Marcar como postado</label></div>
@@ -538,8 +540,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-16">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/13-estetica.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/13-estetica.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="14-imobiliaria">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="14-imobiliaria" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Imobiliária</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 27 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="14-imobiliaria"> Marcar como postado</label></div>
@@ -556,8 +558,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-17">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/14-imobiliaria.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/14-imobiliaria.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="15-representante">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="15-representante" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Representante comercial</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 28 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="15-representante"> Marcar como postado</label></div>
@@ -574,8 +576,8 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
   <div class="pa"><button type="button" class="b" data-copiar="leg-18">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/15-representante.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/15-representante.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="16-evolui-com-voz">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="16-evolui-com-voz" data-fmt="v">
   <div class="ph"><h4>Evolui</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 37 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="16-evolui-com-voz"> Marcar como postado</label></div>
@@ -592,8 +594,8 @@ O Evolui ajuda você a acompanhar a sua evolução sem pressa e sem culpa. Explo
   <div class="pa"><button type="button" class="b" data-copiar="leg-19">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/16-evolui-com-voz.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/16-evolui-com-voz.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="premiacao-curto">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="premiacao-curto" data-fmt="v">
   <div class="ph"><h4>Premiação de Vendas · Resumo</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 25 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="premiacao-curto"> Marcar como postado</label></div>
@@ -610,8 +612,8 @@ Teste a demonstração no site.
   <div class="pa"><button type="button" class="b" data-copiar="leg-20">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/premiacao-curto.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/premiacao-curto.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="video-premiacao">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="video-premiacao" data-fmt="v">
   <div class="ph"><h4>Premiação de Vendas · Completo</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 4 min 29 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="video-premiacao"> Marcar como postado</label></div>
@@ -624,12 +626,58 @@ Teste a demonstração no site.
   <div class="pa"><button type="button" class="b" data-copiar="leg-21">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/video-premiacao.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/video-premiacao.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="ferramenta-central">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="agenda-facil" data-fmt="h">
+  <div class="ph"><h4>Agenda Fácil · Deitado</h4><span class="st">Pendente</span></div>
+  <span class="fmt h">💻 Horizontal (deitado) · 16:9 · 1 min 3 s</span><div class="rds"><span class="rd bom"><b>Facebook</b> Feed ✓</span><span class="rd bom"><b>YouTube</b> ✓</span><span class="rd aviso"><b>Instagram</b> só feed, não Reels</span><span class="rd aviso"><b>TikTok</b> fica com faixas pretas, prefira a versão vertical</span></div>
+  <div class="ph2"><label class="ok"><input type="checkbox" data-id="agenda-facil"> Marcar como postado</label></div>
+  <textarea id="leg-22" rows="9" readonly>Chega de perder tempo marcando horário por mensagem. Com a Agenda Fácil, seus clientes agendam sozinhos e você acompanha tudo num painel simples.
+
+✅ 1º mês grátis
+
+🔗 Veja, teste e conheça tudo em dayia.com.br
+💬 WhatsApp: (19) 99938-9118
+
+#AgendaFacil #agendamentoonline #DayIA #tecnologia #inteligenciaartificial #automacao #gestao #empreendedorismo</textarea>
+  <div class="pa"><button type="button" class="b" data-copiar="leg-22">Copiar legenda</button>
+  <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/agenda-facil.mp4" target="_blank">⬇ Baixar vídeo</a>
+  <a class="b2" href="https://dailva123.github.io/dayia/videos/agenda-facil.mp4" target="_blank">▶ Assistir</a></div>
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="agenda-facil-tutorial" data-fmt="h">
+  <div class="ph"><h4>Agenda Fácil · Tutorial deitado</h4><span class="st">Pendente</span></div>
+  <span class="fmt h">💻 Horizontal (deitado) · 16:9 · 3 min 16 s</span><div class="rds"><span class="rd bom"><b>Facebook</b> Feed ✓</span><span class="rd bom"><b>YouTube</b> ✓</span><span class="rd aviso"><b>Instagram</b> só feed, não Reels</span><span class="rd aviso"><b>TikTok</b> fica com faixas pretas, prefira a versão vertical</span></div>
+  <div class="ph2"><label class="ok"><input type="checkbox" data-id="agenda-facil-tutorial"> Marcar como postado</label></div>
+  <textarea id="leg-23" rows="9" readonly>Tutorial completo: como montar e usar a sua agenda online na Agenda Fácil, passo a passo.
+
+✅ Teste grátis por 1 mês
+
+🔗 Veja, teste e conheça tudo em dayia.com.br
+💬 WhatsApp: (19) 99938-9118
+
+#AgendaFacil #tutorial #agendamentoonline #DayIA #tecnologia #inteligenciaartificial #automacao #gestao #empreendedorismo</textarea>
+  <div class="pa"><button type="button" class="b" data-copiar="leg-23">Copiar legenda</button>
+  <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/agenda-facil-tutorial.mp4" target="_blank">⬇ Baixar vídeo</a>
+  <a class="b2" href="https://dailva123.github.io/dayia/videos/agenda-facil-tutorial.mp4" target="_blank">▶ Assistir</a></div>
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="central-suporte-ao-vivo" data-fmt="h">
+  <div class="ph"><h4>Atende Fácil · Ao vivo (deitado)</h4><span class="st">Pendente</span></div>
+  <span class="fmt h">💻 Horizontal (deitado) · 16:9 · 1 min 2 s</span><div class="rds"><span class="rd bom"><b>Facebook</b> Feed ✓</span><span class="rd bom"><b>YouTube</b> ✓</span><span class="rd aviso"><b>Instagram</b> só feed, não Reels</span><span class="rd aviso"><b>TikTok</b> fica com faixas pretas, prefira a versão vertical</span></div>
+  <div class="ph2"><label class="ok"><input type="checkbox" data-id="central-suporte-ao-vivo"> Marcar como postado</label></div>
+  <textarea id="leg-24" rows="9" readonly>Veja o Atende Fácil funcionando ao vivo: o chamado aparece na tela do técnico com aviso sonoro, a resposta volta para o cliente e tudo fica registrado.
+
+🔗 Veja, teste e conheça tudo em dayia.com.br
+💬 WhatsApp: (19) 99938-9118
+
+#AtendeFacil #helpdesk #suportetecnico #DayIA #tecnologia #inteligenciaartificial #automacao #gestao #empreendedorismo</textarea>
+  <div class="pa"><button type="button" class="b" data-copiar="leg-24">Copiar legenda</button>
+  <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/central-suporte-ao-vivo.mp4" target="_blank">⬇ Baixar vídeo</a>
+  <a class="b2" href="https://dailva123.github.io/dayia/videos/central-suporte-ao-vivo.mp4" target="_blank">▶ Assistir</a></div>
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="ferramenta-central" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Central de Vendas</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 55 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-central"> Marcar como postado</label></div>
-  <textarea id="leg-22" rows="9" readonly>Quem contatar hoje em cada carteira, com histórico de compras, contatos e mensagens prontas. ⚙
+  <textarea id="leg-25" rows="9" readonly>Quem contatar hoje em cada carteira, com histórico de compras, contatos e mensagens prontas. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
 
@@ -637,15 +685,15 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 💬 WhatsApp: (19) 99938-9118
 
 #vendas #CRM #ferramentasdegestao #DayIA #tecnologia #inteligenciaartificial #automacao #gestao #empreendedorismo</textarea>
-  <div class="pa"><button type="button" class="b" data-copiar="leg-22">Copiar legenda</button>
+  <div class="pa"><button type="button" class="b" data-copiar="leg-25">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/ferramenta-central.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/ferramenta-central.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="ferramenta-estrategia">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="ferramenta-estrategia" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Estratégia de Vendas</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 49 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-estrategia"> Marcar como postado</label></div>
-  <textarea id="leg-23" rows="9" readonly>Um painel para cada vendedor mostrando em quais clientes focar e quais reativar. ⚙
+  <textarea id="leg-26" rows="9" readonly>Um painel para cada vendedor mostrando em quais clientes focar e quais reativar. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
 
@@ -653,15 +701,15 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 💬 WhatsApp: (19) 99938-9118
 
 #vendas #estrategia #ferramentasdegestao #DayIA #tecnologia #inteligenciaartificial #automacao #gestao #empreendedorismo</textarea>
-  <div class="pa"><button type="button" class="b" data-copiar="leg-23">Copiar legenda</button>
+  <div class="pa"><button type="button" class="b" data-copiar="leg-26">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/ferramenta-estrategia.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/ferramenta-estrategia.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="ferramenta-reativacao">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="ferramenta-reativacao" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Reativação de clientes</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 51 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-reativacao"> Marcar como postado</label></div>
-  <textarea id="leg-24" rows="9" readonly>Descubra quem parou de comprar e reconquiste o cliente com contatos e mensagens prontas. ⚙
+  <textarea id="leg-27" rows="9" readonly>Descubra quem parou de comprar e reconquiste o cliente com contatos e mensagens prontas. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
 
@@ -669,15 +717,15 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 💬 WhatsApp: (19) 99938-9118
 
 #vendas #reativacao #ferramentasdegestao #DayIA #tecnologia #inteligenciaartificial #automacao #gestao #empreendedorismo</textarea>
-  <div class="pa"><button type="button" class="b" data-copiar="leg-24">Copiar legenda</button>
+  <div class="pa"><button type="button" class="b" data-copiar="leg-27">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/ferramenta-reativacao.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/ferramenta-reativacao.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="ferramenta-apollo">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="ferramenta-apollo" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Contatos para prospecção</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 56 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-apollo"> Marcar como postado</label></div>
-  <textarea id="leg-25" rows="9" readonly>Contatos encontrados para cada cliente, com e-mail ou WhatsApp pronto para enviar. ⚙
+  <textarea id="leg-28" rows="9" readonly>Contatos encontrados para cada cliente, com e-mail ou WhatsApp pronto para enviar. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
 
@@ -685,15 +733,15 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 💬 WhatsApp: (19) 99938-9118
 
 #prospeccao #vendas #ferramentasdegestao #DayIA #tecnologia #inteligenciaartificial #automacao #gestao #empreendedorismo</textarea>
-  <div class="pa"><button type="button" class="b" data-copiar="leg-25">Copiar legenda</button>
+  <div class="pa"><button type="button" class="b" data-copiar="leg-28">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/ferramenta-apollo.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/ferramenta-apollo.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="ferramenta-grade">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="ferramenta-grade" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Grade de Tributação</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 55 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-grade"> Marcar como postado</label></div>
-  <textarea id="leg-26" rows="9" readonly>Na hora de cadastrar o item, a ferramenta mostra a grade e a tributação certas. ⚙
+  <textarea id="leg-29" rows="9" readonly>Na hora de cadastrar o item, a ferramenta mostra a grade e a tributação certas. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
 
@@ -701,15 +749,15 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 💬 WhatsApp: (19) 99938-9118
 
 #fiscal #tributacao #ferramentasdegestao #DayIA #tecnologia #inteligenciaartificial #automacao #gestao #empreendedorismo</textarea>
-  <div class="pa"><button type="button" class="b" data-copiar="leg-26">Copiar legenda</button>
+  <div class="pa"><button type="button" class="b" data-copiar="leg-29">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/ferramenta-grade.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/ferramenta-grade.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="ferramenta-saquinho">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="ferramenta-saquinho" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Etiqueta de Saquinho</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 56 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-saquinho"> Marcar como postado</label></div>
-  <textarea id="leg-27" rows="9" readonly>Lê o pedido e imprime a etiqueta da peça, registrando quem separou. ⚙
+  <textarea id="leg-30" rows="9" readonly>Lê o pedido e imprime a etiqueta da peça, registrando quem separou. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
 
@@ -717,15 +765,15 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 💬 WhatsApp: (19) 99938-9118
 
 #logistica #expedicao #ferramentasdegestao #DayIA #tecnologia #inteligenciaartificial #automacao #gestao #empreendedorismo</textarea>
-  <div class="pa"><button type="button" class="b" data-copiar="leg-27">Copiar legenda</button>
+  <div class="pa"><button type="button" class="b" data-copiar="leg-30">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/ferramenta-saquinho.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/ferramenta-saquinho.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="ferramenta-certificado">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="ferramenta-certificado" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Certificado de Qualidade</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 57 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-certificado"> Marcar como postado</label></div>
-  <textarea id="leg-28" rows="9" readonly>Lê a nota fiscal em PDF e gera o certificado de qualidade em português ou inglês. ⚙
+  <textarea id="leg-31" rows="9" readonly>Lê a nota fiscal em PDF e gera o certificado de qualidade em português ou inglês. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
 
@@ -733,15 +781,15 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 💬 WhatsApp: (19) 99938-9118
 
 #qualidade #automacao #ferramentasdegestao #DayIA #tecnologia #inteligenciaartificial #automacao #gestao #empreendedorismo</textarea>
-  <div class="pa"><button type="button" class="b" data-copiar="leg-28">Copiar legenda</button>
+  <div class="pa"><button type="button" class="b" data-copiar="leg-31">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/ferramenta-certificado.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/ferramenta-certificado.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="ferramenta-certificado-cliente">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="ferramenta-certificado-cliente" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Certificado no modelo do cliente</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 57 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-certificado-cliente"> Marcar como postado</label></div>
-  <textarea id="leg-29" rows="9" readonly>Gera o certificado no modelo exclusivo que o cliente exige, automaticamente. ⚙
+  <textarea id="leg-32" rows="9" readonly>Gera o certificado no modelo exclusivo que o cliente exige, automaticamente. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
 
@@ -749,15 +797,15 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 💬 WhatsApp: (19) 99938-9118
 
 #qualidade #automacao #ferramentasdegestao #DayIA #tecnologia #inteligenciaartificial #automacao #gestao #empreendedorismo</textarea>
-  <div class="pa"><button type="button" class="b" data-copiar="leg-29">Copiar legenda</button>
+  <div class="pa"><button type="button" class="b" data-copiar="leg-32">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/ferramenta-certificado-cliente.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/ferramenta-certificado-cliente.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="ferramenta-sedex">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="ferramenta-sedex" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Etiqueta Sedex e Declaração</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 55 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-sedex"> Marcar como postado</label></div>
-  <textarea id="leg-30" rows="9" readonly>Busca o cliente pelo código ou nome e monta a etiqueta e a declaração de conteúdo. ⚙
+  <textarea id="leg-33" rows="9" readonly>Busca o cliente pelo código ou nome e monta a etiqueta e a declaração de conteúdo. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
 
@@ -765,15 +813,15 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 💬 WhatsApp: (19) 99938-9118
 
 #logistica #correios #ferramentasdegestao #DayIA #tecnologia #inteligenciaartificial #automacao #gestao #empreendedorismo</textarea>
-  <div class="pa"><button type="button" class="b" data-copiar="leg-30">Copiar legenda</button>
+  <div class="pa"><button type="button" class="b" data-copiar="leg-33">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/ferramenta-sedex.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/ferramenta-sedex.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
-</article><article class="post" data-id="ferramenta-roscas">
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
+</article><article class="post" data-id="ferramenta-roscas" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Identificador de Roscas</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 59 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
   <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-roscas"> Marcar como postado</label></div>
-  <textarea id="leg-31" rows="9" readonly>Tabelas BSP, BSPT, NPT, UNC, UNF, métrica e JIC para descobrir a rosca da peça em segundos. ⚙
+  <textarea id="leg-34" rows="9" readonly>Tabelas BSP, BSPT, NPT, UNC, UNF, métrica e JIC para descobrir a rosca da peça em segundos. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
 
@@ -781,10 +829,10 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 💬 WhatsApp: (19) 99938-9118
 
 #industria #manutencao #ferramentasdegestao #DayIA #tecnologia #inteligenciaartificial #automacao #gestao #empreendedorismo</textarea>
-  <div class="pa"><button type="button" class="b" data-copiar="leg-31">Copiar legenda</button>
+  <div class="pa"><button type="button" class="b" data-copiar="leg-34">Copiar legenda</button>
   <a class="b2" href="https://github.com/dailva123/dayia/raw/main/videos/ferramenta-roscas.mp4" target="_blank">⬇ Baixar vídeo</a>
   <a class="b2" href="https://dailva123.github.io/dayia/videos/ferramenta-roscas.mp4" target="_blank">▶ Assistir</a></div>
-  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a></div>
+  <div class="abrir"><span>Postar em:</span><a class="rede-bt ig" href="https://www.instagram.com/" target="_blank">Instagram</a><a class="rede-bt fb" href="https://business.facebook.com/latest/reels_composer" target="_blank">Facebook</a><a class="rede-bt tt" href="https://www.tiktok.com/upload" target="_blank">TikTok</a><a class="rede-bt wa" href="https://web.whatsapp.com/" target="_blank">WhatsApp</a><a class="rede-bt yt" href="https://studio.youtube.com/" target="_blank">YouTube</a></div>
 </article></div>
 
 <h3>Links importantes</h3>
@@ -802,15 +850,16 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 (function(){
   var K='dayia-postados',st={};try{st=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
   function salvar(){try{localStorage.setItem(K,JSON.stringify(st))}catch(e){}}
-  var filtro='todos';
+  var filtro='todos',fmt='todos';
   function aplicar(){var n=0,t=0;document.querySelectorAll('.post:not(.msg)').forEach(function(p){var f=!!st[p.dataset.id];t++;if(f)n++;p.classList.toggle('feito',f);
-    p.hidden=(filtro==='faltam'&&f)||(filtro==='feitos'&&!f);p.querySelector('input').checked=f;var bd=p.querySelector('.st');if(bd)bd.textContent=f?'Postado ✓':'Pendente';});
+    p.hidden=(filtro==='faltam'&&f)||(filtro==='feitos'&&!f)||(fmt!=='todos'&&p.dataset.fmt!==fmt);p.querySelector('input').checked=f;var bd=p.querySelector('.st');if(bd)bd.textContent=f?'Postado ✓':'Pendente';});
     document.getElementById('cont').textContent=n+' de '+t+' postados';}
   document.addEventListener('change',function(e){if(e.target.matches('.post input')){st[e.target.dataset.id]=e.target.checked;salvar();aplicar();}});
   document.addEventListener('click',function(e){
     var c=e.target.closest('[data-copiar]');if(c){var ta=document.getElementById(c.dataset.copiar);
       var ok=function(){c.textContent='Copiado ✓';setTimeout(function(){c.textContent=c.dataset.copiar.indexOf('msg')===0?'Copiar mensagem':'Copiar legenda'},1800)};
       try{navigator.clipboard.writeText(ta.value).then(ok,function(){ta.select();ok()})}catch(x){ta.select();ok()}}
+    var g=e.target.closest('.g');if(g){fmt=g.dataset.g;document.querySelectorAll('.g').forEach(function(x){x.classList.toggle('on',x===g)});aplicar();}
     var f=e.target.closest('.f');if(f){filtro=f.dataset.f;document.querySelectorAll('.f').forEach(function(x){x.classList.toggle('on',x===f)});aplicar();}
   });
   aplicar();
