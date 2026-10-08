@@ -22,6 +22,17 @@ table{width:100%;border-collapse:collapse;background:var(--navy2);border-radius:
 .filtros{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
 .f{font:700 13px "Nunito Sans",sans-serif;background:transparent;color:var(--muted);border:1px solid var(--navy3);border-radius:999px;padding:6px 14px;cursor:pointer}
 [hidden]{display:none!important}
+.sel{font-weight:700;font-size:13px;background:var(--navy);color:var(--ink);border:1px solid var(--navy3);border-radius:999px;padding:6px 12px}
+.ph2{display:flex;flex-direction:column;gap:6px}
+.ph2 .tit{font-size:12px;font-weight:700;color:var(--muted)}
+.mr{display:flex;flex-wrap:wrap;gap:6px}
+.mr label{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;background:var(--navy);border:1px solid var(--navy3);border-radius:10px;padding:6px 10px;cursor:pointer}
+.mr label.on{border-color:#2ecc71;background:rgba(46,204,113,.12)}
+.mr input{width:16px;height:16px;accent-color:#2ecc71}
+.todas{background:none;border:0;color:var(--sky);font-weight:700;font-size:13px;cursor:pointer;padding:4px 2px;align-self:flex-start}
+.post.parcial .st{background:rgba(130,210,255,.15);color:var(--sky)}
+#porRede{width:100%;font-size:13px;color:var(--muted);margin-top:4px}
+
 .g{font-weight:700;font-size:13px;font-family:Nunito Sans,sans-serif;background:transparent;color:var(--muted);border:1px solid var(--navy3);border-radius:999px;padding:6px 14px;cursor:pointer}.g.on{background:var(--sun);color:var(--navy);border-color:var(--sun)}
 .f.on{background:var(--sky);color:var(--navy);border-color:var(--sky)}#cont{color:var(--muted);font-size:14px;margin-left:6px}
 .posts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}@media(max-width:760px){.posts{grid-template-columns:1fr}}
@@ -233,12 +244,12 @@ No site você também encontra as outras soluções da DayIA. Qualquer dúvida, 
 <table><tr><td>Site completo</td><td><code>dayia.com.br</code></td></tr><tr><td>Agenda Fácil</td><td><code>dayia.com.br/#agenda-facil</code></td></tr><tr><td>Quanto Sobra</td><td><code>dayia.com.br/#quanto-sobra</code></td></tr><tr><td>Atende Fácil</td><td><code>dayia.com.br/#atende-facil</code></td></tr><tr><td>Evolui</td><td><code>dayia.com.br/#evolui</code></td></tr><tr><td>Premiação de Vendas</td><td><code>dayia.com.br/#premiacao</code></td></tr><tr><td>Ferramentas de gestão</td><td><code>dayia.com.br/#portfolio</code></td></tr><tr><td>Sob medida</td><td><code>dayia.com.br/#sob-medida</code></td></tr></table>
 
 <h3 id="postar">Postar nas redes</h3>
-<p class="sub">Para cada vídeo: baixe, copie a legenda pronta e poste no Instagram (@dayia.app), TikTok (@day.ia5) e Facebook. Marque "Postado" para não se perder. As marcações ficam salvas neste navegador.</p>
-<div class="filtros"><button type="button" class="f on" data-f="todos">Todos</button><button type="button" class="f" data-f="faltam">Faltam postar</button><button type="button" class="f" data-f="feitos">Já postados</button><span style="width:10px"></span><button type="button" class="g on" data-g="todos">Todos os formatos</button><button type="button" class="g" data-g="v">📱 Em pé</button><button type="button" class="g" data-g="h">💻 Deitado</button><span id="cont"></span></div>
+<p class="sub">Para cada vídeo: baixe, copie a legenda pronta e poste no Instagram (@dayia.app), TikTok (@day.ia5) e Facebook. Marque em "Já postei em" cada rede onde já postou. Use o seletor de rede pra ver só o que falta no Instagram, no TikTok etc. As marcações ficam salvas neste navegador.</p>
+<div class="filtros"><button type="button" class="f on" data-f="todos">Todos</button><button type="button" class="f" data-f="faltam">Faltam postar</button><button type="button" class="f" data-f="feitos">Já postados</button><span style="width:10px"></span><select id="rede" class="sel" aria-label="Rede"><option value="todas">Todas as redes</option><option value="ig">Instagram</option><option value="fb">Facebook</option><option value="tt">TikTok</option><option value="wa">WhatsApp</option><option value="yt">YouTube</option></select><span style="width:10px"></span><button type="button" class="g on" data-g="todos">Todos os formatos</button><button type="button" class="g" data-g="v">📱 Em pé</button><button type="button" class="g" data-g="h">💻 Deitado</button><span id="cont"></span><span id="porRede"></span></div>
 <div class="posts"><article class="post" data-id="agenda-facil-vertical" data-fmt="v">
   <div class="ph"><h4>Agenda Fácil</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 3 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="agenda-facil-vertical"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-0" rows="9" readonly>Seus clientes marcando horário sozinhos, pelo celular, a qualquer hora. 📅
 
 Com a Agenda Fácil, o cliente escolhe o serviço, o profissional e o horário livre, e o agendamento aparece na hora no seu painel. Tem lembrete pelo WhatsApp, controle de faltas e resultados do mês.
@@ -256,7 +267,7 @@ Com a Agenda Fácil, o cliente escolhe o serviço, o profissional e o horário l
 </article><article class="post" data-id="agenda-facil-tutorial-vertical" data-fmt="v">
   <div class="ph"><h4>Agenda Fácil · Tutorial</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 3 min 16 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="agenda-facil-tutorial-vertical"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-1" rows="9" readonly>Passo a passo: como montar a sua agenda online em poucos minutos. 👇
 
 Cadastre seus serviços, defina os horários e compartilhe o link. Pronto: seus clientes já podem agendar sozinhos.
@@ -274,7 +285,7 @@ Cadastre seus serviços, defina os horários e compartilhe o link. Pronto: seus 
 </article><article class="post" data-id="atende-facil-vertical" data-fmt="v">
   <div class="ph"><h4>Atende Fácil</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 2 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="atende-facil-vertical"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-2" rows="9" readonly>Chamado aberto, técnico avisado na hora. 🔔
 
 O Atende Fácil organiza o suporte da sua empresa: chamados com prazo por prioridade, conversa com o cliente, acesso remoto ao computador, inventário de equipamentos e painel de resultados.
@@ -292,7 +303,7 @@ Teste à vontade no site.
 </article><article class="post" data-id="00-quanto-sobra-geral" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Visão geral</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 35 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="00-quanto-sobra-geral"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-3" rows="9" readonly>Você sabe quanto realmente sobra no seu bolso no fim do mês? 💰
 
 O Quanto Sobra soma seus custos, mostra o preço certo de venda e o lucro de verdade. Já vem com exemplos prontos para 15 tipos de negócio.
@@ -310,7 +321,7 @@ O Quanto Sobra soma seus custos, mostra o preço certo de venda e o lucro de ver
 </article><article class="post" data-id="01-bar" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Bar e restaurante</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 29 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="01-bar"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-4" rows="9" readonly>Tem bar e restaurante? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -328,7 +339,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="02-pecas" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Loja de peças</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 14 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="02-pecas"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-5" rows="9" readonly>Tem loja de peças? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -346,7 +357,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="03-roupas" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Loja de roupas</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 35 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="03-roupas"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-6" rows="9" readonly>Tem loja de roupas? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -364,7 +375,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="04-mercado" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Mercado</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 31 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="04-mercado"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-7" rows="9" readonly>Tem mercado? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -382,7 +393,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="05-construcao" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Material de construção</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 32 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="05-construcao"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-8" rows="9" readonly>Tem material de construção? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -400,7 +411,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="06-autopecas" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Autopeças</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 29 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="06-autopecas"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-9" rows="9" readonly>Tem autopeças? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -418,7 +429,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="07-pet" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Pet shop</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 36 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="07-pet"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-10" rows="9" readonly>Tem pet shop? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -436,7 +447,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="08-eletronicos" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Loja de eletrônicos</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 39 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="08-eletronicos"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-11" rows="9" readonly>Tem loja de eletrônicos? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -454,7 +465,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="09-confeitaria" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Confeitaria</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 26 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="09-confeitaria"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-12" rows="9" readonly>Tem confeitaria? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -472,7 +483,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="10-salao" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Salão de beleza</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 30 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="10-salao"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-13" rows="9" readonly>Tem salão de beleza? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -490,7 +501,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="11-oficina" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Oficina mecânica</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 26 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="11-oficina"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-14" rows="9" readonly>Tem oficina mecânica? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -508,7 +519,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="12-servicos" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Prestação de serviços</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 28 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="12-servicos"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-15" rows="9" readonly>Tem prestação de serviços? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -526,7 +537,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="13-estetica" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Clínica de estética</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 31 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="13-estetica"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-16" rows="9" readonly>Tem clínica de estética? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -544,7 +555,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="14-imobiliaria" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Imobiliária</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 27 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="14-imobiliaria"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-17" rows="9" readonly>Tem imobiliária? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -562,7 +573,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="15-representante" data-fmt="v">
   <div class="ph"><h4>Quanto Sobra · Representante comercial</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 28 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="15-representante"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-18" rows="9" readonly>Tem representante comercial? Descubra quanto realmente sobra depois de pagar todas as contas. 💰
 
 No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e o seu lucro de verdade.
@@ -580,7 +591,7 @@ No Quanto Sobra você coloca seus custos e vê na hora o preço certo de venda e
 </article><article class="post" data-id="16-evolui-com-voz" data-fmt="v">
   <div class="ph"><h4>Evolui</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 37 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="16-evolui-com-voz"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-19" rows="9" readonly>Um registro por dia, ciclos de 30 dias. 📈
 
 O Evolui ajuda você a acompanhar a sua evolução sem pressa e sem culpa. Explore o app inteiro de graça e só pague quando quiser salvar.
@@ -598,7 +609,7 @@ O Evolui ajuda você a acompanhar a sua evolução sem pressa e sem culpa. Explo
 </article><article class="post" data-id="premiacao-curto" data-fmt="v">
   <div class="ph"><h4>Premiação de Vendas · Resumo</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 1 min 25 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="premiacao-curto"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-20" rows="9" readonly>Premiação da equipe calculada sozinha, sem erro e sem dor de cabeça. 🏆
 
 O gestor lança as vendas do mês, o sistema calcula a premiação de cada vendedor e da equipe de apoio e comemora cada meta batida com o time.
@@ -616,7 +627,7 @@ Teste a demonstração no site.
 </article><article class="post" data-id="video-premiacao" data-fmt="v">
   <div class="ph"><h4>Premiação de Vendas · Completo</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 4 min 29 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd aviso"><b>WhatsApp</b> Status: divide em partes (mais de 1 min)</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="video-premiacao"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-21" rows="9" readonly>Veja em 4 minutos como funciona o sistema de Premiação de Vendas da DayIA, do lançamento das vendas ao relatório final de cada pessoa.
 
 🔗 Veja, teste e conheça tudo em dayia.com.br
@@ -630,7 +641,7 @@ Teste a demonstração no site.
 </article><article class="post" data-id="agenda-facil" data-fmt="h">
   <div class="ph"><h4>Agenda Fácil · Deitado</h4><span class="st">Pendente</span></div>
   <span class="fmt h">💻 Horizontal (deitado) · 16:9 · 1 min 3 s</span><div class="rds"><span class="rd bom"><b>Facebook</b> Feed ✓</span><span class="rd bom"><b>YouTube</b> ✓</span><span class="rd aviso"><b>Instagram</b> só feed, não Reels</span><span class="rd aviso"><b>TikTok</b> fica com faixas pretas, prefira a versão vertical</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="agenda-facil"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="fb,yt"></div>
   <textarea id="leg-22" rows="9" readonly>Chega de perder tempo marcando horário por mensagem. Com a Agenda Fácil, seus clientes agendam sozinhos e você acompanha tudo num painel simples.
 
 ✅ 1º mês grátis
@@ -646,7 +657,7 @@ Teste a demonstração no site.
 </article><article class="post" data-id="agenda-facil-tutorial" data-fmt="h">
   <div class="ph"><h4>Agenda Fácil · Tutorial deitado</h4><span class="st">Pendente</span></div>
   <span class="fmt h">💻 Horizontal (deitado) · 16:9 · 3 min 16 s</span><div class="rds"><span class="rd bom"><b>Facebook</b> Feed ✓</span><span class="rd bom"><b>YouTube</b> ✓</span><span class="rd aviso"><b>Instagram</b> só feed, não Reels</span><span class="rd aviso"><b>TikTok</b> fica com faixas pretas, prefira a versão vertical</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="agenda-facil-tutorial"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="fb,yt"></div>
   <textarea id="leg-23" rows="9" readonly>Tutorial completo: como montar e usar a sua agenda online na Agenda Fácil, passo a passo.
 
 ✅ Teste grátis por 1 mês
@@ -662,7 +673,7 @@ Teste a demonstração no site.
 </article><article class="post" data-id="central-suporte-ao-vivo" data-fmt="h">
   <div class="ph"><h4>Atende Fácil · Ao vivo (deitado)</h4><span class="st">Pendente</span></div>
   <span class="fmt h">💻 Horizontal (deitado) · 16:9 · 1 min 2 s</span><div class="rds"><span class="rd bom"><b>Facebook</b> Feed ✓</span><span class="rd bom"><b>YouTube</b> ✓</span><span class="rd aviso"><b>Instagram</b> só feed, não Reels</span><span class="rd aviso"><b>TikTok</b> fica com faixas pretas, prefira a versão vertical</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="central-suporte-ao-vivo"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="fb,yt"></div>
   <textarea id="leg-24" rows="9" readonly>Veja o Atende Fácil funcionando ao vivo: o chamado aparece na tela do técnico com aviso sonoro, a resposta volta para o cliente e tudo fica registrado.
 
 🔗 Veja, teste e conheça tudo em dayia.com.br
@@ -676,7 +687,7 @@ Teste a demonstração no site.
 </article><article class="post" data-id="ferramenta-central" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Central de Vendas</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 55 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-central"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-25" rows="9" readonly>Quem contatar hoje em cada carteira, com histórico de compras, contatos e mensagens prontas. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
@@ -692,7 +703,7 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 </article><article class="post" data-id="ferramenta-estrategia" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Estratégia de Vendas</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 49 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-estrategia"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-26" rows="9" readonly>Um painel para cada vendedor mostrando em quais clientes focar e quais reativar. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
@@ -708,7 +719,7 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 </article><article class="post" data-id="ferramenta-reativacao" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Reativação de clientes</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 51 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-reativacao"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-27" rows="9" readonly>Descubra quem parou de comprar e reconquiste o cliente com contatos e mensagens prontas. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
@@ -724,7 +735,7 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 </article><article class="post" data-id="ferramenta-apollo" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Contatos para prospecção</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 56 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-apollo"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-28" rows="9" readonly>Contatos encontrados para cada cliente, com e-mail ou WhatsApp pronto para enviar. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
@@ -740,7 +751,7 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 </article><article class="post" data-id="ferramenta-grade" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Grade de Tributação</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 55 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-grade"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-29" rows="9" readonly>Na hora de cadastrar o item, a ferramenta mostra a grade e a tributação certas. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
@@ -756,7 +767,7 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 </article><article class="post" data-id="ferramenta-saquinho" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Etiqueta de Saquinho</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 56 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-saquinho"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-30" rows="9" readonly>Lê o pedido e imprime a etiqueta da peça, registrando quem separou. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
@@ -772,7 +783,7 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 </article><article class="post" data-id="ferramenta-certificado" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Certificado de Qualidade</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 57 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-certificado"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-31" rows="9" readonly>Lê a nota fiscal em PDF e gera o certificado de qualidade em português ou inglês. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
@@ -788,7 +799,7 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 </article><article class="post" data-id="ferramenta-certificado-cliente" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Certificado no modelo do cliente</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 57 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-certificado-cliente"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-32" rows="9" readonly>Gera o certificado no modelo exclusivo que o cliente exige, automaticamente. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
@@ -804,7 +815,7 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 </article><article class="post" data-id="ferramenta-sedex" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Etiqueta Sedex e Declaração</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 55 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-sedex"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-33" rows="9" readonly>Busca o cliente pelo código ou nome e monta a etiqueta e a declaração de conteúdo. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
@@ -820,7 +831,7 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 </article><article class="post" data-id="ferramenta-roscas" data-fmt="v">
   <div class="ph"><h4>Ferramenta · Identificador de Roscas</h4><span class="st">Pendente</span></div>
   <span class="fmt v">📱 Vertical (em pé) · 9:16 · 59 s</span><div class="rds"><span class="rd bom"><b>Instagram</b> Reels ✓</span><span class="rd bom"><b>Facebook</b> Reels ✓</span><span class="rd bom"><b>TikTok</b> ✓</span><span class="rd bom"><b>WhatsApp</b> Status ✓</span></div>
-  <div class="ph2"><label class="ok"><input type="checkbox" data-id="ferramenta-roscas"> Marcar como postado</label></div>
+  <div class="ph2" data-redes="ig,fb,tt,wa"></div>
   <textarea id="leg-34" rows="9" readonly>Tabelas BSP, BSPT, NPT, UNC, UNF, métrica e JIC para descobrir a rosca da peça em segundos. ⚙
 
 Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela pode ser adaptada para a rotina da sua empresa, em qualquer área.
@@ -848,17 +859,44 @@ Essa é uma das ferramentas que a DayIA cria com tecnologia e automação. Ela p
 </table>
 </div><script>
 (function(){
-  var K='dayia-postados',st={};try{st=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
+  var NOMES={ig:'Instagram',fb:'Facebook',tt:'TikTok',wa:'WhatsApp',yt:'YouTube'};
+  var K='dayia-postados-redes',st={};try{st=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
+  try{var velho=JSON.parse(localStorage.getItem('dayia-postados')||'{}');Object.keys(velho).forEach(function(id){if(velho[id]&&!st[id]){st[id]={todas:true}}})}catch(e){}
   function salvar(){try{localStorage.setItem(K,JSON.stringify(st))}catch(e){}}
-  var filtro='todos',fmt='todos';
-  function aplicar(){var n=0,t=0;document.querySelectorAll('.post:not(.msg)').forEach(function(p){var f=!!st[p.dataset.id];t++;if(f)n++;p.classList.toggle('feito',f);
-    p.hidden=(filtro==='faltam'&&f)||(filtro==='feitos'&&!f)||(fmt!=='todos'&&p.dataset.fmt!==fmt);p.querySelector('input').checked=f;var bd=p.querySelector('.st');if(bd)bd.textContent=f?'Postado ✓':'Pendente';});
-    document.getElementById('cont').textContent=n+' de '+t+' postados';}
-  document.addEventListener('change',function(e){if(e.target.matches('.post input')){st[e.target.dataset.id]=e.target.checked;salvar();aplicar();}});
+  var filtro='todos',fmt='todos',rede='todas';
+  function redesDe(p){return (p.querySelector('.ph2').dataset.redes||'').split(',')}
+  function feito(p,r){var o=st[p.dataset.id]||{};return !!(o.todas||o[r])}
+  document.querySelectorAll('.post .ph2').forEach(function(box){
+    var p=box.closest('.post');
+    box.innerHTML='<span class="tit">Já postei em:</span><div class="mr">'+redesDe(p).map(function(r){return '<label data-r="'+r+'"><input type="checkbox" data-id="'+p.dataset.id+'" data-r="'+r+'"> '+NOMES[r]+'</label>'}).join('')+'</div><button type="button" class="todas" data-todas="'+p.dataset.id+'">Marcar em todas as redes</button>';
+  });
+  function aplicar(){var tot=0,ok=0,cont={};
+    document.querySelectorAll('.post:not(.msg)').forEach(function(p){
+      var rs=redesDe(p),n=0;
+      rs.forEach(function(r){var f=feito(p,r);if(f)n++;cont[r]=cont[r]||[0,0];cont[r][1]++;if(f)cont[r][0]++;
+        var lb=p.querySelector('label[data-r="'+r+'"]');if(lb){lb.classList.toggle('on',f);lb.querySelector('input').checked=f;}});
+      var todo=n===rs.length;tot++;if(todo)ok++;
+      p.classList.toggle('feito',todo);p.classList.toggle('parcial',n>0&&!todo);
+      var bd=p.querySelector('.st');if(bd)bd.textContent=todo?'Postado ✓':(n?'Parcial '+n+'/'+rs.length:'Pendente');
+      var bt=p.querySelector('.todas');if(bt)bt.textContent=todo?'Desmarcar todas':'Marcar em todas as redes';
+      var alvo;
+      if(rede==='todas'){alvo=todo;}else{alvo=rs.indexOf(rede)<0?null:feito(p,rede);}
+      p.hidden=(fmt!=='todos'&&p.dataset.fmt!==fmt)||(rede!=='todas'&&alvo===null)||(filtro==='faltam'&&alvo===true)||(filtro==='feitos'&&alvo!==true);
+    });
+    document.getElementById('cont').textContent=ok+' de '+tot+' postados em todas as redes';
+    document.getElementById('porRede').textContent=Object.keys(NOMES).filter(function(r){return cont[r]}).map(function(r){return NOMES[r]+' '+cont[r][0]+'/'+cont[r][1]}).join(' · ');
+  }
+  document.addEventListener('change',function(e){var t=e.target;
+    if(t.matches('.mr input')){var o=st[t.dataset.id]||{};var p=t.closest('.post');
+      if(o.todas){delete o.todas;redesDe(p).forEach(function(r){o[r]=true});}
+      o[t.dataset.r]=t.checked;st[t.dataset.id]=o;salvar();aplicar();}
+    if(t.id==='rede'){rede=t.value;aplicar();}
+  });
   document.addEventListener('click',function(e){
-    var c=e.target.closest('[data-copiar]');if(c){var ta=document.getElementById(c.dataset.copiar);
-      var ok=function(){c.textContent='Copiado ✓';setTimeout(function(){c.textContent=c.dataset.copiar.indexOf('msg')===0?'Copiar mensagem':'Copiar legenda'},1800)};
+    var c=e.target.closest('[data-copiar]');if(c){var ta=document.getElementById(c.dataset.copiar);var rot=c.dataset.copiar.indexOf('msg')===0?'Copiar mensagem':'Copiar legenda';
+      var ok=function(){c.textContent='Copiado ✓';setTimeout(function(){c.textContent=rot},1800)};
       try{navigator.clipboard.writeText(ta.value).then(ok,function(){ta.select();ok()})}catch(x){ta.select();ok()}}
+    var td=e.target.closest('[data-todas]');if(td){var p=td.closest('.post'),rs=redesDe(p),todo=rs.every(function(r){return feito(p,r)});var o={};if(!todo)rs.forEach(function(r){o[r]=true});st[td.dataset.todas]=o;salvar();aplicar();}
     var g=e.target.closest('.g');if(g){fmt=g.dataset.g;document.querySelectorAll('.g').forEach(function(x){x.classList.toggle('on',x===g)});aplicar();}
     var f=e.target.closest('.f');if(f){filtro=f.dataset.f;document.querySelectorAll('.f').forEach(function(x){x.classList.toggle('on',x===f)});aplicar();}
   });
