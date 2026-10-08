@@ -198,6 +198,7 @@ footer img{height:28px;width:auto;display:block}
   if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches){intro.classList.add("fim");return;}
   setTimeout(function(){intro.classList.add("passo2");},1500);
   setTimeout(function(){intro.classList.add("fim");},2700);
+  setTimeout(function(){if(intro.parentNode)intro.parentNode.removeChild(intro);},3400);
 })();
 </script>
 
@@ -252,7 +253,7 @@ footer img{height:28px;width:auto;display:block}
       </div>
       <div class="apps">
         <article class="app" id="agenda-facil">
-          <div class="midia"><video id="v-agenda-facil" controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/agenda-facil.mp4#t=0.5"></video><div class="chips" role="group" aria-label="Escolha o vídeo"><button type="button" data-video="v-agenda-facil" data-src="https://dailva123.github.io/dayia/videos/agenda-facil.mp4" aria-pressed="true">Apresentação</button><button type="button" data-video="v-agenda-facil" data-src="https://dailva123.github.io/dayia/videos/agenda-facil-tutorial.mp4" aria-pressed="false">Tutorial: como usar</button></div></div>
+          <div class="midia"><video poster="capas/agenda-facil.jpg" id="v-agenda-facil" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/agenda-facil.mp4"></video><div class="chips" role="group" aria-label="Escolha o vídeo"><button type="button" data-video="v-agenda-facil" data-src="https://dailva123.github.io/dayia/videos/agenda-facil.mp4" aria-pressed="true">Apresentação</button><button type="button" data-video="v-agenda-facil" data-src="https://dailva123.github.io/dayia/videos/agenda-facil-tutorial.mp4" aria-pressed="false">Tutorial: como usar</button></div></div>
           <div class="corpo">
             <div class="nome">
               <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#82D2FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18M8 15l2.5 2.5L16 13"/></svg></div>
@@ -265,7 +266,7 @@ footer img{height:28px;width:auto;display:block}
           </div>
         </article>
         <article class="app" id="quanto-sobra">
-          <div class="midia"><video id="v-quanto-sobra" controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/00-quanto-sobra-geral.mp4#t=0.5"></video><label class="esc" for="s-quanto-sobra">Vídeo do seu tipo de negócio<select id="s-quanto-sobra" data-video="v-quanto-sobra"><option value="https://dailva123.github.io/dayia/videos/00-quanto-sobra-geral.mp4">Visão geral</option><option value="https://dailva123.github.io/dayia/videos/01-bar.mp4">Bar e restaurante</option><option value="https://dailva123.github.io/dayia/videos/02-pecas.mp4">Peças</option><option value="https://dailva123.github.io/dayia/videos/03-roupas.mp4">Roupas</option><option value="https://dailva123.github.io/dayia/videos/04-mercado.mp4">Mercado</option><option value="https://dailva123.github.io/dayia/videos/05-construcao.mp4">Construção</option><option value="https://dailva123.github.io/dayia/videos/06-autopecas.mp4">Autopeças</option><option value="https://dailva123.github.io/dayia/videos/07-pet.mp4">Pet shop</option><option value="https://dailva123.github.io/dayia/videos/08-eletronicos.mp4">Eletrônicos</option><option value="https://dailva123.github.io/dayia/videos/09-confeitaria.mp4">Confeitaria</option><option value="https://dailva123.github.io/dayia/videos/10-salao.mp4">Salão</option><option value="https://dailva123.github.io/dayia/videos/11-oficina.mp4">Oficina</option><option value="https://dailva123.github.io/dayia/videos/12-servicos.mp4">Serviços</option><option value="https://dailva123.github.io/dayia/videos/13-estetica.mp4">Estética</option><option value="https://dailva123.github.io/dayia/videos/14-imobiliaria.mp4">Imobiliária</option><option value="https://dailva123.github.io/dayia/videos/15-representante.mp4">Representante</option></select></label></div>
+          <div class="midia"><video poster="capas/00-quanto-sobra-geral.jpg" id="v-quanto-sobra" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/00-quanto-sobra-geral.mp4"></video><label class="esc" for="s-quanto-sobra">Vídeo do seu tipo de negócio<select id="s-quanto-sobra" data-video="v-quanto-sobra"><option value="https://dailva123.github.io/dayia/videos/00-quanto-sobra-geral.mp4">Visão geral</option><option value="https://dailva123.github.io/dayia/videos/01-bar.mp4">Bar e restaurante</option><option value="https://dailva123.github.io/dayia/videos/02-pecas.mp4">Peças</option><option value="https://dailva123.github.io/dayia/videos/03-roupas.mp4">Roupas</option><option value="https://dailva123.github.io/dayia/videos/04-mercado.mp4">Mercado</option><option value="https://dailva123.github.io/dayia/videos/05-construcao.mp4">Construção</option><option value="https://dailva123.github.io/dayia/videos/06-autopecas.mp4">Autopeças</option><option value="https://dailva123.github.io/dayia/videos/07-pet.mp4">Pet shop</option><option value="https://dailva123.github.io/dayia/videos/08-eletronicos.mp4">Eletrônicos</option><option value="https://dailva123.github.io/dayia/videos/09-confeitaria.mp4">Confeitaria</option><option value="https://dailva123.github.io/dayia/videos/10-salao.mp4">Salão</option><option value="https://dailva123.github.io/dayia/videos/11-oficina.mp4">Oficina</option><option value="https://dailva123.github.io/dayia/videos/12-servicos.mp4">Serviços</option><option value="https://dailva123.github.io/dayia/videos/13-estetica.mp4">Estética</option><option value="https://dailva123.github.io/dayia/videos/14-imobiliaria.mp4">Imobiliária</option><option value="https://dailva123.github.io/dayia/videos/15-representante.mp4">Representante</option></select></label></div>
           <div class="corpo">
             <div class="nome">
               <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#F4B400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="3"/><path d="M8 6h8M8 11h2M14 11h2M8 15h2M14 15h2M8 19h2M14 19h2"/></svg></div>
@@ -278,7 +279,7 @@ footer img{height:28px;width:auto;display:block}
           </div>
         </article>
         <article class="app" id="atende-facil">
-          <div class="midia"><video id="v-atende-facil" controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/central-suporte-ao-vivo.mp4#t=0.5"></video></div>
+          <div class="midia"><video poster="capas/central-suporte-ao-vivo.jpg" id="v-atende-facil" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/central-suporte-ao-vivo.mp4"></video></div>
           <div class="corpo">
             <div class="nome">
               <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#82D2FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="2" y="13" width="5" height="7" rx="2"/><rect x="17" y="13" width="5" height="7" rx="2"/><path d="M20 20a4 4 0 0 1-4 3h-3"/></svg></div>
@@ -291,7 +292,7 @@ footer img{height:28px;width:auto;display:block}
           </div>
         </article>
         <article class="app" id="evolui">
-          <div class="midia"><video id="v-evolui" controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/16-evolui-com-voz.mp4#t=0.5"></video></div>
+          <div class="midia"><video poster="capas/16-evolui-com-voz.jpg" id="v-evolui" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/16-evolui-com-voz.mp4"></video></div>
           <div class="corpo">
             <div class="nome">
               <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#F4B400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M6 16l4-5 3 3 5-7"/><path d="M15 7h3v3"/></svg></div>
@@ -304,7 +305,7 @@ footer img{height:28px;width:auto;display:block}
           </div>
         </article>
         <article class="app" id="premiacao">
-          <div class="midia"><video id="v-premiacao" controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/premiacao-curto.mp4#t=0.5"></video><div class="chips" role="group" aria-label="Escolha o vídeo"><button type="button" data-video="v-premiacao" data-src="https://dailva123.github.io/dayia/videos/premiacao-curto.mp4" aria-pressed="true">Resumo (1 min)</button><button type="button" data-video="v-premiacao" data-src="https://dailva123.github.io/dayia/videos/video-premiacao.mp4" aria-pressed="false">Completo (4 min)</button></div></div>
+          <div class="midia"><video poster="capas/premiacao-curto.jpg" id="v-premiacao" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/premiacao-curto.mp4"></video><div class="chips" role="group" aria-label="Escolha o vídeo"><button type="button" data-video="v-premiacao" data-src="https://dailva123.github.io/dayia/videos/premiacao-curto.mp4" aria-pressed="true">Resumo (1 min)</button><button type="button" data-video="v-premiacao" data-src="https://dailva123.github.io/dayia/videos/video-premiacao.mp4" aria-pressed="false">Completo (4 min)</button></div></div>
           <div class="corpo">
             <div class="nome">
               <div class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#82D2FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8v5a4 4 0 0 1-8 0V4z"/><path d="M8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 21h8M9 17h6"/></svg></div>
@@ -340,43 +341,43 @@ footer img{height:28px;width:auto;display:block}
       </div>
       <div class="pf-grade">
         <article class="pf">
-          <video controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/ferramenta-central.mp4#t=0.5"></video>
+          <video poster="capas/ferramenta-central.jpg" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/ferramenta-central.mp4"></video>
           <div class="pf-txt"><span class="tag">Vendas</span><h3>Central de Vendas</h3><p>Quem contatar hoje em cada carteira, com histórico de compras, contatos e mensagens prontas.</p><a class="pf-link" href="https://dailva123.github.io/dayia/ferramentas/central-vendas.html" target="_blank" rel="noopener">Abrir e testar →</a></div>
         </article>
         <article class="pf">
-          <video controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/ferramenta-estrategia.mp4#t=0.5"></video>
+          <video poster="capas/ferramenta-estrategia.jpg" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/ferramenta-estrategia.mp4"></video>
           <div class="pf-txt"><span class="tag">Vendas</span><h3>Estratégia de Vendas</h3><p>Painel de cada vendedor: em quais clientes focar e quais reativar.</p><a class="pf-link" href="https://dailva123.github.io/dayia/ferramentas/estrategia-painel.html" target="_blank" rel="noopener">Abrir e testar →</a></div>
         </article>
         <article class="pf">
-          <video controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/ferramenta-reativacao.mp4#t=0.5"></video>
+          <video poster="capas/ferramenta-reativacao.jpg" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/ferramenta-reativacao.mp4"></video>
           <div class="pf-txt"><span class="tag">Vendas</span><h3>Reativação de clientes por marca</h3><p>Quem parou de comprar uma marca, com contatos e mensagens prontas.</p><a class="pf-link" href="https://dailva123.github.io/dayia/ferramentas/reativacao-marca.html" target="_blank" rel="noopener">Abrir e testar →</a></div>
         </article>
         <article class="pf">
-          <video controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/ferramenta-apollo.mp4#t=0.5"></video>
+          <video poster="capas/ferramenta-apollo.jpg" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/ferramenta-apollo.mp4"></video>
           <div class="pf-txt"><span class="tag">Marketing e prospecção</span><h3>Contatos para prospecção</h3><p>Contatos encontrados para cada cliente, com e-mail ou WhatsApp pronto para enviar.</p><a class="pf-link" href="https://dailva123.github.io/dayia/ferramentas/central-vendas.html" target="_blank" rel="noopener">Abrir e testar →</a></div>
         </article>
         <article class="pf">
-          <video controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/ferramenta-grade.mp4#t=0.5"></video>
+          <video poster="capas/ferramenta-grade.jpg" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/ferramenta-grade.mp4"></video>
           <div class="pf-txt"><span class="tag">Fiscal</span><h3>Cadastro na Grade de Tributação</h3><p>Mostra a grade de saída e a tributação certas na hora de cadastrar o item.</p><a class="pf-link" href="https://dailva123.github.io/dayia/ferramentas/grade-tributacao.html" target="_blank" rel="noopener">Abrir e testar →</a></div>
         </article>
         <article class="pf">
-          <video controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/ferramenta-saquinho.mp4#t=0.5"></video>
+          <video poster="capas/ferramenta-saquinho.jpg" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/ferramenta-saquinho.mp4"></video>
           <div class="pf-txt"><span class="tag">Logística</span><h3>Etiqueta de Saquinho</h3><p>Lê o orçamento ou pedido e imprime a etiqueta da peça, com registro de quem separou.</p><a class="pf-link" href="https://dailva123.github.io/dayia/ferramentas/etiqueta-saquinho.html" target="_blank" rel="noopener">Abrir e testar →</a></div>
         </article>
         <article class="pf">
-          <video controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/ferramenta-certificado.mp4#t=0.5"></video>
+          <video poster="capas/ferramenta-certificado.jpg" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/ferramenta-certificado.mp4"></video>
           <div class="pf-txt"><span class="tag">Qualidade</span><h3>Certificado de Qualidade</h3><p>Lê a nota fiscal em PDF e gera o certificado de qualidade, em português ou inglês.</p><a class="pf-link" href="https://dailva123.github.io/dayia/ferramentas/certificado-qualidade.html" target="_blank" rel="noopener">Abrir e testar →</a></div>
         </article>
         <article class="pf">
-          <video controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/ferramenta-certificado-cliente.mp4#t=0.5"></video>
+          <video poster="capas/ferramenta-certificado-cliente.jpg" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/ferramenta-certificado-cliente.mp4"></video>
           <div class="pf-txt"><span class="tag">Qualidade</span><h3>Certificado no modelo do cliente</h3><p>Gera o certificado no modelo exclusivo exigido por um cliente específico.</p><a class="pf-link" href="https://dailva123.github.io/dayia/ferramentas/certificado-exclusivo.html" target="_blank" rel="noopener">Abrir e testar →</a></div>
         </article>
         <article class="pf">
-          <video controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/ferramenta-sedex.mp4#t=0.5"></video>
+          <video poster="capas/ferramenta-sedex.jpg" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/ferramenta-sedex.mp4"></video>
           <div class="pf-txt"><span class="tag">Logística</span><h3>Etiqueta Sedex e Declaração de Conteúdo</h3><p>Busca o cliente pelo código ou nome e monta a etiqueta e a declaração.</p><a class="pf-link" href="https://dailva123.github.io/dayia/ferramentas/etiqueta-sedex.html" target="_blank" rel="noopener">Abrir e testar →</a></div>
         </article>
         <article class="pf">
-          <video controls playsinline preload="metadata" src="https://dailva123.github.io/dayia/videos/ferramenta-roscas.mp4#t=0.5"></video>
+          <video poster="capas/ferramenta-roscas.jpg" controls playsinline preload="none" src="https://dailva123.github.io/dayia/videos/ferramenta-roscas.mp4"></video>
           <div class="pf-txt"><span class="tag">Área técnica</span><h3>Identificador de Roscas</h3><p>Tabelas BSP, BSPT, NPT, UNC, UNF, métrica, JIC e outras para descobrir a rosca da peça.</p><a class="pf-link" href="demos/roscas.html" target="_blank" rel="noopener">Abrir e testar →</a></div>
         </article>
       </div>
