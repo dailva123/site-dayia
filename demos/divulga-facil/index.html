@@ -314,18 +314,19 @@ dialog input{border:1px solid var(--line);border-radius:10px;padding:10px 12px;b
       {id:"p8",t:"Perguntas frequentes",d:"2026-10-22",r:{},leg:"Separamos as perguntas que mais recebemos e respondemos neste vídeo 🙋\n\nFicou alguma dúvida? Comenta aqui!\n\n#MarcaExemplo #duvidas #perguntasfrequentes"}
     ],
     msgs:[
-      {id:"m1",t:"Saudação automática",m:"Olá! Obrigada por falar com a Marca Exemplo 😊\n\nJá vamos te responder. Enquanto isso, conheça nossos produtos em marcaexemplo.com.br\n\nComo podemos te ajudar?"},
-      {id:"m2",t:"Enviar orçamento",m:"Olá, tudo bem? 😊\n\nSegue o orçamento que você pediu. Qualquer dúvida, é só me chamar por aqui.\n\nFico à disposição!"},
-      {id:"m3",t:"Pedir avaliação",m:"Olá, tudo bem? 😊\n\nSe você gostou do nosso atendimento, poderia deixar uma avaliação rapidinha no Google? Leva menos de 1 minuto e ajuda muito.\n\nObrigada pelo apoio! 🙏"},
-      {id:"m4",t:"Agradecimento pela compra",m:"Olá! Muito obrigada pela sua compra 💙\n\nQualquer coisa que precisar, conte com a gente.\n\nObrigada pela confiança!"},
-      {id:"m5",t:"Lembrete de pagamento",m:"Olá, tudo bem? 😊\n\nPassando só pra lembrar do pagamento com vencimento hoje. Se já pagou, por favor desconsidere.\n\nObrigada!"},
-      {id:"m6",t:"Cliente sumido",m:"Olá, tudo bem? 😊\n\nFaz um tempinho que você não aparece por aqui e sentimos sua falta! Temos novidades que acho que você vai gostar.\n\nPosso te mostrar?"}
+      {id:"m1",t:"Saudação automática",m:"Olá! Obrigada por falar com a Marca Exemplo\n\nJá vamos te responder. Enquanto isso, conheça nossos produtos em marcaexemplo.com.br\n\nComo podemos te ajudar?"},
+      {id:"m2",t:"Enviar orçamento",m:"Olá, tudo bem?\n\nSegue o orçamento que você pediu. Qualquer dúvida, é só me chamar por aqui.\n\nFico à disposição!"},
+      {id:"m3",t:"Pedir avaliação",m:"Olá, tudo bem?\n\nSe você gostou do nosso atendimento, poderia deixar uma avaliação rapidinha no Google? Leva menos de 1 minuto e ajuda muito.\n\nObrigada pelo apoio!"},
+      {id:"m4",t:"Agradecimento pela compra",m:"Olá! Muito obrigada pela sua compra\n\nQualquer coisa que precisar, conte com a gente.\n\nObrigada pela confiança!"},
+      {id:"m5",t:"Lembrete de pagamento",m:"Olá, tudo bem?\n\nPassando só pra lembrar do pagamento com vencimento hoje. Se já pagou, por favor desconsidere.\n\nObrigada!"},
+      {id:"m6",t:"Cliente sumido",m:"Olá, tudo bem?\n\nFaz um tempinho que você não aparece por aqui e sentimos sua falta! Temos novidades que acho que você vai gostar.\n\nPosso te mostrar?"}
     ],
     links:[["Site","marcaexemplo.com.br"],["Instagram","@marcaexemplo"],["TikTok","@marcaexemplo"],["Facebook","Marca Exemplo"],["YouTube","Marca Exemplo"],["LinkedIn","Marca Exemplo"],["WhatsApp","(11) 90000-0000"],["Avaliações no Google","g.page/marcaexemplo/review"]]
   };
   var K="divulgafacil-demo-v2",D;
   function carregar(){try{D=JSON.parse(localStorage.getItem(K)||"null")}catch(e){D=null}if(!D)D=JSON.parse(JSON.stringify(EXEMPLO))}
   function salvar(){try{localStorage.setItem(K,JSON.stringify(D))}catch(e){}}
+  function semEmoji(s){return String(s==null?"":s).replace(/(?:[\u2190-\u21FF\u2300-\u23FF\u2460-\u24FF\u25A0-\u27BF\u2900-\u297F\u2B00-\u2BFF\u3030\u303D\u3297\u3299]|\uFE0F|\u200D|\u20E3|[\uD83C-\uD83E][\uDC00-\uDFFF])/g,"").replace(/[ \t]+\n/g,"\n").replace(/\n[ \t]+/g,"\n").replace(/[ \t]{2,}/g," ").trim()}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
   var DS=["dom","seg","ter","qua","qui","sex","sáb"],MS=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
   function dt(s){var p=s.split("-");return new Date(+p[0],+p[1]-1,+p[2])}
@@ -359,7 +360,7 @@ dialog input{border:1px solid var(--line);border-radius:10px;padding:10px 12px;b
        '<textarea rows="4" data-leg="'+p.id+'" aria-label="Legenda">'+esc(p.leg)+'</textarea>'+
        '<div class="pc-a"><button class="btn pri" type="button" data-copy="'+p.id+'">Copiar legenda</button><button class="btn sec" type="button" data-baixar>Baixar vídeo</button><button class="btn sec" type="button" data-todas="'+p.id+'">'+(sit(p)==="ok"?"Desmarcar todas":"Marcar todas as redes")+'</button><button class="btn txt" type="button" data-del="'+p.id+'">Excluir</button></div>'+
        '<div class="ir"><span>Abrir:</span>'+REDES.map(function(r){return '<a class="rb" style="background:'+r[2]+'" href="'+r[3]+'" target="_blank" rel="noopener">'+r[1]+'</a>'}).join("")+'</div></div></article>'}).join("")||'<div class="box vazio">Nada por aqui neste filtro.</div>';
-    document.getElementById("msgs").innerHTML=D.msgs.map(function(m){return '<article class="box msg"><h4>'+esc(m.t)+'</h4><textarea rows="6" data-msg="'+m.id+'" aria-label="'+esc(m.t)+'">'+esc(m.m)+'</textarea><div class="pc-a"><button class="btn pri" type="button" data-copym="'+m.id+'">Copiar mensagem</button><a class="btn sec" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(m.m)+'">Enviar no WhatsApp</a><button class="btn txt" type="button" data-delm="'+m.id+'">Excluir</button></div></article>'}).join("");
+    document.getElementById("msgs").innerHTML=D.msgs.map(function(m){return '<article class="box msg"><h4>'+esc(m.t)+'</h4><textarea rows="6" data-msg="'+m.id+'" aria-label="'+esc(m.t)+'">'+esc(m.m)+'</textarea><div class="pc-a"><button class="btn pri" type="button" data-copym="'+m.id+'">Copiar mensagem</button><a class="btn sec" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(semEmoji(m.m))+'">Enviar no WhatsApp</a><button class="btn txt" type="button" data-delm="'+m.id+'">Excluir</button></div></article>'}).join("");
     document.getElementById("links").innerHTML=D.links.map(function(l){return '<tr><td>'+esc(l[0])+'</td><td>'+esc(l[1])+'</td></tr>'}).join("");
   }
   function ir(v){vista=v;["geral","posts","msgs","links"].forEach(function(x){document.getElementById("v-"+x).hidden=x!==v});
