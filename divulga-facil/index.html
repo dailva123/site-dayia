@@ -323,14 +323,14 @@ dialog textarea,dialog select{border:1px solid var(--line);border-radius:10px;pa
   var CORES=[["#7b2ff7","#f107a3"],["#0f9b8e","#38ef7d"],["#ff512f","#f09819"],["#1e3c72","#2a5298"],["#c33764","#1d2671"],["#11998e","#0575e6"],["#e65c00","#f9d423"],["#8e2de2","#4a00e0"]];
   function todas(){var o={};REDES.forEach(function(r){o[r[0]]=true});return o}
   function inicial(){return{empresa:"",arroba:"",posts:[],msgs:[
-    {id:"m1",t:"Saudação automática",m:"Olá! Obrigada por entrar em contato.\n\nJá vamos te responder. Como podemos ajudar?"},
-    {id:"m2",t:"Agradecer a compra",m:"Olá! Obrigada pela sua compra.\n\nQualquer dúvida, é só chamar por aqui."},
+    {id:"m1",t:"Saudação automática",m:"Olá! Obrigada por entrar em contato ✨\n\nJá vamos te responder. Como podemos ajudar?"},
+    {id:"m2",t:"Agradecer a compra",m:"Olá! Obrigada pela sua compra ✨\n\nQualquer dúvida, é só chamar por aqui."},
     {id:"m3",t:"Pedir avaliação",m:"Olá, tudo bem?\n\nSe você gostou do nosso atendimento, pode deixar uma avaliação? Leva menos de um minuto e ajuda muito.\n\nObrigada pelo apoio!"}
   ],links:[]}}
   var K="divulgafacil-v1",D;
   function carregar(){try{D=JSON.parse(localStorage.getItem(K)||"null")}catch(e){D=null}if(!D)D=inicial();["posts","msgs","links"].forEach(function(k){if(!Array.isArray(D[k]))D[k]=[]})}
   function salvar(){try{localStorage.setItem(K,JSON.stringify(D))}catch(e){aviso("Não foi possível salvar neste aparelho")}}
-  function semEmoji(s){return String(s==null?"":s).replace(/(?:[\u2190-\u21FF\u2300-\u23FF\u2460-\u24FF\u25A0-\u27BF\u2900-\u297F\u2B00-\u2BFF\u3030\u303D\u3297\u3299]|\uFE0F|\u200D|\u20E3|[\uD83C-\uD83E][\uDC00-\uDFFF])/g,"").replace(/[ \t]+\n/g,"\n").replace(/\n[ \t]+/g,"\n").replace(/[ \t]{2,}/g," ").trim()}
+  function semEmoji(s){return String(s==null?"":s).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]|️|‍|⃣/g,"").replace(/[ \t]+\n/g,"\n").replace(/\n[ \t]+/g,"\n").replace(/[ \t]{2,}/g," ").trim()}
   function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
   var DS=["dom","seg","ter","qua","qui","sex","sáb"],MS=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
   function iso(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}

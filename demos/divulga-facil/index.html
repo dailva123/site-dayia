@@ -326,7 +326,7 @@ dialog input{border:1px solid var(--line);border-radius:10px;padding:10px 12px;b
   var K="divulgafacil-demo-v2",D;
   function carregar(){try{D=JSON.parse(localStorage.getItem(K)||"null")}catch(e){D=null}if(!D)D=JSON.parse(JSON.stringify(EXEMPLO))}
   function salvar(){try{localStorage.setItem(K,JSON.stringify(D))}catch(e){}}
-  function semEmoji(s){return String(s==null?"":s).replace(/(?:[\u2190-\u21FF\u2300-\u23FF\u2460-\u24FF\u25A0-\u27BF\u2900-\u297F\u2B00-\u2BFF\u3030\u303D\u3297\u3299]|\uFE0F|\u200D|\u20E3|[\uD83C-\uD83E][\uDC00-\uDFFF])/g,"").replace(/[ \t]+\n/g,"\n").replace(/\n[ \t]+/g,"\n").replace(/[ \t]{2,}/g," ").trim()}
+  function semEmoji(s){return String(s==null?"":s).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]|️|‍|⃣/g,"").replace(/[ \t]+\n/g,"\n").replace(/\n[ \t]+/g,"\n").replace(/[ \t]{2,}/g," ").trim()}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
   var DS=["dom","seg","ter","qua","qui","sex","sáb"],MS=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
   function dt(s){var p=s.split("-");return new Date(+p[0],+p[1]-1,+p[2])}
