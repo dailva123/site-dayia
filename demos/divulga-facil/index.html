@@ -304,14 +304,14 @@ dialog input{border:1px solid var(--line);border-radius:10px;padding:10px 12px;b
   function todas(){var o={};REDES.forEach(function(r){o[r[0]]=true});return o}
   var EXEMPLO={
     posts:[
-      {id:"p1",t:"Lançamento da nova coleção",d:"2026-10-12",r:todas(),leg:"Chegou a nova coleção da Marca Exemplo! ✨\n\nPeças pensadas pra deixar o seu dia mais prático e bonito. Corre pra ver antes que acabe.\n\n📍 Loja e site: marcaexemplo.com.br\n💬 Pedidos pelo WhatsApp\n\n#MarcaExemplo #novacolecao #lancamento"},
-      {id:"p2",t:"Bastidores: como preparamos seu pedido",d:"2026-10-13",r:{ig:true,fb:true,tt:true},leg:"Já imaginou como o seu pedido é preparado? 📦\n\nMostramos aqui o cuidado em cada etapa, da separação à entrega.\n\n#MarcaExemplo #bastidores #feitocomcuidado"},
-      {id:"p3",t:"Depoimento de cliente",d:"2026-10-14",r:{},leg:"Nada melhor do que ouvir quem já é cliente 💙\n\nObrigada pela confiança! Quer ter a mesma experiência? Fale com a gente.\n\n#MarcaExemplo #depoimento #clientesatisfeito"},
-      {id:"p4",t:"Promoção da semana",d:"2026-10-15",r:{},leg:"Só esta semana: condições especiais em toda a loja! 🔥\n\nVálido até domingo ou enquanto durarem os estoques.\n\n💬 Chame no WhatsApp e garanta o seu\n\n#MarcaExemplo #promocao #oferta"},
-      {id:"p5",t:"Dica rápida do dia",d:"2026-10-16",r:{},leg:"Dica rápida de hoje 💡\n\nSalve este vídeo pra não esquecer e compartilhe com quem precisa ver.\n\n#MarcaExemplo #dica #ficaadica"},
-      {id:"p6",t:"Conheça a equipe",d:"2026-10-17",r:{},leg:"Por trás de cada atendimento existe uma equipe apaixonada pelo que faz 🤝\n\nVem conhecer quem cuida de você!\n\n#MarcaExemplo #equipe #nossotime"},
-      {id:"p7",t:"Antes e depois",d:"2026-10-20",r:{},leg:"O antes e depois que fala por si só 😍\n\nQuer um resultado assim? A gente te ajuda.\n\n#MarcaExemplo #antesedepois #resultado"},
-      {id:"p8",t:"Perguntas frequentes",d:"2026-10-22",r:{},leg:"Separamos as perguntas que mais recebemos e respondemos neste vídeo 🙋\n\nFicou alguma dúvida? Comenta aqui!\n\n#MarcaExemplo #duvidas #perguntasfrequentes"}
+      {id:"p1",t:"Lançamento da nova coleção",d:"2026-10-12",r:todas(),leg:"Chegou a nova coleção da Marca Exemplo! \n\nPeças pensadas pra deixar o seu dia mais prático e bonito. Corre pra ver antes que acabe.\n\nLoja e site: marcaexemplo.com.br\nPedidos pelo WhatsApp\n\n#MarcaExemplo #novacolecao #lancamento"},
+      {id:"p2",t:"Bastidores: como preparamos seu pedido",d:"2026-10-13",r:{ig:true,fb:true,tt:true},leg:"Já imaginou como o seu pedido é preparado? \n\nMostramos aqui o cuidado em cada etapa, da separação à entrega.\n\n#MarcaExemplo #bastidores #feitocomcuidado"},
+      {id:"p3",t:"Depoimento de cliente",d:"2026-10-14",r:{},leg:"Nada melhor do que ouvir quem já é cliente \n\nObrigada pela confiança! Quer ter a mesma experiência? Fale com a gente.\n\n#MarcaExemplo #depoimento #clientesatisfeito"},
+      {id:"p4",t:"Promoção da semana",d:"2026-10-15",r:{},leg:"Só esta semana: condições especiais em toda a loja! \n\nVálido até domingo ou enquanto durarem os estoques.\n\nChame no WhatsApp e garanta o seu\n\n#MarcaExemplo #promocao #oferta"},
+      {id:"p5",t:"Dica rápida do dia",d:"2026-10-16",r:{},leg:"Dica rápida de hoje \n\nSalve este vídeo pra não esquecer e compartilhe com quem precisa ver.\n\n#MarcaExemplo #dica #ficaadica"},
+      {id:"p6",t:"Conheça a equipe",d:"2026-10-17",r:{},leg:"Por trás de cada atendimento existe uma equipe apaixonada pelo que faz \n\nVem conhecer quem cuida de você!\n\n#MarcaExemplo #equipe #nossotime"},
+      {id:"p7",t:"Antes e depois",d:"2026-10-20",r:{},leg:"O antes e depois que fala por si só \n\nQuer um resultado assim? A gente te ajuda.\n\n#MarcaExemplo #antesedepois #resultado"},
+      {id:"p8",t:"Perguntas frequentes",d:"2026-10-22",r:{},leg:"Separamos as perguntas que mais recebemos e respondemos neste vídeo \n\nFicou alguma dúvida? Comenta aqui!\n\n#MarcaExemplo #duvidas #perguntasfrequentes"}
     ],
     msgs:[
       {id:"m1",t:"Saudação automática",m:"Olá! Obrigada por falar com a Marca Exemplo\n\nJá vamos te responder. Enquanto isso, conheça nossos produtos em marcaexemplo.com.br\n\nComo podemos te ajudar?"},
@@ -333,9 +333,9 @@ dialog input{border:1px solid var(--line);border-radius:10px;padding:10px 12px;b
   function fdata(s){if(!s)return"Sem data";var d=dt(s);return DS[d.getDay()]+", "+("0"+d.getDate()).slice(-2)+" de "+MS[d.getMonth()]}
   function nFeito(p){return REDES.filter(function(r){return p.r&&p.r[r[0]]}).length}
   function sit(p){var n=nFeito(p);return n===REDES.length?"ok":(n?"par":"pend")}
-  function selo(p){var s=sit(p),n=nFeito(p);return '<span class="st '+(s==="pend"?"":s)+'">'+(s==="ok"?"Postado ✓":s==="par"?"Em parte "+n+"/"+REDES.length:"Falta postar")+'</span>'}
+  function selo(p){var s=sit(p),n=nFeito(p);return '<span class="st '+(s==="pend"?"":s)+'">'+(s==="ok"?"Postado":s==="par"?"Em parte "+n+"/"+REDES.length:"Falta postar")+'</span>'}
   function aviso(t){var a=document.getElementById("aviso");a.textContent=t;a.classList.add("on");clearTimeout(aviso.t);aviso.t=setTimeout(function(){a.classList.remove("on")},2000)}
-  function copiar(txt,bt,rot){var ok=function(){bt.textContent="Copiado ✓";setTimeout(function(){bt.textContent=rot},1600)};try{navigator.clipboard.writeText(txt).then(ok,function(){ok()})}catch(e){ok()}}
+  function copiar(txt,bt,rot){var ok=function(){bt.textContent="Copiado";setTimeout(function(){bt.textContent=rot},1600)};try{navigator.clipboard.writeText(txt).then(ok,function(){ok()})}catch(e){ok()}}
   var vista="geral",filtro="todos",rede="";
   var TIT={geral:["Visão geral","Marca Exemplo · semana de 12 a 18 de outubro"],posts:["Postagens","Vídeos e posts com legenda pronta"],msgs:["Mensagens prontas","Textos para responder clientes"],links:["Links da empresa","Tudo da Marca Exemplo num lugar só"]};
   function ordenados(){return D.posts.slice().sort(function(a,b){return (a.d||"9").localeCompare(b.d||"9")})}
@@ -348,7 +348,7 @@ dialog input{border:1px solid var(--line);border-radius:10px;padding:10px 12px;b
     var h="";for(var i=0;i<7;i++){var d=new Date(2026,9,12+i),iso="2026-10-"+("0"+(12+i)).slice(-2);
       h+='<div class="dia'+(i===2?' hoje':'')+'"><h5>'+DS[d.getDay()]+'<b>'+d.getDate()+'</b></h5>'+ps.filter(function(p){return p.d===iso}).map(function(p){var s=sit(p);return '<div class="chip '+(s==="pend"?"":s)+'">'+esc(p.t)+'</div>'}).join("")+'</div>'}
     document.getElementById("semana").innerHTML=h;
-    document.getElementById("prox").innerHTML=ps.filter(function(p){return sit(p)!=="ok"}).slice(0,4).map(function(p){var d=dt(p.d||"2026-12-31");return '<li><div class="dt"><b>'+d.getDate()+'</b><small>'+MS[d.getMonth()]+'</small></div><div><h4>'+esc(p.t)+'</h4><p>'+fdata(p.d)+' · vídeo em pé</p></div>'+selo(p)+'</li>'}).join("")||'<li><div></div><p>Tudo postado ✓</p></li>';
+    document.getElementById("prox").innerHTML=ps.filter(function(p){return sit(p)!=="ok"}).slice(0,4).map(function(p){var d=dt(p.d||"2026-12-31");return '<li><div class="dt"><b>'+d.getDate()+'</b><small>'+MS[d.getMonth()]+'</small></div><div><h4>'+esc(p.t)+'</h4><p>'+fdata(p.d)+' · vídeo em pé</p></div>'+selo(p)+'</li>'}).join("")||'<li><div></div><p>Tudo postado</p></li>';
     document.getElementById("porRede").innerHTML=REDES.map(function(r){var n=ps.filter(function(p){return p.r&&p.r[r[0]]}).length,pc=ps.length?Math.round(n/ps.length*100):0;return '<div class="rp"><span><i class="dot" style="background:'+r[2]+'"></i>'+r[1]+'</span><div class="trilho"><span style="width:'+pc+'%;background:'+r[2]+'"></span></div><em>'+n+'/'+ps.length+'</em></div>'}).join("");
     var lista=ps.filter(function(p){var f=rede?!!(p.r&&p.r[rede]):sit(p)==="ok";return filtro==="todos"||(filtro==="ok"?f:!f)});
     document.getElementById("lista").innerHTML=lista.map(function(p){var c=CORES[D.posts.indexOf(p)%CORES.length];
@@ -368,7 +368,7 @@ dialog input{border:1px solid var(--line);border-radius:10px;padding:10px 12px;b
     document.getElementById("titulo").textContent=TIT[v][0];document.getElementById("subt").textContent=TIT[v][1];window.scrollTo(0,0)}
   function achar(l,id){return D[l].filter(function(x){return x.id===id})[0]}
   document.addEventListener("change",function(e){var t=e.target;
-    if(t.dataset.p){var p=achar("posts",t.dataset.p);p.r=p.r||{};p.r[t.dataset.r]=t.checked;salvar();render();aviso(t.checked?"Marcado como postado ✓":"Desmarcado")}
+    if(t.dataset.p){var p=achar("posts",t.dataset.p);p.r=p.r||{};p.r[t.dataset.r]=t.checked;salvar();render();aviso(t.checked?"Marcado como postado":"Desmarcado")}
     if(t.id==="fRede"){rede=t.value;render()}});
   document.addEventListener("input",function(e){var t=e.target;if(t.dataset.leg){achar("posts",t.dataset.leg).leg=t.value;salvar()}if(t.dataset.msg){achar("msgs",t.dataset.msg).m=t.value;salvar()}});
   document.addEventListener("click",function(e){var t=e.target.closest("button");if(!t)return;
@@ -378,7 +378,7 @@ dialog input{border:1px solid var(--line);border-radius:10px;padding:10px 12px;b
     else if(t.dataset.copy){copiar(achar("posts",t.dataset.copy).leg,t,"Copiar legenda")}
     else if(t.dataset.copym){copiar(achar("msgs",t.dataset.copym).m,t,"Copiar mensagem")}
     else if(t.hasAttribute("data-baixar")){aviso("Na versão da sua empresa, aqui baixa o seu vídeo pronto")}
-    else if(t.dataset.todas){var p=achar("posts",t.dataset.todas);p.r=sit(p)==="ok"?{}:todas();salvar();render();aviso(sit(p)==="ok"?"Postado em todas as redes ✓":"Desmarcado")}
+    else if(t.dataset.todas){var p=achar("posts",t.dataset.todas);p.r=sit(p)==="ok"?{}:todas();salvar();render();aviso(sit(p)==="ok"?"Postado em todas as redes":"Desmarcado")}
     else if(t.dataset.del){D.posts=D.posts.filter(function(x){return x.id!==t.dataset.del});salvar();render();aviso("Post excluído")}
     else if(t.dataset.delm){D.msgs=D.msgs.filter(function(x){return x.id!==t.dataset.delm});salvar();render();aviso("Mensagem excluída")}
   });
@@ -388,8 +388,8 @@ dialog input{border:1px solid var(--line);border-radius:10px;padding:10px 12px;b
       :'<h3>Nova mensagem</h3><label>Nome da mensagem<input id="ft" required placeholder="Ex.: Confirmar horário"></label><label>Texto<textarea id="fl" rows="5" placeholder="Olá, tudo bem?"></textarea></label><div class="fim-f"><button type="button" class="btn sec" id="fc">Cancelar</button><button class="btn pri" id="fs">Salvar mensagem</button></div>';
     document.getElementById("fc").onclick=function(){dlg.close()};
     frm.onsubmit=function(ev){ev.preventDefault();var t=document.getElementById("ft").value.trim();if(!t)return;
-      if(tipo==="post"){D.posts.push({id:"p"+Date.now(),t:t,d:document.getElementById("fd").value,r:{},leg:document.getElementById("fl").value});aviso("Post adicionado ✓")}
-      else{D.msgs.push({id:"m"+Date.now(),t:t,m:document.getElementById("fl").value});aviso("Mensagem adicionada ✓")}
+      if(tipo==="post"){D.posts.push({id:"p"+Date.now(),t:t,d:document.getElementById("fd").value,r:{},leg:document.getElementById("fl").value});aviso("Post adicionado")}
+      else{D.msgs.push({id:"m"+Date.now(),t:t,m:document.getElementById("fl").value});aviso("Mensagem adicionada")}
       salvar();render();dlg.close()};
     if(dlg.showModal)dlg.showModal();else dlg.setAttribute("open","")}
   document.getElementById("novoPost").onclick=function(){abrir("post")};
