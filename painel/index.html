@@ -293,6 +293,7 @@ dialog{max-height:calc(100vh - 32px);overflow:auto}
           <a class="atalho" href="https://dayia.com.br" target="_blank" rel="noopener"><b>Abrir o site</b><small>dayia.com.br</small></a>
           <button class="atalho" type="button" data-copiar-txt="https://g.page/r/CRvDOG79NtPDEBM/review"><b>Copiar link de avaliação</b><small>Google · para clientes avaliarem</small></button>
           <a class="atalho" href="https://business.facebook.com" target="_blank" rel="noopener"><b>Meta Business Suite</b><small>Instagram e Facebook</small></a>
+          <button class="atalho" type="button" id="bCod"><b>Gerar código de cliente</b><small>libera o Divulga Fácil depois do pagamento</small></button>
           <button class="atalho" type="button" id="bCopia"><b>Salvar cópia dos meus dados</b><small>baixa um arquivo de segurança</small></button>
           <button class="atalho" type="button" id="bRestaura"><b>Carregar cópia</b><small>volta os dados de um arquivo salvo</small></button>
         </div></div>
@@ -334,6 +335,11 @@ dialog{max-height:calc(100vh - 32px);overflow:auto}
 <form method="dialog" style="display:flex;justify-content:flex-end"><button class="btn pri">Entendi</button></form></dialog>
 <dialog id="dlgNovo"><form id="fNovo"><h3 id="nTit"></h3><div id="nCampos" style="display:flex;flex-direction:column;gap:12px"></div>
 <div class="dlg-a"><button class="btn sec" type="button" id="nCancel">Cancelar</button><button class="btn pri" type="submit">Salvar</button></div></form></dialog>
+<dialog id="dlgCod"><h3>Código de ativação · Divulga Fácil</h3><p style="margin:0 0 12px;color:var(--muted);font-size:14px">Depois que o cliente pagar, gere o código e mande para ele. Ele digita o código no app, em <b>Ver planos</b>.</p>
+<div class="campo"><label for="codPlano">Plano</label><select id="codPlano" class="sel" style="width:100%"><option value="m">Mensal (vale 1 mês)</option><option value="a">Anual (vale 1 ano)</option></select></div>
+<div class="campo" style="margin-top:10px"><label for="codAte">Vale até</label><input id="codAte" type="date" style="border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:15px 'Nunito Sans',sans-serif"></div>
+<div class="campo" style="margin-top:10px"><label>Código</label><div id="codSai" style="font:700 26px Poppins,sans-serif;letter-spacing:.04em;color:var(--navy)">—</div></div>
+<div class="dlg-a"><button class="btn sec" type="button" id="codFechar">Fechar</button><button class="btn sec" type="button" id="codCopiar">Copiar código</button><a class="btn pri" id="codZap" target="_blank" rel="noopener" href="#">Mandar no WhatsApp</a></div></dialog>
 <input type="file" id="arqCopia" accept=".json,application/json" hidden>
 <div id="aviso" role="status"></div>
 
@@ -467,6 +473,19 @@ var DADOS={"posts": [{"id": "divulga-facil", "t": "Divulga Fácil", "fmt": "v", 
   document.getElementById("arqCopia").addEventListener("change",function(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var d=JSON.parse(r.result);if(!d||d.painel!=="dayia")throw 0;
       if(!confirm("Trocar os dados deste aparelho pelos da cópia?"))return;var n=VAZIO();Object.keys(n).forEach(function(k){if(d.meus&&Array.isArray(d.meus[k]))n[k]=d.meus[k]});meus=n;st=d.st||{};salvar();montar();aviso("Cópia carregada ✓")}catch(x){aviso("Esse arquivo não é uma cópia do painel")}};r.readAsText(f);e.target.value=""});
   window.addEventListener("storage",function(e){if(e.key===K||e.key===KM){try{st=JSON.parse(localStorage.getItem(K)||"{}")||{};var mm=JSON.parse(localStorage.getItem(KM)||"null");if(mm){meus=VAZIO();Object.keys(meus).forEach(function(k){if(Array.isArray(mm[k]))meus[k]=mm[k]})}}catch(x){}montar()}});
+  (function(){var SEG="df-7c1e94b2a05d4f38",BASE=Date.UTC(2026,0,1);
+    function h32(s){var x=0x811c9dc5;for(var i=0;i<s.length;i++){x^=s.charCodeAt(i);x=Math.imul(x,0x01000193)>>>0}return x>>>0}
+    function cod(isoAte){var p=isoAte.split("-"),n=Math.round((Date.UTC(+p[0],+p[1]-1,+p[2])-BASE)/864e5);return "DF-"+("000"+n.toString(36).toUpperCase()).slice(-3)+"-"+("0000000"+h32(SEG+"|"+n).toString(36).toUpperCase()).slice(-4)}
+    function isoD(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
+    var dlg=document.getElementById("dlgCod"),pl=document.getElementById("codPlano"),at=document.getElementById("codAte");
+    function padrao(){var d=new Date();if(pl.value==="a")d.setFullYear(d.getFullYear()+1);else d.setMonth(d.getMonth()+1);at.value=isoD(d);atual()}
+    function atual(){if(!at.value){document.getElementById("codSai").textContent="—";return}var c=cod(at.value),p=at.value.split("-");document.getElementById("codSai").textContent=c;
+      document.getElementById("codZap").href="https://wa.me/?text="+encodeURIComponent("Olá! Obrigada pela assinatura do Divulga Fácil 💛\n\nSeu código de ativação é: "+c+"\n(vale até "+p[2]+"/"+p[1]+"/"+p[0]+")\n\nAbra o Divulga Fácil, toque em Ver planos e digite o código no campo \"Já assinou? Ative seu acesso\".\n\nQualquer dúvida, é só chamar por aqui.")}
+    pl.addEventListener("change",padrao);at.addEventListener("change",atual);at.addEventListener("input",atual);
+    document.getElementById("bCod").addEventListener("click",function(){padrao();dlg.showModal?dlg.showModal():dlg.setAttribute("open","")});
+    document.getElementById("codFechar").addEventListener("click",function(){dlg.close?dlg.close():dlg.removeAttribute("open")});
+    document.getElementById("codCopiar").addEventListener("click",function(e){copiar(document.getElementById("codSai").textContent,e.currentTarget)});
+  })();
   montar();ir("inicio");
   if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
 })();
