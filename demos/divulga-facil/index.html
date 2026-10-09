@@ -99,7 +99,7 @@ textarea{width:100%;background:var(--navy);color:var(--ink);border:1px solid var
 .redes{display:flex;flex-wrap:wrap;gap:6px;align-items:center;border-top:1px dashed var(--navy3);padding-top:8px}
 .redes span{font-size:12px;color:var(--muted);font-weight:700}
 .rb{font-size:12px;font-weight:700;text-decoration:none;color:#fff;padding:5px 10px;border-radius:999px}
-.rb.ig{background:#c13584}.rb.fb{background:#1877f2}.rb.tt{background:#111;border:1px solid #444}.rb.wa{background:#1fa855}
+.rb.ig{background:#c13584}.rb.fb{background:#1877f2}.rb.tt{background:#111;border:1px solid #444}.rb.wa{background:#1fa855}.rb.yt{background:#e62117}.rb.li{background:#0a66c2}
 @media (max-width:480px){.card{grid-template-columns:84px 1fr}}
 
 table{width:100%;border-collapse:collapse;background:var(--navy2);border-radius:14px;overflow:hidden}
@@ -227,7 +227,7 @@ dialog input,dialog select{background:var(--navy);color:var(--ink);border:1px so
   function aviso(t){var a=document.getElementById("aviso");a.textContent=t;a.classList.add("on");clearTimeout(aviso.t);aviso.t=setTimeout(function(){a.classList.remove("on")},2200);}
   function copiar(txt,bt,rot){var ok=function(){bt.textContent="Copiado ✓";setTimeout(function(){bt.textContent=rot},1600)};try{navigator.clipboard.writeText(txt).then(ok,function(){aviso("Selecione o texto e copie com Ctrl+C")})}catch(e){aviso("Selecione o texto e copie com Ctrl+C")}}
   var filtro="todos";
-  function redes(){return '<div class="redes"><span>Postar em:</span><a class="rb ig" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a><a class="rb fb" href="https://business.facebook.com/latest/reels_composer" target="_blank" rel="noopener">Facebook</a><a class="rb tt" href="https://www.tiktok.com/upload" target="_blank" rel="noopener">TikTok</a><a class="rb wa" href="https://web.whatsapp.com/" target="_blank" rel="noopener">WhatsApp</a></div>';}
+  function redes(){return '<div class="redes"><span>Postar em:</span><a class="rb ig" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a><a class="rb fb" href="https://business.facebook.com/latest/reels_composer" target="_blank" rel="noopener">Facebook</a><a class="rb tt" href="https://www.tiktok.com/upload" target="_blank" rel="noopener">TikTok</a><a class="rb wa" href="https://web.whatsapp.com/" target="_blank" rel="noopener">WhatsApp</a><a class="rb yt" href="https://studio.youtube.com/" target="_blank" rel="noopener">YouTube</a><a class="rb li" href="https://www.linkedin.com/feed/" target="_blank" rel="noopener">LinkedIn</a></div>';}
   function render(){
     var ps=D.posts.slice().sort(function(a,b){return (a.d||"9").localeCompare(b.d||"9")});
     var feitos=ps.filter(function(p){return p.ok}).length;
@@ -243,7 +243,7 @@ dialog input,dialog select{background:var(--navy);color:var(--ink);border:1px so
         '<div class="thumb" style="background:linear-gradient(160deg,'+c[0]+','+c[1]+')"><em>📱 9:16</em><strong>'+esc(p.t)+'</strong></div>'+
         '<div class="corpo"><div class="linha"><h4>'+esc(p.t)+'</h4><span class="st">'+(p.ok?'Postado ✓':'Pendente')+'</span></div>'+
         '<span class="data">📅 '+fdata(p.d)+' · Vertical (em pé)</span>'+
-        '<div class="rds"><span class="rd"><b>Instagram</b> Reels</span><span class="rd"><b>Facebook</b> Reels</span><span class="rd"><b>TikTok</b></span><span class="rd"><b>WhatsApp</b> Status</span></div>'+
+        '<div class="rds"><span class="rd"><b>Instagram</b> Reels</span><span class="rd"><b>Facebook</b> Reels</span><span class="rd"><b>TikTok</b></span><span class="rd"><b>WhatsApp</b> Status</span><span class="rd"><b>YouTube</b> Shorts</span><span class="rd"><b>LinkedIn</b></span></div>'+
         '<label class="ok"><input type="checkbox" data-ok="'+p.id+'"'+(p.ok?' checked':'')+'> Marcar como postado</label>'+
         '<textarea rows="5" data-leg="'+p.id+'" aria-label="Legenda de '+esc(p.t)+'">'+esc(p.leg)+'</textarea>'+
         '<div class="acoes"><button class="b" type="button" data-copy="'+p.id+'">Copiar legenda</button><button class="b2" type="button" data-baixar>⬇ Baixar vídeo</button><button class="b2" type="button" data-del="'+p.id+'">Excluir</button></div>'+
