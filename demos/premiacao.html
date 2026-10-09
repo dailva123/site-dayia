@@ -240,7 +240,7 @@ body.vertical #legenda .ctl{margin-left:0}
       <li>a vendedora e o diretor assinando os termos, e o fechamento do mês.</li>
     </ul>
     <p class="muted" style="font-size:.85rem">Empresa, nomes e valores são fictícios. Ligue o som para ouvir os aplausos.</p>
-    <div class="actions" style="justify-content:flex-end"><button class="primary" id="btnIniciar">Iniciar demonstração</button></div>
+    <div class="actions" style="justify-content:flex-end"><button class="primary" id="btnIniciar">▶ Iniciar demonstração</button></div>
   </div>
 </div>
 
@@ -284,9 +284,9 @@ body.vertical #legenda .ctl{margin-left:0}
   <div class="n" id="legN">1</div>
   <div><small id="legParte" style="color:color-mix(in srgb,var(--panel) 70%,transparent)"></small><p id="legT"></p></div>
   <div class="ctl">
-    <button id="btnPausa" aria-label="Pausar">Pausar</button>
+    <button id="btnPausa" aria-label="Pausar">⏸️</button>
     <button id="btnVel" aria-label="Velocidade">1x</button>
-    <button id="btnSom" aria-label="Som">Som ligado</button>
+    <button id="btnSom" aria-label="Som">🔊</button>
     <button id="btnReini" aria-label="Recomeçar">↺</button>
   </div>
 </div>
@@ -312,7 +312,7 @@ const MSG = [
   'Faltam só R$ 100 mil para o milhão! A reta final é nossa. Obrigado por cada esforço até aqui.',
   'Falta muito pouco! Mais um empurrão de todos e o milhão vem. Vamos juntos até o fim!'
 ];
-const MSG_MILHAO = '<b>Chegamos a R$ 1 milhão!</b> Esse resultado só foi possível graças ao apoio de todos: aos vendedores (Ana, Bruno, Carla e Diego), que abriram portas e fecharam negócios; às secretárias (Helena e Isabela), que cuidaram de cada pedido e de cada cliente; ao financeiro (Gisele), que manteve tudo em ordem; ao almoxarifado (Eduardo e Fábio), que separou e entregou cada peça com cuidado; e à direção (Roberto), que acreditou e liderou. <b>A Distribuidora Modelo agradece de coração a cada um de vocês. Parabéns, equipe!</b>';
+const MSG_MILHAO = '<b>Chegamos a R$ 1 milhão!</b> Esse resultado só foi possível graças ao apoio de todos: aos vendedores (Ana, Bruno, Carla e Diego), que abriram portas e fecharam negócios; às secretárias (Helena e Isabela), que cuidaram de cada pedido e de cada cliente; ao financeiro (Gisele), que manteve tudo em ordem; ao almoxarifado (Eduardo e Fábio), que separou e entregou cada peça com cuidado; e à direção (Roberto), que acreditou e liderou. <b>A Distribuidora Modelo agradece de coração a cada um de vocês. Parabéns, equipe!</b> 💛';
 
 let V, dono;
 function resetDados(){ V = [{nome: 'Ana', v: 0}, {nome: 'Bruno', v: 0}, {nome: 'Carla', v: 0}, {nome: 'Diego', v: 0}]; dono = 0; }
@@ -425,12 +425,12 @@ async function comemorar(valor){
   const el = document.createElement('div'); el.id = 'celeb'; if (milhao) el.className = 'milhao';
   el.innerHTML = `<canvas></canvas><div class="ccard" role="dialog" aria-label="Faixa batida">
     <span class="tela-de">Aparece para toda a equipe</span><br>
-    <div class="trof">${milhao ? '' : ''}</div>
-    <h2>${milhao ? '1 MILHÃO!' : 'Faixa batida!'}</h2>
+    <div class="trof">${milhao ? '🏆' : '🚀'}</div>
+    <h2>${milhao ? '🎉 1 MILHÃO! 🎉' : '🎉 Faixa batida!'}</h2>
     <p><b>A empresa chegou a ${curto(valor)} em vendas em setembro de 2026.</b></p>
     <p>${milhao ? `Faixa máxima do apoio: cada pessoa recebe <b>${brl(vf)}</b>. E os vendedores ganham o <b>bônus do milhão</b>!` : `Cada pessoa do apoio passa a receber <b>${brl(vf)}</b>. Próxima faixa: ${curto(nx)}.`}</p>
     <div class="msg">${milhao ? MSG_MILHAO : MSG[0]}</div>
-    <div class="actions"><button tabindex="-1">Aplausos</button><button class="primary" id="celFechar" tabindex="-1">Fechar</button></div></div>`;
+    <div class="actions"><button tabindex="-1">👏 Aplausos</button><button class="primary" id="celFechar" tabindex="-1">Fechar</button></div></div>`;
   document.body.appendChild(el);
   if (!(matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) confetes(el.querySelector('canvas'), milhao);
   aplausos();
@@ -462,8 +462,8 @@ async function cenaComemoracoes(){
   await espera(300);
   legenda('Exemplo 1 de 2: a empresa passou de R$ 650 mil, a faixa mínima. A comemoração aparece na tela de todos.');
   await comemorar(650000);
-  palco(`<h2>Cada faixa tem a sua mensagem</h2><div class="card"><p class="muted" style="margin-bottom:8px">São 8 faixas, cada uma com uma mensagem diferente para a equipe. Na demonstração mostramos 2 de exemplo ().</p><div class="scroll"><table><thead><tr><th>Faixa da empresa</th><th class="r">Cada pessoa do apoio recebe</th><th>Mensagem para a equipe</th></tr></thead><tbody>
-    ${FA.map((x, i) => `<tr id="fx${i}"><td><b>${curto(x[0])}</b>${i === 0 || x[0] >= META ? ' <span class="chip ok">exemplo</span>' : ''}</td><td class="r">${brl(x[0] * x[1] / 100)}</td><td><small style="color:var(--ink)">${x[0] >= META ? 'Agradecimento a cada setor, com o nome de cada pessoa' : MSG[i].split('!')[0] + '!'}</small></td></tr>`).join('')}
+  palco(`<h2>Cada faixa tem a sua mensagem</h2><div class="card"><p class="muted" style="margin-bottom:8px">São 8 faixas, cada uma com uma mensagem diferente para a equipe. Na demonstração mostramos 2 de exemplo (✅).</p><div class="scroll"><table><thead><tr><th>Faixa da empresa</th><th class="r">Cada pessoa do apoio recebe</th><th>Mensagem para a equipe</th></tr></thead><tbody>
+    ${FA.map((x, i) => `<tr id="fx${i}"><td><b>${curto(x[0])}</b>${i === 0 || x[0] >= META ? ' <span class="chip ok">✅ exemplo</span>' : ''}</td><td class="r">${brl(x[0] * x[1] / 100)}</td><td><small style="color:var(--ink)">${x[0] >= META ? 'Agradecimento a cada setor, com o nome de cada pessoa 💛' : MSG[i].split('!')[0] + '!'}</small></td></tr>`).join('')}
     </tbody></table></div></div>`);
   legenda('São 8 faixas, e cada uma tem a sua própria mensagem. Nesta demonstração mostramos só 2 de exemplo: a faixa mínima e a do milhão.');
   await irPara($('fx3')); await espera(2600);
@@ -506,7 +506,7 @@ async function cenaComoFunciona(){
       <div class="tl on" id="exV1"><b>Vendeu R$ 120.000</b><small>Faixa de 1,2% sobre tudo: recebe ${brl(1440)}</small></div>
       <div class="tl pag on" id="exV2"><b>Vendeu R$ 150.000</b><small>Subiu para 1,5% sobre tudo: recebe ${brl(2250)}</small></div>
     </div>
-    <p class="almox-ex" style="margin-top:10px" id="bmV"><b>Bônus do milhão:</b> se a empresa bater R$ 1 milhão, o vendedor ganha mais 0,1% (a partir de R$ 150 mil), 0,2% (R$ 180 mil) ou 0,3% (R$ 200 mil) sobre as próprias vendas.</p></div>`);
+    <p class="almox-ex" style="margin-top:10px" id="bmV">🏆 <b>Bônus do milhão:</b> se a empresa bater R$ 1 milhão, o vendedor ganha mais 0,1% (a partir de R$ 150 mil), 0,2% (R$ 180 mil) ou 0,3% (R$ 200 mil) sobre as próprias vendas.</p></div>`);
   legenda('Vendedores: a meta é dividida em 7 faixas. Quanto mais vende, maior o percentual.');
   await irPara($('escV')); await espera(2000);
   legenda('E o percentual vale sobre tudo o que vendeu no mês. Subir de faixa compensa, e muito.');
@@ -516,7 +516,7 @@ async function cenaComoFunciona(){
 
   palco(`<h2>Apoio: almoxarifado, financeiro e secretárias</h2><div class="card">
     <div class="escada" id="escA">${FA.map(([m, p]) => `<div class="step on"><div class="riser" style="height:${18 + p / .12 * 90}px"></div><div class="pct">${pp(p)}</div><small><b style="color:var(--ink)">empresa em ${curto(m)}</b></small><small>cada um recebe ${brl(m * p / 100)}</small></div>`).join('')}</div>
-    <p class="almox-ex" style="margin-top:10px" id="garV"><b>Garantia mínima:</b> o vendedor que bateu a faixa mínima nunca recebe menos que uma pessoa do apoio. Exemplo: empresa em R$ 850 mil, o apoio recebe ${brl(680)}. A vendedora que vendeu R$ 50 mil teria ${brl(250)}, mas recebe ${brl(680)}.</p></div>`);
+    <p class="almox-ex" style="margin-top:10px" id="garV">🛡️ <b>Garantia mínima:</b> o vendedor que bateu a faixa mínima nunca recebe menos que uma pessoa do apoio. Exemplo: empresa em R$ 850 mil, o apoio recebe ${brl(680)}. A vendedora que vendeu R$ 50 mil teria ${brl(250)}, mas recebe ${brl(680)}.</p></div>`);
   legenda('Apoio: todos recebem o mesmo valor, que sobe conforme o faturamento da empresa inteira. Todo mundo torce junto.');
   await irPara($('escA')); await espera(2600);
   legenda('Garantia mínima: o vendedor que bateu a faixa mínima nunca ganha menos que alguém do apoio.');
@@ -527,14 +527,14 @@ async function cenaComoFunciona(){
 async function cenaRegras(){
   parte('Parte 3 de 8: metas e regras, e por que são assim');
   const C = [
-    ['', 'Meta de R$ 1 milhão', '4 vendedores com R$ 200 mil cada, mais R$ 200 mil do diretor e das secretárias.'],
-    ['', 'Apoio começa em R$ 650 mil', 'É o ponto em que os custos da empresa já estão pagos. Daí para cima, todos ganham.'],
-    ['', 'Custo perto de 2%', 'Todas as faixas foram calculadas para caber nesse limite, mesmo no mês do milhão.'],
-    ['↩', 'Devolução do vendedor', 'Perde só a premiação daquela nota (valor × faixa do mês da venda). Não desce de faixa.'],
-    ['', 'Devolução do apoio', 'Tabela pela soma das notas com erro no mês: R$ 200 dá 1%, R$ 5 mil dá 3%, R$ 10 mil dá 5%... no máximo 50%, sobre a premiação.'],
-    ['', 'Prazo de 90 dias', 'Depois de 90 dias da nota, a devolução não desconta de ninguém. Segue o prazo do Código de Defesa do Consumidor.'],
-    ['', 'O que não desconta', 'Inadimplência, cliente que desistiu sem erro da empresa e defeito de fábrica. O risco do negócio é da empresa (CLT, art. 2º).'],
-    ['', 'O erro é individual', 'Não muda a faixa dos colegas, nunca passa da premiação do mês e nunca sai do salário.']
+    ['🎯', 'Meta de R$ 1 milhão', '4 vendedores com R$ 200 mil cada, mais R$ 200 mil do diretor e das secretárias.'],
+    ['⚖️', 'Apoio começa em R$ 650 mil', 'É o ponto em que os custos da empresa já estão pagos. Daí para cima, todos ganham.'],
+    ['💰', 'Custo perto de 2%', 'Todas as faixas foram calculadas para caber nesse limite, mesmo no mês do milhão.'],
+    ['↩️', 'Devolução do vendedor', 'Perde só a premiação daquela nota (valor × faixa do mês da venda). Não desce de faixa.'],
+    ['📊', 'Devolução do apoio', 'Tabela pela soma das notas com erro no mês: R$ 200 dá 1%, R$ 5 mil dá 3%, R$ 10 mil dá 5%... no máximo 50%, sobre a premiação.'],
+    ['⏱️', 'Prazo de 90 dias', 'Depois de 90 dias da nota, a devolução não desconta de ninguém. Segue o prazo do Código de Defesa do Consumidor.'],
+    ['🚫', 'O que não desconta', 'Inadimplência, cliente que desistiu sem erro da empresa e defeito de fábrica. O risco do negócio é da empresa (CLT, art. 2º).'],
+    ['🔒', 'O erro é individual', 'Não muda a faixa dos colegas, nunca passa da premiação do mês e nunca sai do salário.']
   ];
   palco(`<h2>Metas e regras: como foram definidas</h2><div class="rgrid2">${C.map((c, i) => `<div class="tl" id="rg${i}"><b>${c[0]} ${c[1]}</b><small>${c[2]}</small></div>`).join('')}</div>`);
   const L = [
@@ -553,7 +553,7 @@ async function cenaRegras(){
 /* ---------- calendário do fechamento ---------- */
 async function cenaCalendario(){
   const D = [['02/10', '2º dia útil', 'O diretor anexa os relatórios do ERP.'], ['07/10', '5º dia útil', 'Todos conferem o faturamento e respondem as devoluções.'], ['09/10', '7º dia útil', 'O diretor decide as contestações e as revisões.'], ['13/10', '8º dia útil', 'Termos anexados e mês fechado.'], ['15/10', 'Pagamento', 'Premiação de setembro paga, já com os abatimentos.']];
-  palco(`<h2>Calendário do fechamento de setembro</h2><div class="cal5">${D.map((d, i) => `<div class="tl ${i === 4 ? 'pag' : ''}" id="cd${i}"><b>${d[0]}</b><small style="color:var(--ink);font-weight:700">${d[1]}</small><small>${d[2]}</small></div>`).join('')}</div>
+  palco(`<h2>🗓️ Calendário do fechamento de setembro</h2><div class="cal5">${D.map((d, i) => `<div class="tl ${i === 4 ? 'pag' : ''}" id="cd${i}"><b>${d[0]}</b><small style="color:var(--ink);font-weight:700">${d[1]}</small><small>${d[2]}</small></div>`).join('')}</div>
     <p class="muted" style="margin-top:10px">O sistema conta os dias úteis sozinho, sem sábados, domingos e feriados, e avisa cada pessoa quando o prazo está chegando.</p>`);
   legenda('Cada etapa tem data certa, e o sistema avisa quem está atrasado. Assim o pagamento sai sempre no dia 15.');
   for (let i = 0; i < 5; i++){ $('cd' + i).classList.add('on'); await irPara($('cd' + i)); await espera(650); }
@@ -564,8 +564,8 @@ async function cenaCalendario(){
 function telaConf(){
   palco(`<h2>Conferência do faturamento de Bruno</h2><div class="card pessoa">
     <div class="grid2">
-      <div class="errbox"><b>Relatório do vendedor</b><p id="relV" class="muted">Ainda não anexado.</p><div class="actions"><button class="pbtn" id="btnRelV" tabindex="-1">Anexar meu relatório</button></div></div>
-      <div class="errbox"><b>Relatório do ERP (diretor)</b><p id="relE" class="muted">Ainda não anexado.</p><div class="actions"><button class="pbtn" id="btnRelE" tabindex="-1">Anexar relatório do ERP</button></div></div>
+      <div class="errbox"><b>📄 Relatório do vendedor</b><p id="relV" class="muted">Ainda não anexado.</p><div class="actions"><button class="pbtn" id="btnRelV" tabindex="-1">📎 Anexar meu relatório</button></div></div>
+      <div class="errbox"><b>🖥️ Relatório do ERP (diretor)</b><p id="relE" class="muted">Ainda não anexado.</p><div class="actions"><button class="pbtn" id="btnRelE" tabindex="-1">📎 Anexar relatório do ERP</button></div></div>
     </div>
     <div class="status" id="cmp">O sistema compara os dois relatórios assim que estiverem anexados.</div>
     <div class="actions" id="confAcoes"></div>
@@ -573,7 +573,7 @@ function telaConf(){
 }
 async function anexar(titulo, total, arquivo){
   const j = janela(`<h3>${titulo}</h3><label class="f">Total de vendas no mês (R$)<div class="in num" id="axTot"></div></label><label class="f">Arquivo<div class="in" id="axArq"><span class="muted">Escolher arquivo</span></div></label><div class="actions" style="justify-content:flex-end"><button class="primary" id="axOk" tabindex="-1">Enviar</button></div>`);
-  try { await escrever('axTot', total.toLocaleString('pt-BR')); await clicar($('axArq')); $('axArq').textContent = '' + arquivo; await espera(400); await clicar($('axOk')); } finally { j.remove(); }
+  try { await escrever('axTot', total.toLocaleString('pt-BR')); await clicar($('axArq')); $('axArq').textContent = '📎 ' + arquivo; await espera(400); await clicar($('axOk')); } finally { j.remove(); }
 }
 async function cenaContestacao(){
   parte('Parte 4 de 8: relatório do vendedor × ERP');
@@ -581,28 +581,28 @@ async function cenaContestacao(){
   legenda('Bruno lança R$ 250.000 de vendas e anexa o relatório dele, com as notas que guarda.');
   V[1].v = 250000; renderTopo(); $('brunoRec').innerHTML = `Vendido lançado: <b>${brl(250000)}</b>. Premiação: <b>${brl(premTot(250000))}</b>`;
   await clicar($('btnRelV')); await anexar('Anexar meu relatório de vendas', 250000, 'minhas_vendas_setembro.pdf');
-  $('relV').className = ''; $('relV').innerHTML = `Anexado: total <b>${brl(250000)}</b>`;
+  $('relV').className = ''; $('relV').innerHTML = `✅ Anexado: total <b>${brl(250000)}</b>`;
   await usuario('Diretor');
   legenda('O diretor anexa o relatório tirado do ERP para o Bruno: R$ 240.000.');
   await clicar($('btnRelE')); await anexar('Anexar relatório do ERP', 240000, 'erp_vendas_bruno_setembro.pdf');
-  $('relE').className = ''; $('relE').innerHTML = `Anexado: total <b>${brl(240000)}</b>`;
-  $('cmp').className = 'status off'; $('cmp').innerHTML = `<b>Não bate:</b> vendedor ${brl(250000)} × ERP ${brl(240000)}. Diferença de <b>${brl(10000)}</b>. O mês não fecha enquanto isso não for resolvido.`;
+  $('relE').className = ''; $('relE').innerHTML = `✅ Anexado: total <b>${brl(240000)}</b>`;
+  $('cmp').className = 'status off'; $('cmp').innerHTML = `⚠️ <b>Não bate:</b> vendedor ${brl(250000)} × ERP ${brl(240000)}. Diferença de <b>${brl(10000)}</b>. O mês não fecha enquanto isso não for resolvido.`;
   legenda('O sistema compara sozinho e avisa: os dois relatórios não batem.');
   await irPara($('cmp')); await espera(1800);
 
   await usuario('Bruno (vendedor)');
-  $('confAcoes').innerHTML = '<button class="pbtn" id="btnCont" tabindex="-1">Não bate: contestar</button>';
+  $('confAcoes').innerHTML = '<button class="pbtn" id="btnCont" tabindex="-1">❌ Não bate: contestar</button>';
   legenda('Bruno acha que está certo e contesta, anexando a prova.');
   await clicar($('btnCont'));
   let j = janela(`<h3>Contestar o relatório do ERP</h3><label class="f">Valor que você acha certo (R$)<div class="in num" id="ctV"></div></label><label class="f">Motivo<div class="in" id="ctM"></div></label><label class="f">Provas<div class="in" id="ctP"><span class="muted">Escolher arquivos</span></div></label><div class="actions" style="justify-content:flex-end"><button class="primary" id="ctOk" tabindex="-1">Enviar contestação</button></div>`);
-  try { await escrever('ctV', '250.000'); await escrever('ctM', 'A NF 4521, de R$ 10.000, não aparece no ERP.', 25); await clicar($('ctP')); $('ctP').textContent = 'NF4521.pdf'; await espera(350); await clicar($('ctOk')); } finally { j.remove(); }
-  $('cmp').className = 'status'; $('cmp').innerHTML = '<b>Contestação aberta.</b> Aguardando a análise do diretor.';
+  try { await escrever('ctV', '250.000'); await escrever('ctM', 'A NF 4521, de R$ 10.000, não aparece no ERP.', 25); await clicar($('ctP')); $('ctP').textContent = '📎 NF4521.pdf'; await espera(350); await clicar($('ctOk')); } finally { j.remove(); }
+  $('cmp').className = 'status'; $('cmp').innerHTML = '🔎 <b>Contestação aberta.</b> Aguardando a análise do diretor.';
 
   await usuario('Diretor');
-  $('confAcoes').innerHTML = '<button class="primary" id="btnAnal" tabindex="-1">Analisar contestação</button>';
+  $('confAcoes').innerHTML = '<button class="primary" id="btnAnal" tabindex="-1">🔎 Analisar contestação</button>';
   legenda('O diretor abre a prova: a NF 4521 foi emitida em 01/10, ou seja, é venda de outubro.');
   await clicar($('btnAnal'));
-  j = janela(`<h3>Contestação de Bruno</h3><div class="errbox"><b>NF4521.pdf</b><small>Nota fiscal 4521, Metalúrgica Alfa, ${brl(10000)}</small><p id="dtNF">Emitida em <b>01/10/2026</b></p></div>
+  j = janela(`<h3>Contestação de Bruno</h3><div class="errbox"><b>📎 NF4521.pdf</b><small>Nota fiscal 4521, Metalúrgica Alfa, ${brl(10000)}</small><p id="dtNF">Emitida em <b>01/10/2026</b></p></div>
     <label class="f">Decisão<div class="in" id="dcSel"><span class="muted">Escolher</span></div></label><label class="f">Explicação para Bruno<div class="in" id="dcTx"></div></label>
     <div class="actions" style="justify-content:flex-end"><button class="primary" id="dcOk" tabindex="-1">Salvar decisão</button></div>`);
   try {
@@ -611,13 +611,13 @@ async function cenaContestacao(){
     await escrever('dcTx', 'A NF 4521 saiu em 01/10: entra na premiação de outubro.', 22);
     await clicar($('dcOk'));
   } finally { j.remove(); }
-  $('cmp').innerHTML = '<b>Decisão do diretor:</b> o ERP está certo. Bruno precisa dar a resposta final.';
+  $('cmp').innerHTML = '💬 <b>Decisão do diretor:</b> o ERP está certo. Bruno precisa dar a resposta final.';
 
   await usuario('Bruno (vendedor)');
-  $('confAcoes').innerHTML = '<button class="primary" id="btnConc" tabindex="-1">Concordo com a decisão</button><button class="pbtn" tabindex="-1">Continuo discordando</button>';
+  $('confAcoes').innerHTML = '<button class="primary" id="btnConc" tabindex="-1">✅ Concordo com a decisão</button><button class="pbtn" tabindex="-1">❌ Continuo discordando</button>';
   legenda('Vendo a prova, Bruno reconhece que errou e concorda com o diretor.');
   await clicar($('btnConc'));
-  $('confAcoes').innerHTML = ''; $('cmp').className = 'status on'; $('cmp').innerHTML = '<b>Bruno concordou:</b> o relatório do ERP estava certo. Tudo registrado com data e hora.';
+  $('confAcoes').innerHTML = ''; $('cmp').className = 'status on'; $('cmp').innerHTML = '✅ <b>Bruno concordou:</b> o relatório do ERP estava certo. Tudo registrado com data e hora.';
 
   await usuario('Diretor');
   $('confAcoes').innerHTML = '<button class="primary" id="btnLanca" tabindex="-1">Lançar o valor do ERP (R$ 240.000)</button>';
@@ -633,22 +633,22 @@ async function cenaContestacao(){
 async function cenaDevolucao(){
   parte('Parte 5 de 8: devolução, do aviso ao pagamento');
   await usuario('Eduardo (almoxarifado)');
-  palco(`<h2>Chegou uma devolução? Avise aqui na hora</h2><div class="card pessoa alm">
+  palco(`<h2>📦 Chegou uma devolução? Avise aqui na hora</h2><div class="card pessoa alm">
     <p class="muted">Quem recebe a mercadoria ou é avisado pelo cliente avisa no mesmo dia.</p>
-    <div class="actions"><button class="primary" id="btnAvisar" tabindex="-1">Avisar devolução recebida</button></div><div id="avLista"></div></div>`);
+    <div class="actions"><button class="primary" id="btnAvisar" tabindex="-1">📦 Avisar devolução recebida</button></div><div id="avLista"></div></div>`);
   legenda('Chegou uma caixa devolvida no almoxarifado. Eduardo avisa na hora pelo sistema.');
   await clicar($('btnAvisar'));
   let j = janela(`<h3>Avisar devolução recebida</h3><label class="f">Cliente<div class="in" id="avC"></div></label><label class="f">Número da nota<div class="in" id="avN"></div></label><label class="f">O que chegou<div class="in" id="avD"></div></label><div class="actions" style="justify-content:flex-end"><button class="primary" id="avOk" tabindex="-1">Enviar aviso</button></div>`);
   try { await escrever('avC', 'Metalúrgica Beta', 30); await escrever('avN', '4388', 60); await escrever('avD', '2 válvulas de 1/2", medida errada', 25); await clicar($('avOk')); } finally { j.remove(); }
-  $('avLista').innerHTML = `<div class="errbox" style="margin-top:10px"><b>Metalúrgica Beta, NF 4388</b><small>2 válvulas de 1/2", medida errada</small><small>Comunicado por <b>Eduardo</b> em 15/09/2026 10:12 · <span class="okline">no mesmo dia</span></small><div id="avClaim"></div><div class="actions" id="avAc"><button class="pbtn" id="btnMeu" tabindex="-1">É do meu cliente</button></div></div>`;
+  $('avLista').innerHTML = `<div class="errbox" style="margin-top:10px"><b>Metalúrgica Beta, NF 4388</b><small>2 válvulas de 1/2", medida errada</small><small>Comunicado por <b>Eduardo</b> em 15/09/2026 10:12 · <span class="okline">no mesmo dia</span></small><div id="avClaim"></div><div class="actions" id="avAc"><button class="pbtn" id="btnMeu" tabindex="-1">🙋 É do meu cliente</button></div></div>`;
   await usuario('Carla (vendedora)');
   legenda('Todos veem o aviso. Carla reconhece o cliente e avisa que o pedido é dela.');
   await clicar($('btnMeu'));
-  $('avClaim').innerHTML = '<small><b>Carla:</b> “É do meu cliente, eu fiz o pedido.”</small>'; $('avAc').innerHTML = '';
+  $('avClaim').innerHTML = '<small>🙋 <b>Carla:</b> “É do meu cliente, eu fiz o pedido.”</small>'; $('avAc').innerHTML = '';
   await espera(900);
 
   await usuario('Diretor');
-  $('avAc').innerHTML = '<button class="primary" id="btnLanDev" tabindex="-1">↩Lançar a devolução</button>';
+  $('avAc').innerHTML = '<button class="primary" id="btnLanDev" tabindex="-1">↩️ Lançar a devolução</button>';
   legenda('O diretor lança a devolução. Os dados do aviso já vêm preenchidos.');
   await clicar($('btnLanDev'));
   j = janela(`<h3>Registrar devolução</h3><div class="grid2">
@@ -659,23 +659,23 @@ async function cenaDevolucao(){
   try { await escrever('dvV', '10.000'); await clicar($('dvR')); $('dvR').textContent = 'Carla (vendedora)'; await espera(350); await clicar($('dvOk')); } finally { j.remove(); }
 
   await usuario('Carla (vendedora)');
-  palco(`<div class="aviso">Você tem <b>1 devolução</b> aguardando a sua resposta (obrigatória).</div>
+  palco(`<div class="aviso">🙋 Você tem <b>1 devolução</b> aguardando a sua resposta (obrigatória).</div>
     <h2>Devolução de Carla</h2><div class="card"><div class="scroll"><table><thead><tr><th>Nota</th><th class="r">Valor</th><th>Datas</th><th>Abatimento</th></tr></thead><tbody><tr>
-    <td>NF 4388</td><td class="r">${brl(10000)}</td><td><small>Vendida em 20/08</small><small>↩Devolvida em 15/09</small></td>
+    <td>NF 4388</td><td class="r">${brl(10000)}</td><td><small>📄 Vendida em 20/08</small><small>↩️ Devolvida em 15/09</small></td>
     <td id="dvConta">${brl(10000)} × 1,5% (faixa de agosto) = <b>${brl(150)}</b><small>Ela devolve só o que ganhou com essa nota. Não desce de faixa.</small></td></tr></tbody></table></div>
-    <div class="actions" id="dvBt"><button class="primary" id="btnAc" tabindex="-1">Aceito: reconheço o erro</button><button class="pbtn" tabindex="-1">Não aceito</button></div></div>`);
+    <div class="actions" id="dvBt"><button class="primary" id="btnAc" tabindex="-1">✅ Aceito: reconheço o erro</button><button class="pbtn" tabindex="-1">❌ Não aceito</button></div></div>`);
   legenda('Carla vê a conta antes de responder: R$ 10.000 × 1,5% (a faixa dela em agosto) = R$ 150. Ela aceita.');
   await irPara($('dvConta')); await espera(1600);
   await clicar($('btnAc'));
-  $('dvBt').innerHTML = '<span class="chip ok">Aceito por Carla em 15/09/2026 14:30</span>';
+  $('dvBt').innerHTML = '<span class="chip ok">✅ Aceito por Carla em 15/09/2026 14:30</span>';
   await espera(900);
 
   const pS = premTot(V[2].v);
   palco(`<h2>Em que mês o abatimento é pago</h2><div class="card">
     <div class="grid3">
-      <div class="tl" id="tl1"><b>Agosto</b><small>Carla vende a NF 4388. A premiação de agosto é paga normalmente.</small></div>
-      <div class="tl" id="tl2"><b>↩Setembro</b><small>A nota volta e a devolução entra na apuração de setembro.</small></div>
-      <div class="tl pag" id="tl3"><b>15/10/2026</b><small>A premiação de setembro é paga já com o abatimento.</small></div>
+      <div class="tl" id="tl1"><b>🛒 Agosto</b><small>Carla vende a NF 4388. A premiação de agosto é paga normalmente.</small></div>
+      <div class="tl" id="tl2"><b>↩️ Setembro</b><small>A nota volta e a devolução entra na apuração de setembro.</small></div>
+      <div class="tl pag" id="tl3"><b>💰 15/10/2026</b><small>A premiação de setembro é paga já com o abatimento.</small></div>
     </div>
     <table class="extab" id="extr" style="margin-top:12px"><tbody>
       <tr><td>Premiação de Carla em setembro</td><td class="r">${brl(pS)}</td></tr>
@@ -720,11 +720,11 @@ async function cenaTermos(){
   } finally { j.remove(); }
   legenda('Os termos assinados são escaneados e anexados no sistema, um por pessoa.');
   const P = [['Ana', 1], ['Bruno', 1], ['Carla', 1], ['Diego', 1], ['Eduardo', 0], ['Fábio', 0], ['Gisele', 0], ['Helena', 0], ['Isabela', 0]];
-  const st = '<span class="chip pend">Falta anexar</span>';
-  palco(`<h2>Termos assinados de setembro</h2><div class="card"><p class="muted" style="margin-bottom:8px">O diretor imprime, colhe as assinaturas, escaneia e anexa. O mês só fecha com todos anexados.</p><div class="scroll"><table><thead><tr><th>Pessoa</th><th>Termo de conferência do faturamento</th><th>Termo de premiação e confidencialidade</th></tr></thead><tbody>
-    ${P.map(([n, v], i) => `<tr><td><b>${n}</b></td><td id="tc${i}">${v ? st + ' <button class="pbtn" tabindex="-1">Anexar</button>' : '<small>Só vendedores</small>'}</td><td id="tp${i}">${st} <button class="pbtn" tabindex="-1">Anexar</button></td></tr>`).join('')}
-    </tbody></table></div><div class="actions" style="margin-top:10px"><button class="primary" id="btnFech" tabindex="-1">Fechar o mês</button><span id="fechSt" class="muted"></span></div></div>`);
-  const ok = '<span class="chip ok">Assinado e anexado</span>';
+  const st = '<span class="chip pend">⏳ Falta anexar</span>';
+  palco(`<h2>📑 Termos assinados de setembro</h2><div class="card"><p class="muted" style="margin-bottom:8px">O diretor imprime, colhe as assinaturas, escaneia e anexa. O mês só fecha com todos anexados.</p><div class="scroll"><table><thead><tr><th>Pessoa</th><th>Termo de conferência do faturamento</th><th>Termo de premiação e confidencialidade</th></tr></thead><tbody>
+    ${P.map(([n, v], i) => `<tr><td><b>${n}</b></td><td id="tc${i}">${v ? st + ' <button class="pbtn" tabindex="-1">📎 Anexar</button>' : '<small>Só vendedores</small>'}</td><td id="tp${i}">${st} <button class="pbtn" tabindex="-1">📎 Anexar</button></td></tr>`).join('')}
+    </tbody></table></div><div class="actions" style="margin-top:10px"><button class="primary" id="btnFech" tabindex="-1">🔒 Fechar o mês</button><span id="fechSt" class="muted"></span></div></div>`);
+  const ok = '<span class="chip ok">✅ Assinado e anexado</span>';
   for (let i = 0; i < P.length; i++){
     const rapido = i > 1;
     if (P[i][1]){ const b = $('tc' + i).querySelector('button'); if (!rapido) await clicar(b); $('tc' + i).innerHTML = ok; if (rapido) await espera(150); }
@@ -733,7 +733,7 @@ async function cenaTermos(){
   }
   legenda('Todos os termos assinados: agora o diretor pode fechar o mês.');
   await clicar($('btnFech'));
-  $('fechSt').innerHTML = '<b class="okline">Setembro fechado. Pagamento em 15/10/2026.</b>';
+  $('fechSt').innerHTML = '<b class="okline">🔒 Setembro fechado. Pagamento em 15/10/2026.</b>';
   await espera(2200);
 }
 
@@ -745,7 +745,7 @@ function termosAna(){
   <div class="doc"><h4>Termo de conferência do faturamento</h4><p class="c">Distribuidora Modelo, premiação de setembro de 2026</p>
     <p>Eu, <b>Ana Souza</b>, vendedora, declaro que recebi do diretor e conferi o <b>relatório de faturamento do ERP</b> referente ao mês acima, com as notas fiscais emitidas em meu nome (número, data, cliente e valor).</p>
     <table id="t1tab">${linha('Total do relatório do ERP (emitidas menos canceladas)', brl(230000))}${linha('Vendido lançado no sistema de premiação', brl(230000))}</table>
-    <p>Os números e valores <b>conferem</b>.</p><p>Os números não conferem. Motivo: ______________________</p>
+    <p>☑ Os números e valores <b>conferem</b>.</p><p>☐ Os números não conferem. Motivo: ______________________</p>
     <p>Data: 07/10/2026</p>
     <div class="ass"><div><span class="assin" id="s1a">Ana Souza</span><i>Ana Souza</i></div><div><span class="assin" id="s1d">Roberto Lima</span><i>Roberto Lima, diretor</i></div></div></div>
   <div class="doc"><h4>Termo de premiação e confidencialidade</h4><p class="c">Extrato de premiação de vendas</p>
@@ -759,7 +759,7 @@ function termosAna(){
       <p>4. Os dados pessoais que eu acessar serão usados somente para o trabalho, conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018).</p>
       <p>5. Estou ciente de que o acesso ao sistema e todas as alterações ficam registrados, com data, hora e autor.</p></div>
     <div class="ass"><div><span class="assin" id="s2a">Ana Souza</span><i>Ana Souza</i></div><div><span class="assin" id="s2d">Roberto Lima</span><i>Roberto Lima, diretor</i></div></div>
-    <p class="aprov" id="aprov" hidden>Aprovado pelo diretor em 07/10/2026</p></div>`;
+    <p class="aprov" id="aprov" hidden>✅ Aprovado pelo diretor em 07/10/2026</p></div>`;
 }
 async function assinar(id){
   await irPara($(id)); cur.classList.remove('clica'); void cur.offsetWidth; cur.classList.add('clica');
@@ -770,28 +770,28 @@ async function assinar(id){
 async function cenaSimultaneo(){
   parte('Parte 6 de 8: várias pessoas ao mesmo tempo e histórico');
   palco(`<h2>Todo mundo usa ao mesmo tempo</h2><div class="trio">
-    <div class="tela"><div class="tbar">Computador do diretor</div><div class="tcorpo">
+    <div class="tela"><div class="tbar">💻 Computador do diretor</div><div class="tcorpo">
       <table><tbody><tr><td>Diego, vendido</td><td class="r"><b id="dirD">${brl(V[3].v)}</b></td></tr><tr><td>Gisele, conciliação</td><td class="r"><b id="dirG">—</b></td></tr></tbody></table>
       <p style="margin-top:8px"><b>Últimas alterações</b></p><div id="feed" class="feed"><small>Nada novo ainda.</small></div></div></div>
-    <div class="tela cel"><div class="tbar">Celular do Diego</div><div class="tcorpo">
+    <div class="tela cel"><div class="tbar">📱 Celular do Diego</div><div class="tcorpo">
       <label class="f">Vendido no mês (R$)<div class="in num" id="celD">${V[3].v.toLocaleString('pt-BR')}</div></label>
       <div class="actions" style="margin-top:8px"><button class="primary" id="celOk" tabindex="-1">Salvar</button></div><small id="celSt"></small></div></div>
-    <div class="tela"><div class="tbar">Computador da Gisele</div><div class="tcorpo">
+    <div class="tela"><div class="tbar">💻 Computador da Gisele</div><div class="tcorpo">
       <label class="f">Dias com conciliação feita<div class="in num" id="gisC"></div></label>
       <div class="actions" style="margin-top:8px"><button class="primary" id="gisOk" tabindex="-1">Salvar</button></div><small id="gisSt"></small></div></div>
   </div><p class="muted" style="margin-top:10px">Os dados ficam salvos online. Não precisa mandar planilha por e-mail nem esperar ninguém.</p>`);
   legenda('Cada pessoa usa no próprio computador ou celular, todos ao mesmo tempo.');
   await espera(1200);
   legenda('Diego, na rua, atualiza as vendas pelo celular...');
-  await escrever('celD', '165.000'); await clicar($('celOk')); $('celSt').textContent = 'Salvando...';
+  await escrever('celD', '165.000'); await clicar($('celOk')); $('celSt').textContent = '☁️ Salvando...';
   legenda('...enquanto Gisele, no escritório, lança a conciliação bancária.');
-  await escrever('gisC', '22', 120); await clicar($('gisOk')); $('gisSt').textContent = 'Salvando...';
-  await espera(500); $('celSt').textContent = 'Salvo'; V[3].v = 165000; renderTopo();
+  await escrever('gisC', '22', 120); await clicar($('gisOk')); $('gisSt').textContent = '☁️ Salvando...';
+  await espera(500); $('celSt').textContent = '☁️ Salvo'; V[3].v = 165000; renderTopo();
   $('dirD').textContent = brl(165000); $('dirD').classList.add('pisca');
-  $('feed').innerHTML = '<div class="fl">agora: <b>Diego</b> alterou o vendido de R$ 160.000 para R$ 165.000</div>';
-  await espera(500); $('gisSt').textContent = 'Salvo';
+  $('feed').innerHTML = '<div class="fl">🕘 agora: <b>Diego</b> alterou o vendido de R$ 160.000 para R$ 165.000</div>';
+  await espera(500); $('gisSt').textContent = '☁️ Salvo';
   $('dirG').textContent = '22 dias'; $('dirG').classList.add('pisca');
-  $('feed').insertAdjacentHTML('afterbegin', '<div class="fl">agora: <b>Gisele</b> lançou 22 dias de conciliação</div>');
+  $('feed').insertAdjacentHTML('afterbegin', '<div class="fl">🕘 agora: <b>Gisele</b> lançou 22 dias de conciliação</div>');
   legenda('Em segundos, as duas alterações aparecem na tela do diretor, sem ele fazer nada.');
   await irPara($('feed')); await espera(2400);
 }
@@ -804,8 +804,8 @@ async function cenaHistorico(){
     ['15/09/2026 14:30', 'Carla', 'Carla', 'Aceitou o abatimento da NF 4388', '', 'Autorizado'],
     ['15/09/2026 10:12', 'Eduardo', 'Eduardo', 'Avisou devolução recebida', '', 'Metalúrgica Beta, NF 4388']
   ];
-  palco(`<h2>Histórico de alterações</h2><div class="card"><div class="scroll"><table><thead><tr><th>Quando</th><th>Quem alterou</th><th>Pessoa</th><th>O que mudou</th><th>Antes</th><th>Depois</th></tr></thead><tbody id="hist"></tbody></table></div>
-    <p class="muted" style="margin-top:8px" id="histNota">Assuntos sigilosos (devoluções, notas e descontos) só o diretor vê. Cada pessoa vê apenas o próprio histórico.</p></div>`);
+  palco(`<h2>🕘 Histórico de alterações</h2><div class="card"><div class="scroll"><table><thead><tr><th>Quando</th><th>Quem alterou</th><th>Pessoa</th><th>O que mudou</th><th>Antes</th><th>Depois</th></tr></thead><tbody id="hist"></tbody></table></div>
+    <p class="muted" style="margin-top:8px" id="histNota">🔒 Assuntos sigilosos (devoluções, notas e descontos) só o diretor vê. Cada pessoa vê apenas o próprio histórico.</p></div>`);
   legenda('Tudo fica registrado no histórico: quem alterou, quando, o que era antes e o que ficou depois.');
   const linha = r => `<tr class="pulse"><td style="white-space:nowrap">${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td class="muted">${r[4]}</td><td><b>${r[5]}</b></td></tr>`;
   const hist = [['agora', 'Gisele', 'Gisele', 'Dias com conciliação feita', '(vazio)', '22'], ['agora', 'Diego', 'Diego', 'Vendido no mês', 'R$ 160.000', 'R$ 165.000']].concat(H);
@@ -818,15 +818,15 @@ async function cenaHistorico(){
 async function cenaFim(){
   parte('Parte 8 de 8: resumo');
   palco(`<h2>O que o sistema faz pela empresa</h2><div class="card"><ul class="resumo">
-    <li>Comemora cada faixa batida, com uma mensagem diferente para a equipe.</li>
-    <li>Compara o relatório do vendedor com o do ERP e organiza a contestação com provas.</li>
-    <li>Registra o aviso de devolução no mesmo dia e mostra a conta do abatimento antes do aceite.</li>
-    <li>Abate no mês certo e manda as devoluções do fim do mês para o mês seguinte.</li>
-    <li>Funciona ao mesmo tempo para toda a equipe, no computador ou no celular.</li>
-    <li>Guarda o histórico de cada alteração: quem, quando, antes e depois.</li>
-    <li>Gera os termos prontos para assinar e só fecha o mês com todos assinados.</li>
-    <li>Custo sob controle: perto de 2% do faturamento, mesmo no mês do milhão.</li>
-    <li>Vem com um resumo da base legal para o advogado e o contador da empresa.</li></ul></div>`);
+    <li>🎉 Comemora cada faixa batida, com uma mensagem diferente para a equipe.</li>
+    <li>📋 Compara o relatório do vendedor com o do ERP e organiza a contestação com provas.</li>
+    <li>📦 Registra o aviso de devolução no mesmo dia e mostra a conta do abatimento antes do aceite.</li>
+    <li>🗓️ Abate no mês certo e manda as devoluções do fim do mês para o mês seguinte.</li>
+    <li>👥 Funciona ao mesmo tempo para toda a equipe, no computador ou no celular.</li>
+    <li>🕘 Guarda o histórico de cada alteração: quem, quando, antes e depois.</li>
+    <li>📑 Gera os termos prontos para assinar e só fecha o mês com todos assinados.</li>
+    <li>💰 Custo sob controle: perto de 2% do faturamento, mesmo no mês do milhão.</li>
+    <li>⚖️ Vem com um resumo da base legal para o advogado e o contador da empresa.</li></ul></div>`);
   legenda('Fim da demonstração. Clique em ↺ para assistir de novo.');
   cur.style.left = '-60px'; cur.style.top = '-60px';
 }
@@ -845,16 +845,16 @@ async function roteiro(){
   await cenaFim();
 }
 function iniciar(){
-  token++; pausado = false; $('btnPausa').textContent = 'Pausar';
+  token++; pausado = false; $('btnPausa').textContent = '⏸️';
   document.querySelectorAll('#celeb,.dlg-bg').forEach(x => x.remove());
   $('quem').textContent = '—'; window.scrollTo(0, 0);
   roteiro().catch(e => { if (e !== PARAR) console.error(e); });
 }
 $('btnIniciar').onclick = () => { $('inicio').hidden = true; try { const AC = window.AudioContext || window.webkitAudioContext; if (AC && !actx) actx = new AC(); if (actx) actx.resume(); } catch(e) {} iniciar(); };
 $('btnReini').onclick = iniciar;
-$('btnPausa').onclick = () => { pausado = !pausado; $('btnPausa').textContent = pausado ? 'Continuar' : 'Pausar'; };
+$('btnPausa').onclick = () => { pausado = !pausado; $('btnPausa').textContent = pausado ? '▶️' : '⏸️'; };
 $('btnVel').onclick = () => { vel = vel === 1 ? 2 : 1; $('btnVel').textContent = vel + 'x'; };
-$('btnSom').onclick = () => { som = !som; $('btnSom').textContent = som ? 'Som ligado' : 'Sem som'; };
+$('btnSom').onclick = () => { som = !som; $('btnSom').textContent = som ? '🔊' : '🔇'; };
 desenharManometro(); resetDados(); renderTopo();
 </script>
 </body>
