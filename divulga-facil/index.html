@@ -428,7 +428,7 @@ dialog textarea,dialog select{border:1px solid var(--line);border-radius:10px;pa
   dlg.addEventListener("cancel",function(e){if(!D.empresa)e.preventDefault()});
   addEventListener("storage",function(e){if(e.key===K){carregar();render()}});
   /* ===== teste grátis e assinatura ===== Ajuste aqui: preços, dias de teste e links do Mercado Pago (link vazio = botão abre o WhatsApp da DayIA) */
-  var DIAS_TESTE=7,PRECO_M="R$ 29,90",PRECO_A="R$ 299",LINK_M="https://mpago.la/1MWT9hZ",LINK_A="https://mpago.la/18Ac7MB",PRECO_PREP="R$ 129,90",PRECO_POSTA="R$ 159,90",LINK_PREP="",LINK_POSTA="",ZAP="5519999389118";
+  var DIAS_TESTE=7,PRECO_M="R$ 29,90",PRECO_A="R$ 299",LINK_M="https://mpago.la/1MWT9hZ",LINK_A="https://mpago.la/18Ac7MB",PRECO_PREP="R$ 129,90",PRECO_POSTA="R$ 159,90",LINK_PREP="https://mpago.la/1ywuTxT",LINK_POSTA="",ZAP="5519999389118";
   var SEG="df-7c1e94b2a05d4f38",KI="divulgafacil-inicio",KL="divulgafacil-lic",BASE=Date.UTC(2026,0,1);
   function h32(s){var h=0x811c9dc5;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0}return h>>>0}
   function assina(n){return ("0000000"+h32(SEG+"|"+n).toString(36).toUpperCase()).slice(-4)}
