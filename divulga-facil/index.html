@@ -226,6 +226,9 @@ dialog input{border:1px solid var(--line);border-radius:10px;padding:10px 12px;b
 #codRes.ok{color:#17924F;font-weight:800}#codRes.no{color:#C0392B;font-weight:800}
 dialog textarea,dialog select{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#F8FAFD;font:15px "Nunito Sans",sans-serif;color:var(--ink);resize:vertical}
 @media (max-width:900px){#planoBar{padding:10px 16px}}
+.pl-sec{margin:6px 0 -4px;font:800 13px "Nunito Sans",sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.pl-lista{margin:0;padding-left:18px;color:var(--ink);font-size:14px;display:flex;flex-direction:column;gap:2px}
+.pl-mais{text-align:center;font-size:14px;margin:0;color:var(--muted)}.pl-mais a{color:var(--sky);font-weight:800}
 </style>
 </head>
 <body>
@@ -425,7 +428,7 @@ dialog textarea,dialog select{border:1px solid var(--line);border-radius:10px;pa
   dlg.addEventListener("cancel",function(e){if(!D.empresa)e.preventDefault()});
   addEventListener("storage",function(e){if(e.key===K){carregar();render()}});
   /* ===== teste grátis e assinatura ===== Ajuste aqui: preços, dias de teste e links do Mercado Pago (link vazio = botão abre o WhatsApp da DayIA) */
-  var DIAS_TESTE=7,PRECO_M="R$ 29,90",PRECO_A="R$ 299",LINK_M="https://mpago.la/1MWT9hZ",LINK_A="https://mpago.la/18Ac7MB",ZAP="5519999389118";
+  var DIAS_TESTE=7,PRECO_M="R$ 29,90",PRECO_A="R$ 299",LINK_M="https://mpago.la/1MWT9hZ",LINK_A="https://mpago.la/18Ac7MB",PRECO_PREP="R$ 129,90",PRECO_POSTA="R$ 159,90",LINK_PREP="",LINK_POSTA="",ZAP="5519999389118";
   var SEG="df-7c1e94b2a05d4f38",KI="divulgafacil-inicio",KL="divulgafacil-lic",BASE=Date.UTC(2026,0,1);
   function h32(s){var h=0x811c9dc5;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,0x01000193)>>>0}return h>>>0}
   function assina(n){return ("0000000"+h32(SEG+"|"+n).toString(36).toUpperCase()).slice(-4)}
@@ -446,8 +449,12 @@ dialog textarea,dialog select{border:1px solid var(--line);border-radius:10px;pa
     var tit=bloq?(st.t==="vencido"?"Sua assinatura venceu":"Seu teste grátis acabou"):"Planos do Divulga Fácil";
     var sub=bloq?"Seus posts e mensagens continuam guardados neste aparelho. Assine para voltar a usar.":(st.t==="teste"?"Você ainda tem "+st.d+" dia"+(st.d>1?"s":"")+" de teste grátis.":st.t==="pago"?"Sua assinatura vale até "+dataBR(st.ate)+".":"");
     el.innerHTML='<div class="pl">'+(bloq?'':'<button type="button" class="pl-x" aria-label="Fechar" data-planosx>×</button>')+'<h2>'+tit+'</h2><p class="pl-sub">'+sub+'</p>'+
-      '<div class="plano dest"><span class="tag">Mais vantajoso</span><h3>Anual</h3><div class="preco">'+PRECO_A+' <small>por ano</small></div><p>Pague uma vez e use o ano todo: paga 10 meses e usa 12.</p>'+botaoPag(LINK_A,"anual","Assinar o anual","pri")+'</div>'+
+      '<h3 class="pl-sec">Você mesmo posta</h3><div class="plano dest"><span class="tag">Mais vantajoso</span><h3>Anual</h3><div class="preco">'+PRECO_A+' <small>por ano</small></div><p>Pague uma vez e use o ano todo: paga 10 meses e usa 12.</p>'+botaoPag(LINK_A,"anual","Assinar o anual","pri")+'</div>'+
       '<div class="plano"><h3>Mensal</h3><div class="preco">'+PRECO_M+' <small>por mês</small></div><p>Renova todo mês. Cancele quando quiser.</p>'+botaoPag(LINK_M,"mensal","Assinar o mensal","sec")+'</div>'+
+      '<h3 class="pl-sec">Ou deixe com a DayIA</h3>'+
+      '<div class="plano"><h3>DayIA Prepara</h3><div class="preco">'+PRECO_PREP+' <small>por mês</small></div><p>Você manda os vídeos pelo WhatsApp. A DayIA escreve a legenda e deixa cada post pronto no seu painel, no dia certo. Você só aperta postar. Sua conta continua só com você.</p><ul class="pl-lista"><li>Até 30 posts por mês (1 por dia)</li><li>Painel do Divulga Fácil incluso</li></ul>'+botaoPag(LINK_PREP,"DayIA Prepara ("+PRECO_PREP+" por mês)","Quero o DayIA Prepara","sec")+'</div>'+
+      '<div class="plano dest"><span class="tag">Mais completo</span><h3>DayIA Posta</h3><div class="preco">'+PRECO_POSTA+' <small>por mês</small></div><p>A DayIA prepara e publica por você no Instagram, no melhor horário, todos os dias. Sem passar senha: você autoriza pelo próprio Instagram e pode cancelar quando quiser.</p><ul class="pl-lista"><li>Até 30 posts por mês (1 por dia)</li><li>Resumo semanal do que foi postado</li><li>Painel do Divulga Fácil incluso</li></ul>'+botaoPag(LINK_POSTA,"DayIA Posta ("+PRECO_POSTA+" por mês)","Quero o DayIA Posta","pri")+'</div>'+
+      '<p class="pl-mais">Quer postar mais de 1 vez por dia? <a href="https://api.whatsapp.com/send?phone='+ZAP+'&text='+encodeURIComponent("Olá! Quero saber dos pacotes com mais posts por dia no Divulga Fácil.")+'" target="_blank" rel="noopener">Fale com a gente</a></p>'+
       '<p class="seguro">🔒 Pagamento seguro pelo <b>Mercado Pago</b> · Pix, cartão ou boleto</p>'+
       '<div class="cod"><h3>Já assinou? Ative seu acesso</h3><p>Assim que o pagamento é confirmado, você recebe o seu código de ativação. Digite aqui:</p><div class="linha"><input id="codIn" placeholder="DF-XXX-XXXX" autocomplete="off"><button type="button" class="btn pri" id="codOk">Ativar</button></div><p id="codRes" aria-live="polite"></p></div></div>';
     el.hidden=false;el.dataset.bloq=bloq?"1":"";document.body.style.overflow="hidden"}
