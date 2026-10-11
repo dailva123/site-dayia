@@ -60,6 +60,15 @@ footer img{height:30px;width:auto}
 @media (max-width:860px){.hero{grid-template-columns:1fr;padding-block:36px 32px}.dores{grid-template-columns:1fr}.faz{grid-template-columns:1fr}
 .oferta{grid-template-columns:1fr;padding:24px}.ctas .btn{flex:1 1 100%}}
 </style>
+<!-- Google Analytics (contador de visitas da DayIA) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BEQM24C7RD"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-BEQM24C7RD');
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.href,t=(a.textContent||'').trim().slice(0,60);
+if(h.indexOf('wa.me')>-1)gtag('event','clique_whatsapp',{pagina:location.pathname,texto:t});
+else if(h.indexOf('github.io')>-1)gtag('event','clique_ferramenta',{pagina:location.pathname,texto:t,destino:h});},true);
+</script>
 </head>
 <body>
 <header><div class="wrap bar"><a href="../" aria-label="DayIA, página inicial"><img src="../logo-dayia.png" alt="DayIA" width="795" height="223"></a>

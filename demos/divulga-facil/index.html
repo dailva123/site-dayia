@@ -205,6 +205,15 @@ dialog input{border:1px solid var(--line);border-radius:10px;padding:10px 12px;b
 #dlgInst{border:0;border-radius:16px;max-width:420px;padding:22px;color:var(--ink)}#dlgInst::backdrop{background:rgba(14,34,56,.55)}
 #dlgInst h3{margin:0 0 8px;font-family:Poppins,sans-serif}#dlgInst ol{padding-left:20px;line-height:1.5}#dlgInst button{background:var(--navy);color:#fff;border:0;border-radius:10px;padding:10px 18px;font-weight:800;cursor:pointer}
 </style>
+<!-- Google Analytics (contador de visitas da DayIA) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BEQM24C7RD"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-BEQM24C7RD');
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.href,t=(a.textContent||'').trim().slice(0,60);
+if(h.indexOf('wa.me')>-1)gtag('event','clique_whatsapp',{pagina:location.pathname,texto:t});
+else if(h.indexOf('github.io')>-1)gtag('event','clique_ferramenta',{pagina:location.pathname,texto:t,destino:h});},true);
+</script>
 </head>
 <body>
 <div id="intro" aria-hidden="true">
