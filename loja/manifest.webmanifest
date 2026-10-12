@@ -1,6 +1,6 @@
 {
- "name": "Loja DayIA",
- "short_name": "Loja DayIA",
+ "name": "Loja de Aplicativos · DayIA",
+ "short_name": "Loja de Apps",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
