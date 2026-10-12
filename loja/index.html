@@ -49,7 +49,7 @@ main{max-width:980px;margin:0 auto;padding:22px 16px 40px}
 .lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 .app{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:12px;box-shadow:0 1px 2px rgba(14,34,56,.04)}
 .app-h{display:flex;gap:14px;align-items:center}
-.ic{flex:0 0 60px;height:60px;border-radius:17px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 6px 16px rgba(14,34,56,.14)}
+.ic{flex:0 0 60px;height:60px;border-radius:17px;background-image:linear-gradient(160deg,#16304D,#0E2238)!important;border:1px solid rgba(130,210,255,.25);display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 6px 16px rgba(14,34,56,.14)}
 .app-h h3{font-size:19px}
 .app-h p{margin:2px 0 0;color:var(--muted);font-size:14px;line-height:1.35}
 .preco{background:var(--sunl);border-radius:12px;padding:10px 12px;font-size:14px}
@@ -111,32 +111,32 @@ setTimeout(function(){i.classList.add("passo2")},1500);setTimeout(function(){i.c
 <script>
 var G="https://dailva123.github.io/",V=G+"dayia/videos/",WA="https://wa.me/5519999389118?text=";
 var APPS=[
- {id:"agenda",n:"Agenda Fácil",ic:"📅",cor:"#F4B400",d:"Suas clientes marcam horário sozinhas, pelo celular, a qualquer hora.",
+ {id:"agenda",n:"Agenda Fácil",ic:"📅",cor:"#0E2238",d:"Suas clientes marcam horário sozinhas, pelo celular, a qualquer hora.",
   tag:"1º mês grátis",preco:"<b>R$ 19,90</b>/mês nos 6 primeiros meses <small>(depois R$ 29,90)</small>",
   itens:["Link de agendamento para mandar às clientes","Aviso no seu celular a cada horário marcado","Confirmar, remarcar e responder recados","Clientes, aniversários e promoções","Resultados do mês e dicas para encher a agenda"],
   planos:[["Mensal","R$ 19,90/mês nos 6 primeiros meses, depois R$ 29,90","https://mpago.la/1pexmPZ"],["Anual","R$ 249 por ano (sai R$ 20,75 por mês)","https://mpago.la/1BgfYtr"],["Agenda + Divulga Fácil · mensal","R$ 29,80/mês nos 6 primeiros meses, depois R$ 49,80","https://mpago.la/1UcLZRF"],["Agenda + Divulga Fácil · anual","R$ 449 por ano (sai R$ 37,42 por mês)","https://mpago.la/1qnxNvf"]],
   testar:G+"dayia/agenda/",abrir:G+"dayia/agenda/app/",video:V+"agenda-facil-vertical.mp4",k:"agendamento salao manicure estetica consultorio horario"},
- {id:"divulga",n:"Divulga Fácil",ic:"📣",cor:"#E2557A",d:"Posts, vídeos e mensagens organizados para as suas redes, prontos para usar.",
+ {id:"divulga",n:"Divulga Fácil",ic:"📣",cor:"#0E2238",d:"Posts, vídeos e mensagens organizados para as suas redes, prontos para usar.",
   tag:"Combina com a Agenda",preco:"<b>R$ 29,90</b>/mês <small>ou R$ 299 por ano</small>",
   itens:["Painel com todos os seus posts e vídeos","Legendas prontas para copiar","Mensagens prontas para os clientes","Marque onde já postou e não se perca"],
   planos:[["Mensal","R$ 29,90 por mês","https://mpago.la/1MWT9hZ"],["Anual","R$ 299 por ano","https://mpago.la/18Ac7MB"],["A DayIA prepara","R$ 129,90 por mês: a DayIA prepara os seus posts","https://mpago.la/1ywuTxT"],["A DayIA prepara e posta","R$ 159,90 por mês: a DayIA prepara e posta por você","https://mpago.la/1ifVwdw"]],
   testar:"https://dayia.com.br/divulga-facil/",abrir:G+"dayia/divulga/app/",video:"https://dayia.com.br/painel/videos/divulga-facil.mp4",k:"redes sociais instagram posts marketing"},
- {id:"quanto",n:"Quanto Sobra",ic:"💰",cor:"#17924F",d:"Descubra o preço certo de venda e quanto realmente sobra no fim do mês.",
+ {id:"quanto",n:"Quanto Sobra",ic:"💰",cor:"#0E2238",d:"Descubra o preço certo de venda e quanto realmente sobra no fim do mês.",
   tag:"30 dias grátis, sem cartão",preco:"<b>R$ 19,90</b>/mês <small>ou R$ 199 por ano</small>",
   itens:["Preço certo de cada produto ou serviço","Lucro de verdade, depois de todas as contas","Modelos prontos para vários tipos de negócio"],
   planos:[["Mensal","R$ 19,90 por mês","https://mpago.la/2zZtjJs"],["Anual","R$ 199 por ano","https://mpago.la/1LNaMNF"]],
   testar:G+"quanto-sobra/",abrir:G+"quanto-sobra/",video:V+"00-quanto-sobra-geral.mp4",k:"preco lucro precificacao custos financeiro"},
- {id:"atende",n:"Atende Fácil",ic:"🎧",cor:"#1FA855",d:"Chamados de suporte organizados num lugar só, com prazo e acompanhamento.",
+ {id:"atende",n:"Atende Fácil",ic:"🎧",cor:"#0E2238",d:"Chamados de suporte organizados num lugar só, com prazo e acompanhamento.",
   tag:"Teste à vontade",preco:"<b>Sob consulta</b> <small>fale com a DayIA</small>",
   itens:["Abertura de chamados pelo celular ou computador","Prazo por prioridade e aviso na hora","Conversa com o cliente e histórico","Inventário de equipamentos e painel de resultados"],
   planos:[],
   testar:G+"dayia/suporte/",abrir:G+"dayia/chamados/",video:V+"atende-facil-vertical.mp4",k:"suporte ti chamados helpdesk atendimento"},
- {id:"evolui",n:"Evolui",ic:"🌱",cor:"#7A5CFF",d:"Um registro por dia, em ciclos de 30 dias, para acompanhar a sua evolução.",
+ {id:"evolui",n:"Evolui",ic:"🌱",cor:"#0E2238",d:"Um registro por dia, em ciclos de 30 dias, para acompanhar a sua evolução.",
   tag:"Pagamento único",preco:"<b>R$ 15,90</b> <small>uma vez só</small>",
   itens:["Registro diário rápido","Ciclos de 30 dias com resumo","Funciona no celular, como aplicativo"],
   planos:[["Acesso completo","R$ 15,90, pagamento único","https://mpago.la/1WLZhPr"]],
   testar:G+"evolui/",abrir:G+"evolui/",video:V+"16-evolui-com-voz.mp4",k:"habito diario metas registro"},
- {id:"roscas",n:"Rosca Fácil",ic:"🔩",cor:"#5A6B80",d:"Descubra a rosca da peça (BSP, NPT, métrica e outras) pela foto ou pela medida.",
+ {id:"roscas",n:"Rosca Fácil",ic:"🔩",cor:"#0E2238",d:"Descubra a rosca da peça (BSP, NPT, métrica e outras) pela foto ou pela medida.",
   tag:"Para empresas",preco:"<b>Sob consulta</b> <small>com o nome e o logo da sua empresa</small>",
   itens:["Identificação pela foto, pela medida ou pelo pente na tela","Tabelas BSP, BSPT, NPT, UNC, UNF, métrica e JIC","Personalizado com a marca da sua empresa"],
   planos:[],
