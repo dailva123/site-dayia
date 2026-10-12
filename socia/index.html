@@ -127,6 +127,7 @@ setTimeout(function(){i.classList.add("passo2")},1500);setTimeout(function(){i.c
 <section class="sec" id="s-wa" hidden>
   <h2>Vídeos para o WhatsApp</h2>
   <p class="lead">É só tocar em <b>📲 Enviar no WhatsApp</b>: o vídeo e o texto vão juntos. Não precisa baixar nada.</p>
+  <div class="aviso" id="avNav" hidden style="margin:0 0 12px">⚠️ <b>Este lugar não deixa mandar o vídeo direto.</b> Abra o endereço <b>dayia.com.br/socia</b> no <b>Chrome</b> (Android) ou no <b>Safari</b> (iPhone) e toque em Enviar de novo. <button class="btn" style="margin-top:8px" data-cl="https://dayia.com.br/socia/">📋 Copiar o endereço</button></div>
   <div class="chips" id="filtrosWa"></div>
   <div class="lista" id="lwa"></div>
 </section>
@@ -217,7 +218,7 @@ function rWa(){
     return '<article class="card vid" data-wa="'+esc(p.id)+'"><a class="capa'+(p.fmt==="h"?" h":"")+'" href="'+esc(vUrl(p))+'" target="_blank" rel="noopener" aria-label="Assistir '+esc(p.t)+'"'+(cap?' style="background-image:url('+cap+')"':'')+'></a><div>'+
       '<h3>'+esc(p.t)+'</h3><div class="fmt">'+esc(p.fmtTxt||"")+'</div><div class="acoes"><span class="slot">'+btWa(p.id)+'</span><button class="btn" data-cw="'+esc(p.id)+'">📋 Copiar texto</button></div>'+
       '<details class="leg"><summary>Ver o texto que vai junto</summary><div class="txt">'+esc(waTxt(p))+'</div></details></div></article>'}).join("");
-  observar();
+  observar();if(!PODE)$("#avNav").hidden=false;
 }
 function atualiza(id){var c=document.querySelector('#lwa [data-wa="'+id+'"] .slot');if(c)c.innerHTML=btWa(id)}
 function post(id){return D.posts.filter(function(x){return x.id===id})[0]}
@@ -232,10 +233,11 @@ function baixarManual(p){copiar(waTxt(p));var a=document.createElement("a");a.hr
   setTimeout(function(){toast("Baixe o vídeo e anexe no WhatsApp. O texto já está copiado.")},1900)}
 function compartilhar(f,t){return navigator.share({files:[f],text:t})}
 function enviar(id){var p=post(id),t=waTxt(p);copiar(t);
-  if(!PODE){baixarManual(p);return}
+  if(!PODE){avisoNav();return}
   if(PRONTO[id] instanceof File){compartilhar(PRONTO[id],t).catch(function(){});return}
   if(PRONTO[id]==="carregando")return;
-  carregar(id).then(function(f){return compartilhar(f,t).catch(function(e){if(e&&e.name==="AbortError")return;toast("Vídeo pronto! Toque de novo em Enviar")})}).catch(function(){baixarManual(p)})}
+  carregar(id).then(function(f){return compartilhar(f,t).catch(function(e){if(e&&e.name==="AbortError")return;toast("Vídeo pronto! Toque de novo em Enviar")})}).catch(function(){toast("Não carregou o vídeo. Confira a internet e toque de novo.")})}
+function avisoNav(){var e=$("#avNav");e.hidden=false;e.scrollIntoView({behavior:"smooth",block:"center"})}
 rWa();rVideos();rMsgs();rLinks();
 var ab=ls("socia-aba");if(ab&&ab!=="inicio"){var nb=document.querySelector('nav [data-t="'+ab+'"]');if(nb)nb.click()}
 </script>
