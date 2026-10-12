@@ -233,6 +233,7 @@ dialog{max-height:calc(100vh - 32px);overflow:auto}
 .ag .sit.ok{background:#E7F6EE;color:#17924F}.ag .sit.prox{background:#FFF4D6;color:#9A6B00}
 .ag li.it.feito .nm{color:var(--muted)}
 @media (max-width:520px){.kpi b{font-size:26px}.post,.post.deitado{grid-template-columns:1fr}.capa{max-width:200px}.post.deitado .capa{max-width:100%}}
+.btn.wa-env{background:#1FA855;border-color:#1FA855;color:#fff}
 </style>
 
 <div id="intro" aria-hidden="true">
@@ -392,6 +393,19 @@ var DADOS={"posts": [{"id": "site-dayia", "t": "Site DayIA", "fmt": "v", "fmtTxt
   function aviso(t){var a=document.getElementById("aviso");a.textContent=t;a.classList.add("on");clearTimeout(aviso.t);aviso.t=setTimeout(function(){a.classList.remove("on")},2000)}
   function copiar(txt,bt,rot){var ok=function(){if(bt){bt.dataset.rot=bt.dataset.rot||bt.innerHTML;bt.textContent="Copiado ✓";setTimeout(function(){bt.innerHTML=bt.dataset.rot},1500)}else aviso("Copiado ✓")};
     try{navigator.clipboard.writeText(txt).then(ok,function(){aviso("Selecione o texto e copie com Ctrl+C")})}catch(e){aviso("Selecione o texto e copie com Ctrl+C")}}
+
+  /* Enviar vídeo + texto no WhatsApp pelo menu de compartilhar do celular */
+  var WAF={};function waTxt(p){return p.leg.split("\n").filter(function(l){return !/^\s*#/.test(l)}).join("\n").replace(/\n{3,}/g,"\n\n").trim()}
+  var PODEWA=(function(){try{return !!(navigator.canShare&&navigator.canShare({files:[new File([""],"t.mp4",{type:"video/mp4"})]}))}catch(e){return false}})();
+  document.addEventListener("click",function(e){var bt=e.target.closest&&e.target.closest("[data-wa-env]");if(!bt)return;
+    var p=P.filter(function(x){return x.id===bt.dataset.waEnv})[0],t=waTxt(p);copiar(t);
+    if(!PODEWA){aviso("Abra dayia.com.br/painel no Chrome ou Safari do celular para enviar direto");return}
+    function share(f){return navigator.share({files:[f],text:t})}
+    if(WAF[p.id] instanceof File){share(WAF[p.id]).catch(function(){});return}
+    if(WAF[p.id])return;WAF[p.id]=1;var rot=bt.innerHTML;bt.innerHTML="⏳ Carregando o vídeo…";bt.disabled=true;
+    fetch(p.src||VER+p.id+".mp4").then(function(r){if(!r.ok)throw 0;return r.blob()}).then(function(b){var f=WAF[p.id]=new File([b],p.id+".mp4",{type:"video/mp4"});bt.innerHTML=rot;bt.disabled=false;
+      return share(f).catch(function(er){if(er&&er.name==="AbortError")return;aviso("Vídeo pronto! Toque de novo em Enviar")})})
+     .catch(function(){delete WAF[p.id];bt.innerHTML=rot;bt.disabled=false;aviso("Não carregou o vídeo. Confira a internet e tente de novo.")})});
   var sel=document.getElementById("fRede");ORDEM.forEach(function(r){{var o=document.createElement("option");o.value=r;o.textContent=REDES[r][0];sel.appendChild(o)}});
   var vista="inicio",filtro="todos",rede="",fmt="",busca="";
   var TIT={inicio:["Início","Resumo das postagens, mensagens e projetos da DayIA"],postar:["Postar nas redes","Baixe o vídeo, copie o título e a legenda, poste e marque onde já foi"],msgs:["Mensagens","Textos prontos para clientes. Copie ou envie direto no WhatsApp"],apps:["Meus apps","Cada projeto com links, vídeos e onde está guardado"],ferr:["Ferramentas","Ferramentas de gestão para abrir e mostrar"],links:["Links","Site, contas, domínio e links diretos de cada app"]};
@@ -404,7 +418,7 @@ var DADOS={"posts": [{"id": "site-dayia", "t": "Site DayIA", "fmt": "v", "fmtTxt
      '<div class="rotulo">Já postei em</div><div class="tg">'+p.redes.map(function(r){var on=feito(p,r);return '<label class="'+(on?'on':'')+'"><input type="checkbox" data-p="'+p.id+'" data-r="'+r+'"'+(on?' checked':'')+'><span class="ico" style="background:'+REDES[r][1]+'">'+ic(r)+'</span>'+REDES[r][0]+'<span class="ck"></span></label>'}).join("")+'</div>'+
      (p.u?'<div class="dicas"><span>'+esc(p.fmtTxt)+'</span></div>':'')+(p.tit?'<div class="campo"><label for="t'+i+'">Título <small>(Facebook e YouTube)</small></label><div class="linha-t"><input id="t'+i+'" readonly value="'+esc(p.tit)+'"><button class="btn sec sm" type="button" data-copy-t="'+i+'"><svg><use href="#i-copy"/></svg>Copiar título</button></div></div>':'')+
      '<div class="campo"><label for="l'+i+'">Legenda / descrição</label><textarea id="l'+i+'" rows="5" readonly>'+esc(p.leg)+'</textarea></div>'+
-     '<div class="pc-a"><button class="btn pri" type="button" data-copy-l="'+i+'"><svg><use href="#i-copy"/></svg>Copiar legenda</button>'+(p.u?(p.url?'<a class="btn sec" href="'+esc(p.url)+'" target="_blank" rel="noopener"><svg><use href="#i-down"/></svg>Abrir vídeo</a>':''):'<a class="btn sec" href="'+(p.src||RAW+p.id+'.mp4')+'" target="_blank" rel="noopener"><svg><use href="#i-down"/></svg>Baixar vídeo</a>')+'<button class="btn sec" type="button" data-todas="'+p.id+'">'+(sit(p)==="ok"?"Desmarcar todas":"Marcar todas as redes")+'</button></div>'+
+     '<div class="pc-a"><button class="btn pri" type="button" data-copy-l="'+i+'"><svg><use href="#i-copy"/></svg>Copiar legenda</button>'+(p.u?(p.url?'<a class="btn sec" href="'+esc(p.url)+'" target="_blank" rel="noopener"><svg><use href="#i-down"/></svg>Abrir vídeo</a>':''):'<a class="btn sec" href="'+(p.src||RAW+p.id+'.mp4')+'" target="_blank" rel="noopener"><svg><use href="#i-down"/></svg>Baixar vídeo</a><button class="btn wa-env" type="button" data-wa-env="'+p.id+'">📲 Enviar no WhatsApp</button>')+'<button class="btn sec" type="button" data-todas="'+p.id+'">'+(sit(p)==="ok"?"Desmarcar todas":"Marcar todas as redes")+'</button></div>'+
      '<div class="ir"><span>Postar em:</span>'+ORDEM.filter(function(r){return h?["fb","yt","li"].indexOf(r)>=0:true}).map(function(r){return '<a class="rb" style="background:'+REDES[r][1]+'" href="'+REDES[r][2]+'" target="_blank" rel="noopener"><span class="g">'+ic(r)+'</span>'+REDES[r][0]+'</a>'}).join("")+'</div></div></article>'}
   function render(){
     var ok=P.filter(function(p){return sit(p)==="ok"}).length,pend=P.length-ok;
