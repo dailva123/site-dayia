@@ -33,10 +33,11 @@ h2{font-family:Poppins,sans-serif;font-size:17px;margin:0}.q{background:var(--su
 <a class="bt" href="cartao-premiacao-de-vendas.pdf" download>Baixar PDF (frente e verso)</a></article><article class="c"><div class="t"><h2>DayIA geral</h2><span class="q">250 unid.</span></div>
 <div class="pv"><img src="prev-dayia-geral-1.png" alt="Frente do cartão DayIA geral" loading="lazy"><img src="prev-dayia-geral-2.png" alt="Verso do cartão DayIA geral" loading="lazy"></div>
 <a class="bt" href="cartao-dayia-geral.pdf" download>Baixar PDF (frente e verso)</a></article></div>
-<section class="msg"><h2>Mensagem para pedir cotação</h2><p class="dica">Na conversa da gráfica no WhatsApp: primeiro a foto com a mensagem, depois os PDFs.</p>
+<p style="text-align:center;margin:12px 0"><a class="bt" href="cartoes-dayia-5-modelos.pdf" download>⬇️ Baixar os 5 modelos num PDF só</a></p>
+<section class="msg"><h2>Mensagem para pedir cotação</h2><p class="dica">Na conversa da gráfica no WhatsApp: primeiro a foto com a mensagem, depois o PDF.</p>
 <button class="cp" type="button" id="envImg" style="margin-bottom:8px">📲 1. Enviar foto + mensagem</button>
-<button class="cp" type="button" id="envPdf" style="background:#0E2238;color:#fff;margin-bottom:8px">📎 2. Enviar os 5 PDFs</button>
-<p class="dica" id="pos" hidden style="background:#E3F4EC;color:#1F8A5B;border-radius:10px;padding:10px 12px">✅ Foto e mensagem enviadas. Agora toque em <b>2. Enviar os 5 PDFs</b> e escolha a mesma conversa da gráfica.</p>
+<button class="cp" type="button" id="envPdf" style="background:#0E2238;color:#fff;margin-bottom:8px">📎 2. Enviar o PDF</button>
+<p class="dica" id="pos" hidden style="background:#E3F4EC;color:#1F8A5B;border-radius:10px;padding:10px 12px">✅ Foto e mensagem enviadas. Agora toque em <b>2. Enviar o PDF</b> e escolha a mesma conversa da gráfica.</p>
 <p class="dica" id="av" hidden style="background:#FBF0D9;color:#8A5A12;border-radius:10px;padding:10px 12px">Para enviar direto no WhatsApp, abra esta página no <b>Chrome</b> (Android) ou no <b>Safari</b> (iPhone). Aqui eu já copiei a mensagem: cole na conversa e baixe os arquivos pelos botões acima.</p>
 <p class="dica"><a href="modelos-cartoes.jpg" download style="color:#0E2238;font-weight:700">Baixar a imagem com todos os modelos</a></p>
 <pre id="m">Olá, tudo bem?
@@ -57,7 +58,7 @@ São 5 modelos diferentes:
 • DayIA (geral): 250 unidades
 Total: 1.000 cartões
 
-Os arquivos já estão prontos em PDF, um para cada modelo. Se vocês trabalharem com lotes fechados, me passem as quantidades mais próximas.
+Os arquivos já estão prontos: um PDF só, com os 5 modelos (frente e verso, na ordem acima). Se vocês trabalharem com lotes fechados, me passem as quantidades mais próximas.
 
 Poderia me informar o valor de cada modelo, o prazo de produção e o valor do frete (ou se dá para retirar)?
 
@@ -75,15 +76,16 @@ Day · DayIA
   function aviso(){document.getElementById("av").hidden=false}
   var IMG=null,PDF=null;
   arq("modelos-cartoes.jpg","modelos-cartoes-dayia.jpg","image/jpeg").then(function(f){IMG=f}).catch(function(){});
-  Promise.all(PDFS.map(function(n){return arq("cartao-"+n+".pdf","cartao-"+n+".pdf","application/pdf")})).then(function(fs){PDF=fs}).catch(function(){});
+  arq("cartoes-dayia-5-modelos.pdf","cartoes-dayia-5-modelos.pdf","application/pdf").then(function(f){PDF=[f]}).catch(function(){});
+  function pdfLink(){location.href="https://api.whatsapp.com/send?text="+encodeURIComponent("Segue o arquivo para impressão (PDF com os 5 modelos, frente e verso, 3 mm de sangria):\nhttps://dayia.com.br/cartoes/cartoes-dayia-5-modelos.pdf")}
   document.getElementById("envImg").onclick=function(){var b=this;copiar();
     if(!IMG){b.textContent="⏳ Preparando… toque de novo";return}
     if(!pode([IMG])){aviso();return}
     navigator.share({files:[IMG],text:txt()}).then(function(){var d=document.getElementById("pos");if(d)d.hidden=false}).catch(function(){});b.textContent="📲 1. Enviar foto + mensagem"};
   document.getElementById("envPdf").onclick=function(){var b=this;
-    if(!PDF){b.textContent="⏳ Preparando os PDFs… toque de novo";return}
-    if(!pode(PDF)){aviso();return}
-    navigator.share({files:PDF,text:"Seguem os arquivos dos 5 modelos (PDF, frente e verso, com 3 mm de sangria)."}).catch(function(){});b.textContent="📎 2. Enviar os 5 PDFs"};
+    if(!PDF){b.textContent="⏳ Preparando o PDF… toque de novo";return}
+    if(!pode(PDF)){pdfLink();return}
+    navigator.share({files:PDF}).catch(function(er){if(er&&er.name==="AbortError")return;pdfLink()});b.textContent="📎 2. Enviar o PDF"};
 })();
 </script>
 <script>document.getElementById("b").onclick=function(){var t=document.getElementById("m").innerText,b=this;function ok(){b.textContent="✅ Mensagem copiada"}
