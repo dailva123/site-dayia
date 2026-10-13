@@ -34,7 +34,7 @@ h2{font-family:Poppins,sans-serif;font-size:17px;margin:0}.q{background:var(--su
 <div class="pv"><img src="prev-dayia-geral-1.png" alt="Frente do cartão DayIA geral" loading="lazy"><img src="prev-dayia-geral-2.png" alt="Verso do cartão DayIA geral" loading="lazy"></div>
 <a class="bt" href="cartao-dayia-geral.pdf" download>Baixar PDF (frente e verso)</a></article></div>
 <section class="msg"><h2>Mensagem para pedir cotação</h2><p class="dica">Copie e mande para a gráfica pelo WhatsApp ou e-mail. Depois envie os PDFs acima.</p>
-<button class="cp" type="button" id="envImg" style="margin-bottom:8px">📲 Enviar para a gráfica: mensagem + modelos</button>
+<button class="cp" type="button" id="envImg" style="margin-bottom:8px">📲 Enviar tudo junto: mensagem + foto + PDFs</button>
 <button class="cp" type="button" id="envPdf" style="background:#0E2238;color:#fff;margin-bottom:8px">📎 Enviar os 5 PDFs</button>
 <p class="dica" id="av" hidden style="background:#FBF0D9;color:#8A5A12;border-radius:10px;padding:10px 12px">Para enviar direto no WhatsApp, abra esta página no <b>Chrome</b> (Android) ou no <b>Safari</b> (iPhone). Aqui eu já copiei a mensagem: cole na conversa e baixe os arquivos pelos botões acima.</p>
 <p class="dica"><a href="modelos-cartoes.jpg" download style="color:#0E2238;font-weight:700">Baixar a imagem com todos os modelos</a></p>
@@ -76,9 +76,10 @@ Day · DayIA
   arq("modelos-cartoes.jpg","modelos-cartoes-dayia.jpg","image/jpeg").then(function(f){IMG=f}).catch(function(){});
   Promise.all(PDFS.map(function(n){return arq("cartao-"+n+".pdf","cartao-"+n+".pdf","application/pdf")})).then(function(fs){PDF=fs}).catch(function(){});
   document.getElementById("envImg").onclick=function(){var b=this;copiar();
-    if(!IMG){b.textContent="⏳ Preparando… toque de novo";return}
-    if(!pode([IMG])){aviso();return}
-    navigator.share({files:[IMG],text:txt()}).catch(function(){});b.textContent="📲 Enviar para a gráfica: mensagem + modelos"};
+    if(!IMG||!PDF){b.textContent="⏳ Preparando… toque de novo";return}
+    var fs=[IMG].concat(PDF);
+    if(!pode(fs)){if(pode([IMG])){navigator.share({files:[IMG],text:txt()}).catch(function(){});return}aviso();return}
+    navigator.share({files:fs,text:txt()}).catch(function(){});b.textContent="📲 Enviar tudo junto: mensagem + foto + PDFs"};
   document.getElementById("envPdf").onclick=function(){var b=this;
     if(!PDF){b.textContent="⏳ Preparando os PDFs… toque de novo";return}
     if(!pode(PDF)){aviso();return}
