@@ -270,7 +270,7 @@ function observar(){if(!OBS||!PODE||$("#s-wa").hidden)return;document.querySelec
 function proximo(){if(OCUP||!FILA.length||$("#s-wa").hidden)return;var id=FILA.shift();if(PRONTO[id]){proximo();return}OCUP=true;carregar(id).catch(function(){}).then(function(){OCUP=false;proximo()})}
 function baixarManual(p){copiar(waTxt(p));var a=document.createElement("a");a.href=dUrl(p);a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();
   setTimeout(function(){toast("Baixe o vídeo e anexe no WhatsApp. O texto já está copiado.")},1900)}
-function compartilhar(f,t){return navigator.share({files:[f],text:t})}
+function compartilhar(f,t){return navigator.share({files:[f]}).then(function(){passo2(t)})}
 function enviar(id){var p=post(id),t=waTxt(p);copiar(t);
   if(!PODE){avisoNav();return}
   if(PRONTO[id] instanceof File){compartilhar(PRONTO[id],t).catch(function(){});return}
@@ -356,6 +356,13 @@ window.BUSCA_ITENS=function(){var L=[];
   addEventListener("appinstalled",function(){c.hidden=true;bt.hidden=true});
   if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0)addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
 })();
+</script>
+<script>
+function passo2(t){var e=document.getElementById("passo2");if(!e){e=document.createElement("div");e.id="passo2";e.style.cssText="position:fixed;left:12px;right:12px;bottom:16px;z-index:999;background:#0E2238;color:#fff;border-radius:16px;padding:14px;box-shadow:0 12px 34px rgba(0,0,0,.35);font:600 15px system-ui,sans-serif;text-align:center";document.body.appendChild(e)}
+ e.innerHTML='✅ Vídeo enviado! Agora mande a mensagem na mesma conversa:<br><button type="button" style="margin-top:10px;width:100%;border:0;border-radius:12px;padding:13px;background:#1FA855;color:#fff;font:800 16px system-ui,sans-serif">💬 2. Enviar a mensagem</button><button type="button" style="margin-top:6px;background:none;border:0;color:#CFE2F2;font:600 13px system-ui,sans-serif">fechar</button>';
+ var b=e.querySelectorAll("button");e.hidden=false;
+ b[0].onclick=function(){if(navigator.share)navigator.share({text:t}).catch(function(){});else location.href="https://api.whatsapp.com/send?text="+encodeURIComponent(t);e.hidden=true};
+ b[1].onclick=function(){e.hidden=true}}
 </script>
 </body>
 </html>

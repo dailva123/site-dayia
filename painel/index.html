@@ -402,7 +402,7 @@ var DADOS={"posts": [{"id": "central-dayia-tutorial", "t": "Só para a sócia ·
   document.addEventListener("click",function(e){var bt=e.target.closest&&e.target.closest("button[data-wa-env]");if(!bt)return;
     var p=P.filter(function(x){return x.id===bt.dataset.waEnv})[0],t=waTxt(p);copiar(t);
     if(!PODEWA){aviso("Abra dayia.com.br/painel no Chrome ou Safari do celular para enviar direto");return}
-    function share(f){return navigator.share({files:[f],text:t})}
+    function share(f){return navigator.share({files:[f]}).then(function(){passo2(t)})}
     if(WAF[p.id] instanceof File){share(WAF[p.id]).catch(function(){});return}
     if(WAF[p.id]===1)return;
     carregarWA(p.id).then(function(f){return share(f).catch(function(er){if(er&&er.name==="AbortError")return;aviso("Vídeo pronto! Toque de novo em Enviar")})}).catch(function(){aviso("Não carregou o vídeo. Confira a internet e tente de novo.")})});
@@ -651,6 +651,14 @@ document.addEventListener("click",function(e){var b=e.target.closest&&e.target.c
   if(b.dataset.mpdf!==undefined){var m2=L[+b.dataset.mpdf];if(m2)enviarMsg(m2,"pdf");return}
   var m=L[+b.dataset.mimg];if(m)enviarMsg(m,"img")});
 
+</script>
+
+<script>
+function passo2(t){var e=document.getElementById("passo2");if(!e){e=document.createElement("div");e.id="passo2";e.style.cssText="position:fixed;left:12px;right:12px;bottom:16px;z-index:999;background:#0E2238;color:#fff;border-radius:16px;padding:14px;box-shadow:0 12px 34px rgba(0,0,0,.35);font:600 15px system-ui,sans-serif;text-align:center";document.body.appendChild(e)}
+ e.innerHTML='✅ Vídeo enviado! Agora mande a mensagem na mesma conversa:<br><button type="button" style="margin-top:10px;width:100%;border:0;border-radius:12px;padding:13px;background:#1FA855;color:#fff;font:800 16px system-ui,sans-serif">💬 2. Enviar a mensagem</button><button type="button" style="margin-top:6px;background:none;border:0;color:#CFE2F2;font:600 13px system-ui,sans-serif">fechar</button>';
+ var b=e.querySelectorAll("button");e.hidden=false;
+ b[0].onclick=function(){if(navigator.share)navigator.share({text:t}).catch(function(){});else location.href="https://api.whatsapp.com/send?text="+encodeURIComponent(t);e.hidden=true};
+ b[1].onclick=function(){e.hidden=true}}
 </script>
 
 </html>

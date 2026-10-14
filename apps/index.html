@@ -136,7 +136,7 @@ var D={"apps": [{"id": "painel", "n": "Painel da Day", "s": "Posts, agenda e lin
   var PDFS={},PRONTO={},PODE=(function(){try{return !!(navigator.canShare&&navigator.canShare({files:[new File([""],"t.mp4",{type:"video/mp4"})]}))}catch(e){return false}})();
   window.PRONTO=PRONTO;window.PODE=PODE;
   function toast(t){var e=document.getElementById("toastC");if(!e){e=document.createElement("div");e.id="toastC";document.body.appendChild(e)}e.textContent=t;e.hidden=false;clearTimeout(e._t);e._t=setTimeout(function(){e.hidden=true},2600)}
-  function copiar(t){try{navigator.clipboard.writeText(t)}catch(e){}}
+  function copiar(t){try{navigator.clipboard.writeText(t).catch(function(){})}catch(e){}}
   function carregar(i){var v=D.dest[i];if(PRONTO[i])return Promise.resolve(PRONTO[i]);PRONTO[i]="carregando";
     var um=function(u,nome,tipo){return fetch(u).then(function(r){if(!r.ok)throw 0;return r.blob()}).then(function(b){return new File([b],nome,{type:b.type||tipo})})};
     if(v.arq&&v.arq.length)Promise.all(v.arq.map(function(u){return um(u,u.split("/").pop(),"application/pdf")})).then(function(fs){PDFS[i]=fs}).catch(function(){});
@@ -150,7 +150,7 @@ var D={"apps": [{"id": "painel", "n": "Painel da Day", "s": "Posts, agenda e lin
       navigator.share({files:PDFS[k]}).catch(function(er){if(er&&er.name==="AbortError")return;toast("Abrindo o WhatsApp com o link do PDF…");pdfLink()});return}
     var b=e.target.closest&&e.target.closest("[data-env]");if(!b)return;var i=+b.dataset.env,v=D.dest[i];copiar(v.m);
     if(!PODE){toast("Abra no Chrome ou Safari para mandar o vídeo junto");return}
-    if(Array.isArray(PRONTO[i])){navigator.share({files:PRONTO[i],text:v.m}).then(function(){if(v.arq&&v.arq.length)toast("✅ Enviado! Agora toque em 📎 2. Enviar o PDF")}).catch(function(){});return}
+    if(Array.isArray(PRONTO[i])){navigator.share(v.img?{files:PRONTO[i],text:v.m}:{files:PRONTO[i]}).then(function(){if(!v.img)passo2(v.m);if(v.arq&&v.arq.length)toast("✅ Enviado! Agora toque em 📎 2. Enviar o PDF")}).catch(function(){});return}
     if(PRONTO[i]==="carregando"){toast("Preparando o vídeo… toque de novo em instantes");return}
     var rot=b.textContent;b.textContent="⏳ Preparando…";carregar(i).then(function(){b.textContent=rot;toast("Pronto! Toque de novo para enviar")}).catch(function(){b.textContent=rot;toast("Não carregou. Confira a internet e tente de novo.")})});
   document.getElementById("q").addEventListener("input",mostra);
@@ -162,6 +162,13 @@ var D={"apps": [{"id": "painel", "n": "Painel da Day", "s": "Posts, agenda e lin
   addEventListener("appinstalled",function(){b.hidden=true});
   if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0)addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
 })();
+</script>
+<script>
+function passo2(t){var e=document.getElementById("passo2");if(!e){e=document.createElement("div");e.id="passo2";e.style.cssText="position:fixed;left:12px;right:12px;bottom:16px;z-index:999;background:#0E2238;color:#fff;border-radius:16px;padding:14px;box-shadow:0 12px 34px rgba(0,0,0,.35);font:600 15px system-ui,sans-serif;text-align:center";document.body.appendChild(e)}
+ e.innerHTML='✅ Vídeo enviado! Agora mande a mensagem na mesma conversa:<br><button type="button" style="margin-top:10px;width:100%;border:0;border-radius:12px;padding:13px;background:#1FA855;color:#fff;font:800 16px system-ui,sans-serif">💬 2. Enviar a mensagem</button><button type="button" style="margin-top:6px;background:none;border:0;color:#CFE2F2;font:600 13px system-ui,sans-serif">fechar</button>';
+ var b=e.querySelectorAll("button");e.hidden=false;
+ b[0].onclick=function(){if(navigator.share)navigator.share({text:t}).catch(function(){});else location.href="https://api.whatsapp.com/send?text="+encodeURIComponent(t);e.hidden=true};
+ b[1].onclick=function(){e.hidden=true}}
 </script>
 </body>
 </html>
