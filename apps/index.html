@@ -150,7 +150,7 @@ var D={"apps": [{"id": "painel", "n": "Painel da Day", "s": "Posts, agenda e lin
       navigator.share({files:PDFS[k]}).catch(function(er){if(er&&er.name==="AbortError")return;toast("Abrindo o WhatsApp com o link do PDF…");pdfLink()});return}
     var b=e.target.closest&&e.target.closest("[data-env]");if(!b)return;var i=+b.dataset.env,v=D.dest[i];copiar(v.m);
     if(!PODE){toast("Abra no Chrome ou Safari para mandar o vídeo junto");return}
-    if(Array.isArray(PRONTO[i])){navigator.share(v.img?{files:PRONTO[i],text:v.m}:{files:PRONTO[i]}).then(function(){if(!v.img)passo2(v.m);if(v.arq&&v.arq.length)toast("✅ Enviado! Agora toque em 📎 2. Enviar o PDF")}).catch(function(){});return}
+    if(Array.isArray(PRONTO[i])){navigator.share({files:PRONTO[i],text:v.m}).then(function(){if(v.arq&&v.arq.length)toast("✅ Enviado! Agora toque em 📎 2. Enviar o PDF")}).catch(function(){});return}
     if(PRONTO[i]==="carregando"){toast("Preparando o vídeo… toque de novo em instantes");return}
     var rot=b.textContent;b.textContent="⏳ Preparando…";carregar(i).then(function(){b.textContent=rot;toast("Pronto! Toque de novo para enviar")}).catch(function(){b.textContent=rot;toast("Não carregou. Confira a internet e tente de novo.")})});
   document.getElementById("q").addEventListener("input",mostra);

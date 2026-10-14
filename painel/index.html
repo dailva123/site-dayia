@@ -402,9 +402,9 @@ var DADOS={"posts": [{"id": "central-dayia-tutorial", "t": "Só para a sócia ·
   document.addEventListener("click",function(e){var bt=e.target.closest&&e.target.closest("button[data-wa-env]");if(!bt)return;
     var p=P.filter(function(x){return x.id===bt.dataset.waEnv})[0],t=waTxt(p);copiar(t);
     if(!PODEWA){aviso("Abra dayia.com.br/painel no Chrome ou Safari do celular para enviar direto");return}
-    function share(f){return navigator.share({files:[f]}).then(function(){passo2(t)})}
+    function share(f){return navigator.share({files:[f],text:t})}
     if(WAF[p.id] instanceof File){share(WAF[p.id]).catch(function(){});return}
-    if(WAF[p.id]===1)return;
+    if(WAF[p.id]===1){aviso("⏳ Preparando o vídeo… toque de novo em Enviar em alguns segundos");return}
     carregarWA(p.id).then(function(f){return share(f).catch(function(er){if(er&&er.name==="AbortError")return;aviso("Vídeo pronto! Toque de novo em Enviar")})}).catch(function(){aviso("Não carregou o vídeo. Confira a internet e tente de novo.")})});
   var sel=document.getElementById("fRede");ORDEM.forEach(function(r){{var o=document.createElement("option");o.value=r;o.textContent=REDES[r][0];sel.appendChild(o)}});
   var vista="inicio",filtro="todos",rede="",fmt="",busca="";

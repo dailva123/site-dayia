@@ -270,11 +270,11 @@ function observar(){if(!OBS||!PODE||$("#s-wa").hidden)return;document.querySelec
 function proximo(){if(OCUP||!FILA.length||$("#s-wa").hidden)return;var id=FILA.shift();if(PRONTO[id]){proximo();return}OCUP=true;carregar(id).catch(function(){}).then(function(){OCUP=false;proximo()})}
 function baixarManual(p){copiar(waTxt(p));var a=document.createElement("a");a.href=dUrl(p);a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();
   setTimeout(function(){toast("Baixe o vídeo e anexe no WhatsApp. O texto já está copiado.")},1900)}
-function compartilhar(f,t){return navigator.share({files:[f]}).then(function(){passo2(t)})}
+function compartilhar(f,t){return navigator.share({files:[f],text:t})}
 function enviar(id){var p=post(id),t=waTxt(p);copiar(t);
   if(!PODE){avisoNav();return}
   if(PRONTO[id] instanceof File){compartilhar(PRONTO[id],t).catch(function(){});return}
-  if(PRONTO[id]==="carregando")return;
+  if(PRONTO[id]==="carregando"){toast("⏳ Preparando o vídeo… toque de novo em alguns segundos");return}
   carregar(id).then(function(f){return compartilhar(f,t).catch(function(e){if(e&&e.name==="AbortError")return;toast("Vídeo pronto! Toque de novo em Enviar")})}).catch(function(){toast("Não carregou o vídeo. Confira a internet e toque de novo.")})}
 function avisoNav(){var e=$("#avNav");e.hidden=false;e.scrollIntoView({behavior:"smooth",block:"center"})}
 rWa();rVideos();rMsgs();rLinks();
