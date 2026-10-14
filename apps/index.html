@@ -110,15 +110,15 @@ var D={"apps": [{"id": "painel", "n": "Painel da Day", "s": "Posts, agenda e lin
     if(q){var L=TODOS.filter(function(a){return norm(a.n+" "+(a.s||"")+" "+(a.d||"")+" "+a.g).indexOf(q)>=0});
       h=L.length?'<section><h2>Resultados <small>'+L.length+'</small></h2><div class="cards">'+L.map(card).join("")+'</div></section>':'<p class="vazio">Nada encontrado com “'+esc(q)+'”.</p>'}
     else{
-      (D.dest||[]).forEach(function(v,i){
-        if(v.txt){h+='<section class="dest"><h2>'+esc(v.h)+'</h2><p class="sub">'+esc(v.sub)+'</p><div class="vb"><div class="lado" style="flex:1"><div class="tt">'+esc(v.t)+'</div><button class="bt wa" type="button" data-txt="'+i+'">📲 Enviar no WhatsApp</button><button class="bt cp" type="button" data-cop="'+i+'">📋 Copiar só a mensagem</button><details><summary>Ver a mensagem</summary><pre>'+esc(v.m)+'</pre></details></div></div></section>';return}
+      var hD='';(D.dest||[]).forEach(function(v,i){var h0=h;h='';
+        if(v.txt){h+='<section class="dest"><h2>'+esc(v.h)+'</h2><p class="sub">'+esc(v.sub)+'</p><div class="vb"><div class="lado" style="flex:1"><div class="tt">'+esc(v.t)+'</div><button class="bt wa" type="button" data-txt="'+i+'">📲 Enviar no WhatsApp</button><button class="bt cp" type="button" data-cop="'+i+'">📋 Copiar só a mensagem</button><details><summary>Ver a mensagem</summary><pre>'+esc(v.m)+'</pre></details></div></div></section>';hD+=h;h=h0;return}
         h+='<section class="dest"><h2>'+(v.h?esc(v.h):'🎬 Vídeo para enviar')+'</h2><p class="sub">'+(v.sub?esc(v.sub):'O vídeo novo e a mensagem pronta. Toque em enviar e escolha o cliente no WhatsApp.')+'</p>'+
           '<div class="vb">'+(v.img?'<a href="'+esc(v.v)+'" target="_blank" rel="noopener"><img src="'+esc(v.v)+'" alt="Os 5 modelos de cartão" style="width:150px;aspect-ratio:9/16;object-fit:cover;object-position:top;border-radius:14px;display:block;background:#fff"></a>':'<video controls playsinline preload="metadata" src="'+esc(v.v)+'#t=2.5"></video>')+'<div class="lado">'+
           '<div class="tt">'+esc(v.t)+'</div><div class="ft">'+esc(v.f)+'</div>'+
           '<button class="bt wa" type="button" data-env="'+i+'">'+(v.arq&&v.arq.length?'📲 1. Enviar foto + mensagem':(v.img?'📲 Enviar foto + mensagem':'📲 Enviar vídeo + mensagem'))+'</button>'+(v.arq&&v.arq.length?'<button class="bt cp" type="button" data-pdf="'+i+'" style="background:#fff;color:#0E2238">📎 2. Enviar o PDF</button><a class="bt cp" style="background:#fff;color:#0E2238;text-decoration:none;text-align:center" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?text=Segue%20o%20arquivo%20para%20impress%C3%A3o%20%28PDF%20com%20os%205%20modelos%2C%20frente%20e%20verso%2C%203%20mm%20de%20sangria%29%3A%0Ahttps%3A//dayia.com.br/cartoes/cartoes-dayia-5-modelos.pdf">🔗 Ou mande o link do PDF</a>':'')+'<button class="bt cp" type="button" data-cop="'+i+'">📋 Copiar só a mensagem</button>'+
           '<details><summary>Ver a mensagem</summary><pre>'+esc(v.m)+'</pre></details>'+
           (PODE?'':'<div class="av">Para mandar o vídeo direto no WhatsApp, abra a Central no <b>Chrome</b> (Android) ou no <b>Safari</b> (iPhone), ou pela Central instalada no celular.</div>')+
-          '</div></div></section>'});
+          '</div></div></section>';hD+=h;h=h0});
       var visto=ls("loja-guia-visto")==="1";
       h+='<details class="guia"'+(visto?'':' open')+'><summary>👋 Como usar a Central</summary><ol>'+
         '<li><b>Instale só a Central</b> no celular (botão <b>📲 Instalar</b>, lá em cima). Ela abre todo o resto: não precisa instalar cada app ou painel.</li>'+
@@ -127,7 +127,7 @@ var D={"apps": [{"id": "painel", "n": "Painel da Day", "s": "Posts, agenda e lin
         '<li>Procurando algo? Digite na <b>busca</b>, lá em cima.</li></ol></details>';
       var R=rec.map(function(id){return TODOS.filter(function(a){return a.id===id})[0]}).filter(Boolean).slice(0,3);
       var gs=[];TODOS.forEach(function(a){if(gs.indexOf(a.g)<0)gs.push(a.g)});
-      gs.forEach(function(g){var L=TODOS.filter(function(a){return a.g===g});h+='<section><h2>'+(ICG[g]||"")+' '+esc(g)+'</h2>'+(INTRO[g]?'<p class="intro-g">'+esc(INTRO[g])+'</p>':'')+'<div class="cards">'+L.map(card).join("")+'</div></section>'})}
+      gs.forEach(function(g){var L=TODOS.filter(function(a){return a.g===g});h+='<section><h2>'+(ICG[g]||"")+' '+esc(g)+'</h2>'+(INTRO[g]?'<p class="intro-g">'+esc(INTRO[g])+'</p>':'')+'<div class="cards">'+L.map(card).join("")+'</div></section>'});if(hD)h+='<details class="guia"><summary>📤 Para enviar a clientes (vídeos e mensagens prontas)</summary>'+hD+'</details>'}
     document.getElementById("main").innerHTML=h}
   document.addEventListener("toggle",function(e){if(e.target.classList&&e.target.classList.contains("guia")&&!e.target.open)ls("loja-guia-visto","1")},true);
   document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a.cd");if(!a)return;ls("loja-guia-visto","1");var id=a.dataset.id;rec=[id].concat(rec.filter(function(x){return x!==id})).slice(0,8);ls("apps-recentes",JSON.stringify(rec))});
