@@ -95,7 +95,7 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding:10px 16px 30p
   </div>
 </div></header>
 <nav class="ind"><div class="wrap">
-  <a href="#regras">★ Combinados</a><a href="#custos">1. Custos do mês</a><a href="#assin">2. Assinaturas</a><a href="#proj">3. Projetos</a><a href="#mes">4. Simulador do mês</a><a href="#dicas">5. Lembretes</a>
+  <a href="#regras">★ Combinados</a><a href="#custos">1. Custos do mês</a><a href="#assin">2. Assinaturas</a><a href="#proj">3. Projetos</a><a href="#mes">4. Simulador do mês</a><a href="#caixa">5. Caixa e contribuições</a><a href="#dicas">6. Lembretes</a>
 </div></nav>
 <main><div class="wrap">
 
@@ -107,6 +107,7 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding:10px 16px 30p
     <div class="regra"><b>🤝 Projetos pensados a duas</b><span>Cada novo projeto, produto ou ferramenta vai ser conversado e avaliado por nós duas antes de sair do papel. As ideias das duas são sempre bem-vindas.</span></div>
     <div class="regra"><b>⭐ Tudo conversado antes</b><span>A sociedade é de 60% para a Day e 40% para a sócia. Mesmo assim, as decisões da empresa são conversadas antes, entre as duas: preços, valores, novos produtos e projetos são definidos juntas, em comum acordo.</span></div>
     <div class="regra"><b>💰 Tudo dividido na mesma medida</b><span>Os ganhos e os custos seguem a mesma proporção: 60% para a Day e 40% para a sócia. Assim fica justo e simples para as duas.</span></div>
+    <div class="regra"><b>⚖️ Parte proporcional</b><span>Se em algum mês a sócia contribuir com menos (ou mais) do que a parte dela nos custos, a porcentagem dela naquele mês fica proporcional ao que ela contribuiu. Isso vale para qualquer retirada, mensal ou quando for.</span></div>
   </div>
 </section>
 
@@ -166,8 +167,38 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding:10px 16px 30p
   <div class="nota" id="empate"></div>
 </section>
 
+<section id="caixa" data-busca="caixa contribuição contribuiu não contribuiu sócia faturamento retirada proporcional mês">
+  <h2><span class="n">5</span>Caixa e contribuições da sócia</h2>
+  <p class="sub">Anote cada contribuição da sócia para os custos: o dia, o valor e uma observação. Se ela não contribuiu, use o botão "Não contribuiu". A porcentagem dela em cada mês fica proporcional ao que ela pagou da parte dela (<span class="pe"></span>% dos custos).</p>
+  <h3 style="font-size:16px;margin:4px 0 8px">Contribuições</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Data</th><th class="num">Valor</th><th>Observação</th><th></th></tr></thead>
+    <tbody id="tContrib"></tbody>
+  </table></div>
+  <div class="row-acts"><button class="btn sm" type="button" id="addContrib">+ Ela contribuiu</button><button class="btn sm line" type="button" id="addNao">✖ Não contribuiu</button></div>
+  <h3 style="font-size:16px;margin:20px 0 8px">Mês a mês</h3>
+  <p class="sub" style="margin-top:0">Coloque os custos e o faturamento de cada mês. O dinheiro que entra fica no caixa, e a tabela mostra quanto dele é de cada uma.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Mês</th><th class="num">Custos do mês</th><th class="num">Parte dela</th><th class="num">Ela contribuiu</th><th class="num">% dela no mês</th><th class="num">Faturamento</th><th class="num">Dela no caixa</th><th class="num">Sua no caixa</th></tr></thead>
+    <tbody id="tMeses"></tbody>
+    <tfoot><tr><td class="full">Total no caixa</td><td class="num" id="mCusto" data-l="Custos"></td><td class="num" id="mEsp" data-l="Parte dela"></td><td class="num" id="mContrib" data-l="Ela contribuiu"></td><td class="num" id="mPct" data-l="% dela (no total)"></td><td class="num" id="mFat" data-l="Faturamento"></td><td class="num her" id="mEla" data-l="Dela no caixa"></td><td class="num you" id="mVoce" data-l="Sua no caixa"></td></tr></tfoot>
+  </table></div>
+  <div class="row-acts"><label style="font-weight:700">Adicionar mês: <input type="month" id="novoMes" style="border:1px solid var(--line);border-radius:8px;padding:6px;font:inherit"></label></div>
+  <div class="cards">
+    <div class="card"><small>Fica no caixa (faturamento)</small><b id="cxTot"></b></div>
+    <div class="card y"><small>Sua parte do caixa</small><b id="cxVoce"></b></div>
+    <div class="card h"><small>Parte da sócia no caixa</small><b id="cxEla"></b></div>
+  </div>
+  <h3 style="font-size:16px;margin:20px 0 8px">Se for retirar</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Valor da retirada</th><th class="num">Você recebe</th><th class="num">Ela recebe</th></tr></thead>
+    <tbody><tr><td class="full"><input class="money" id="retVal" type="text" inputmode="decimal" value="0,00" aria-label="Valor da retirada"></td><td class="num you" id="retVoce" data-l="Você recebe"></td><td class="num her" id="retEla" data-l="Ela recebe"></td></tr></tbody>
+  </table></div>
+  <div class="nota">A retirada é dividida na mesma proporção de cada uma no caixa (que já considera o quanto ela contribuiu em cada mês). Os valores ficam salvos neste aparelho.</div>
+</section>
+
 <section id="dicas" data-busca="lembretes carnê-leão carne leão imposto nota fiscal contador mei empresa marca inpi">
-  <h2><span class="n">5</span>Lembretes importantes</h2>
+  <h2><span class="n">6</span>Lembretes importantes</h2>
   <ul class="dicas">
     <li><b>Mesma medida para tudo:</b> de cada real que entra, a parte de cada uma segue o percentual. Os custos também.</li>
     <li><b>Identidade:</b> o nome DayIA, a marca e o logo seguem como estão e continuam com a Day.</li><li><b>Decisões:</b> preços, valores e novos projetos são conversados antes e definidos pelas duas, em comum acordo. A divisão de ganhos e custos segue 60% e 40%.</li>
@@ -217,6 +248,7 @@ function desenhar(){
   var L=document.getElementById("sLucro");L.textContent=R(lucro);L.className=lucro<0?"neg":"pos";
   document.getElementById("sVoce").textContent=R(lucro*a);document.getElementById("sEla").textContent=R(lucro*b);
   document.getElementById("empate").innerHTML=lucro>=0?"✅ Neste cenário, as vendas pagam todos os custos e ainda sobram <b>"+R(lucro)+"</b> para dividir.":"⚠️ Neste cenário faltam <b>"+R(-lucro)+"</b> para pagar os custos do mês. É preciso vender mais ou reduzir algum custo.";
+  caixa(tot);
   filtrar();
 }
 function filtrar(){var q=document.getElementById("busca").value.trim().toLowerCase();
@@ -235,7 +267,44 @@ document.getElementById("simProj").addEventListener("change",function(){S.proj=n
 document.getElementById("taxa").addEventListener("input",function(){S.taxa=num(this.value);salvar();desenhar()});
 document.getElementById("projLivre").addEventListener("input",desenhar);
 document.getElementById("busca").addEventListener("input",filtrar);
-document.getElementById("reset").onclick=function(){if(!confirm("Voltar todos os valores ao padrão?"))return;S=JSON.parse(JSON.stringify(PADRAO));salvar();desenhar()};
+document.getElementById("reset").onclick=function(){if(!confirm("Voltar todos os valores ao padrão?"))return;var cx=S.contrib,mm=S.meses;S=JSON.parse(JSON.stringify(PADRAO));S.contrib=cx||[];S.meses=mm||{};salvar();desenhar()};
+
+function mesDe(d){return String(d||"").slice(0,7)}
+function nomeMes(m){var p=m.split("-");var n=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];return p.length<2?m:n[+p[1]-1]+"/"+p[0]}
+function hojeISO(){var d=new Date();return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
+function caixa(totCusto){
+  S.contrib=S.contrib||[];S.meses=S.meses||{};
+  var a=pv(),b=1-a,h="";
+  S.contrib.forEach(function(c,i){h+='<tr><td class="full" data-l="Data" style="padding-right:34px"><input type="date" data-k="xd" data-i="'+i+'" value="'+esc(c.d)+'"></td><td class="num" data-l="Valor (0 = não contribuiu)"><input class="money" data-k="xv" data-i="'+i+'" inputmode="decimal" value="'+br(num(c.v))+'"></td><td data-l="Observação"><input data-k="xo" data-i="'+i+'" value="'+esc(c.o||"")+'" placeholder="'+(num(c.v)?"":"Não contribuiu")+'"></td><td class="del"><button class="btn x" data-del="x" data-i="'+i+'" title="Remover">×</button></td></tr>'});
+  document.getElementById("tContrib").innerHTML=h||'<tr><td colspan="4" class="full" style="color:var(--muted)">Nenhuma contribuição anotada ainda.</td></tr>';
+  var ms={};ms[mesDe(hojeISO())]=1;Object.keys(S.meses).forEach(function(m){ms[m]=1});S.contrib.forEach(function(c){if(c.d)ms[mesDe(c.d)]=1});
+  var L=Object.keys(ms).sort();h="";var T={c:0,e:0,x:0,f:0,ela:0};
+  L.forEach(function(m){var M=S.meses[m]||{};var cu=M.c==null?totCusto:num(M.c),fa=num(M.f||0),esp=cu*b;
+    var x=0;S.contrib.forEach(function(c){if(mesDe(c.d)===m)x+=num(c.v)});
+    var pe=cu>0?Math.min(1,x/cu):b;var ela=fa*pe;
+    T.c+=cu;T.e+=esp;T.x+=x;T.f+=fa;T.ela+=ela;
+    var cor=pe<b-1e-9?"neg":(pe>b+1e-9?"pos":"");
+    h+='<tr><td class="full"><b>'+nomeMes(m)+'</b></td><td class="num" data-l="Custos do mês"><input class="money" data-k="mc" data-m="'+m+'" inputmode="decimal" value="'+br(cu)+'"></td><td class="num" data-l="Parte dela">'+R(esp)+'</td><td class="num" data-l="Ela contribuiu">'+R(x)+'</td><td class="num" data-l="% dela no mês"><b class="'+cor+'" style="color:'+(cor==="neg"?"var(--bad)":cor==="pos"?"var(--ok)":"inherit")+'">'+(Math.round(pe*1000)/10).toLocaleString("pt-BR")+'%</b></td><td class="num" data-l="Faturamento"><input class="money" data-k="mf" data-m="'+m+'" inputmode="decimal" value="'+br(fa)+'"></td><td class="num her" data-l="Dela no caixa">'+R(ela)+'</td><td class="num you" data-l="Sua no caixa">'+R(fa-ela)+'</td></tr>'});
+  document.getElementById("tMeses").innerHTML=h;
+  var pt=T.f>0?T.ela/T.f:0;
+  document.getElementById("mCusto").textContent=R(T.c);document.getElementById("mEsp").textContent=R(T.e);document.getElementById("mContrib").textContent=R(T.x);
+  document.getElementById("mPct").textContent=T.f>0?(Math.round(pt*1000)/10).toLocaleString("pt-BR")+"%":"–";
+  document.getElementById("mFat").textContent=R(T.f);document.getElementById("mEla").textContent=R(T.ela);document.getElementById("mVoce").textContent=R(T.f-T.ela);
+  document.getElementById("cxTot").textContent=R(T.f);document.getElementById("cxVoce").textContent=R(T.f-T.ela);document.getElementById("cxEla").textContent=R(T.ela);
+  var rv=num(document.getElementById("retVal").value),pr=T.f>0?pt:b;
+  document.getElementById("retVoce").textContent=R(rv*(1-pr));document.getElementById("retEla").textContent=R(rv*pr);
+}
+document.addEventListener("change",function(e){var t=e.target,k=t.getAttribute("data-k");if(!k)return;S.contrib=S.contrib||[];S.meses=S.meses||{};
+  var i=+t.getAttribute("data-i"),m=t.getAttribute("data-m");
+  if(k==="xd")S.contrib[i].d=t.value;if(k==="xv")S.contrib[i].v=num(t.value);if(k==="xo")S.contrib[i].o=t.value;
+  if(k==="mc"){S.meses[m]=S.meses[m]||{};S.meses[m].c=num(t.value)}if(k==="mf"){S.meses[m]=S.meses[m]||{};S.meses[m].f=num(t.value)}
+  if(/^[xm]/.test(k)){salvar();desenhar()}});
+document.addEventListener("click",function(e){var d=e.target.getAttribute&&e.target.getAttribute("data-del");if(d!=="x")return;e.stopImmediatePropagation();
+  if(!confirm("Remover esta anotação?"))return;S.contrib.splice(+e.target.getAttribute("data-i"),1);salvar();desenhar()},true);
+document.getElementById("addContrib").onclick=function(){S.contrib=S.contrib||[];S.contrib.push({d:hojeISO(),v:0,o:""});salvar();desenhar();var L=document.querySelectorAll('[data-k="xv"]');if(L.length){L[L.length-1].focus();L[L.length-1].select()}};
+document.getElementById("addNao").onclick=function(){S.contrib=S.contrib||[];S.contrib.push({d:hojeISO(),v:0,o:"Não contribuiu"});salvar();desenhar()};
+document.getElementById("novoMes").addEventListener("change",function(){if(!this.value)return;S.meses=S.meses||{};S.meses[this.value]=S.meses[this.value]||{};this.value="";salvar();desenhar()});
+document.getElementById("retVal").addEventListener("input",function(){desenhar()});
 carregar();desenhar();
 </script>
 </body>
