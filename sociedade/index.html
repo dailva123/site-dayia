@@ -169,8 +169,16 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding:10px 16px 30p
 
 <section id="caixa" data-busca="caixa contribuição contribuiu não contribuiu sócia faturamento retirada proporcional mês">
   <h2><span class="n">5</span>Caixa e contribuições da sócia</h2>
-  <p class="sub">Anote cada contribuição da sócia para os custos: o dia, o valor e uma observação. Se ela não contribuiu, use o botão "Não contribuiu". A porcentagem dela em cada mês fica proporcional ao que ela pagou da parte dela (<span class="pe"></span>% dos custos).</p>
-  <h3 style="font-size:16px;margin:4px 0 8px">Contribuições</h3>
+  <p class="sub">Anote quanto a sócia pagou de cada custo (Claude, ElevenLabs, anúncios…) e qualquer outra contribuição avulsa. Se ela não contribuiu, deixe zero ou use o botão "Não contribuiu". A porcentagem dela em cada mês fica proporcional ao que ela pagou da parte dela (<span class="pe"></span>% dos custos).</p>
+  <h3 style="font-size:16px;margin:4px 0 8px">Quanto ela pagou de cada custo</h3>
+  <div class="row-acts" style="margin:0 0 8px"><label style="font-weight:700">Mês: <input type="month" id="mesPago" style="border:1px solid var(--line);border-radius:8px;padding:6px;font:inherit"></label></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Custo</th><th class="num">Valor do mês</th><th class="num">Ela deveria pagar</th><th class="num">Ela pagou</th><th class="num">Diferença</th></tr></thead>
+    <tbody id="tPagos"></tbody>
+    <tfoot><tr><td class="full">Total do mês</td><td class="num" id="pgTot" data-l="Valor do mês"></td><td class="num" id="pgDev" data-l="Ela deveria pagar"></td><td class="num her" id="pgPag" data-l="Ela pagou"></td><td class="num" id="pgDif" data-l="Diferença"></td></tr></tfoot>
+  </table></div>
+  <p class="sub" style="margin-top:8px">O que ela pagou de cada custo entra na conta da porcentagem dela no mês. Se pagou menos, a porcentagem dela diminui; se pagou mais, aumenta.</p>
+  <h3 style="font-size:16px;margin:18px 0 8px">Outras contribuições (avulsas)</h3>
   <div class="tbl"><table>
     <thead><tr><th>Data</th><th class="num">Valor</th><th>Observação</th><th></th></tr></thead>
     <tbody id="tContrib"></tbody>
@@ -179,7 +187,7 @@ footer{color:var(--muted);font-size:13px;text-align:center;padding:10px 16px 30p
   <h3 style="font-size:16px;margin:20px 0 8px">Mês a mês</h3>
   <p class="sub" style="margin-top:0">Coloque os custos e o faturamento de cada mês. O dinheiro que entra fica no caixa, e a tabela mostra quanto dele é de cada uma.</p>
   <div class="tbl"><table>
-    <thead><tr><th>Mês</th><th class="num">Custos do mês</th><th class="num">Parte dela</th><th class="num">Ela contribuiu</th><th class="num">% dela no mês</th><th class="num">Faturamento</th><th class="num">Dela no caixa</th><th class="num">Sua no caixa</th></tr></thead>
+    <thead><tr><th>Mês</th><th class="num">Custos do mês</th><th class="num">Parte dela</th><th class="num">Ela pagou (total)</th><th class="num">% dela no mês</th><th class="num">Faturamento</th><th class="num">Dela no caixa</th><th class="num">Sua no caixa</th></tr></thead>
     <tbody id="tMeses"></tbody>
     <tfoot><tr><td class="full">Total no caixa</td><td class="num" id="mCusto" data-l="Custos"></td><td class="num" id="mEsp" data-l="Parte dela"></td><td class="num" id="mContrib" data-l="Ela contribuiu"></td><td class="num" id="mPct" data-l="% dela (no total)"></td><td class="num" id="mFat" data-l="Faturamento"></td><td class="num her" id="mEla" data-l="Dela no caixa"></td><td class="num you" id="mVoce" data-l="Sua no caixa"></td></tr></tfoot>
   </table></div>
@@ -219,7 +227,7 @@ proj:1500,taxa:0};
 var CH="sociedade-dayia-v2",S;
 function carregar(){try{var t=localStorage.getItem(CH);S=t?JSON.parse(t):null}catch(e){S=null}if(!S)S=JSON.parse(JSON.stringify(PADRAO));else if(S.prod){PADRAO.prod.forEach(function(p){if(!S.prod.some(function(q){return q[0]===p[0]}))S.prod.push(p.slice())})}}
 function salvar(){try{localStorage.setItem(CH,JSON.stringify(S))}catch(e){}}
-function R(v){return "R$ "+(Math.round(v*100)/100).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})}
+function R(v){var r=Math.round(v*100)/100;return (r<0?"− ":"")+"R$ "+Math.abs(r).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})}
 function num(s){if(typeof s==="number")return s;s=String(s).replace(/[^\d,.-]/g,"");if(s.indexOf(",")>-1)s=s.replace(/\./g,"").replace(",",".");var n=parseFloat(s);return isNaN(n)?0:n}
 function br(v){return v.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})}
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -267,20 +275,25 @@ document.getElementById("simProj").addEventListener("change",function(){S.proj=n
 document.getElementById("taxa").addEventListener("input",function(){S.taxa=num(this.value);salvar();desenhar()});
 document.getElementById("projLivre").addEventListener("input",desenhar);
 document.getElementById("busca").addEventListener("input",filtrar);
-document.getElementById("reset").onclick=function(){if(!confirm("Voltar todos os valores ao padrão?"))return;var cx=S.contrib,mm=S.meses;S=JSON.parse(JSON.stringify(PADRAO));S.contrib=cx||[];S.meses=mm||{};salvar();desenhar()};
+document.getElementById("reset").onclick=function(){if(!confirm("Voltar todos os valores ao padrão?"))return;var cx=S.contrib,mm=S.meses,pg=S.pagos;S=JSON.parse(JSON.stringify(PADRAO));S.contrib=cx||[];S.meses=mm||{};S.pagos=pg||{};salvar();desenhar()};
 
 function mesDe(d){return String(d||"").slice(0,7)}
 function nomeMes(m){var p=m.split("-");var n=["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];return p.length<2?m:n[+p[1]-1]+"/"+p[0]}
 function hojeISO(){var d=new Date();return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
 function caixa(totCusto){
-  S.contrib=S.contrib||[];S.meses=S.meses||{};
+  S.contrib=S.contrib||[];S.meses=S.meses||{};S.pagos=S.pagos||{};
   var a=pv(),b=1-a,h="";
+  var mp=document.getElementById("mesPago");if(!mp.value)mp.value=mesDe(hojeISO());var MP=mp.value,PG=S.pagos[MP]||{},t1=0,t2=0,t3=0;
+  S.custos.forEach(function(c,i){var v=num(c[1]),dv=v*b,pg=PG[c[0]];var tem=pg!=null;pg=tem?num(pg):0;t1+=v;t2+=dv;t3+=pg;var df=pg-dv;
+    h+='<tr><td class="full"><b>'+esc(c[0])+'</b></td><td class="num" data-l="Valor do mês">'+R(v)+'</td><td class="num" data-l="Ela deveria pagar">'+R(dv)+'</td><td class="num" data-l="Ela pagou"><input class="money" data-k="pg" data-n="'+esc(c[0])+'" inputmode="decimal" placeholder="0,00" value="'+(tem?br(pg):"")+'"></td><td class="num" data-l="Diferença" style="color:'+(!tem?"var(--muted)":df<-0.004?"var(--bad)":df>0.004?"var(--ok)":"inherit")+';font-weight:700">'+(tem?(df>0.004?"+ ":"")+R(df):"–")+'</td></tr>'});
+  document.getElementById("tPagos").innerHTML=h;h="";
+  document.getElementById("pgTot").textContent=R(t1);document.getElementById("pgDev").textContent=R(t2);document.getElementById("pgPag").textContent=R(t3);var D=t3-t2,E=document.getElementById("pgDif");E.textContent=(D>0.004?"+ ":"")+R(D);E.style.color=D<-0.004?"var(--bad)":D>0.004?"var(--ok)":"inherit";
   S.contrib.forEach(function(c,i){h+='<tr><td class="full" data-l="Data" style="padding-right:34px"><input type="date" data-k="xd" data-i="'+i+'" value="'+esc(c.d)+'"></td><td class="num" data-l="Valor (0 = não contribuiu)"><input class="money" data-k="xv" data-i="'+i+'" inputmode="decimal" value="'+br(num(c.v))+'"></td><td data-l="Observação"><input data-k="xo" data-i="'+i+'" value="'+esc(c.o||"")+'" placeholder="'+(num(c.v)?"":"Não contribuiu")+'"></td><td class="del"><button class="btn x" data-del="x" data-i="'+i+'" title="Remover">×</button></td></tr>'});
   document.getElementById("tContrib").innerHTML=h||'<tr><td colspan="4" class="full" style="color:var(--muted)">Nenhuma contribuição anotada ainda.</td></tr>';
-  var ms={};ms[mesDe(hojeISO())]=1;Object.keys(S.meses).forEach(function(m){ms[m]=1});S.contrib.forEach(function(c){if(c.d)ms[mesDe(c.d)]=1});
+  var ms={};ms[mesDe(hojeISO())]=1;Object.keys(S.meses).forEach(function(m){ms[m]=1});Object.keys(S.pagos).forEach(function(m){ms[m]=1});S.contrib.forEach(function(c){if(c.d)ms[mesDe(c.d)]=1});
   var L=Object.keys(ms).sort();h="";var T={c:0,e:0,x:0,f:0,ela:0};
   L.forEach(function(m){var M=S.meses[m]||{};var cu=M.c==null?totCusto:num(M.c),fa=num(M.f||0),esp=cu*b;
-    var x=0;S.contrib.forEach(function(c){if(mesDe(c.d)===m)x+=num(c.v)});
+    var x=0;S.contrib.forEach(function(c){if(mesDe(c.d)===m)x+=num(c.v)});var P=S.pagos[m]||{};Object.keys(P).forEach(function(k){x+=num(P[k])});
     var pe=cu>0?Math.min(1,x/cu):b;var ela=fa*pe;
     T.c+=cu;T.e+=esp;T.x+=x;T.f+=fa;T.ela+=ela;
     var cor=pe<b-1e-9?"neg":(pe>b+1e-9?"pos":"");
@@ -298,7 +311,9 @@ document.addEventListener("change",function(e){var t=e.target,k=t.getAttribute("
   var i=+t.getAttribute("data-i"),m=t.getAttribute("data-m");
   if(k==="xd")S.contrib[i].d=t.value;if(k==="xv")S.contrib[i].v=num(t.value);if(k==="xo")S.contrib[i].o=t.value;
   if(k==="mc"){S.meses[m]=S.meses[m]||{};S.meses[m].c=num(t.value)}if(k==="mf"){S.meses[m]=S.meses[m]||{};S.meses[m].f=num(t.value)}
-  if(/^[xm]/.test(k)){salvar();desenhar()}});
+  if(k==="pg"){var MP=document.getElementById("mesPago").value;S.pagos=S.pagos||{};S.pagos[MP]=S.pagos[MP]||{};var n=t.getAttribute("data-n");if(t.value.trim()==="")delete S.pagos[MP][n];else S.pagos[MP][n]=num(t.value)}
+  if(/^[xmp]/.test(k)){salvar();desenhar()}});
+document.getElementById("mesPago").addEventListener("change",function(){desenhar()});
 document.addEventListener("click",function(e){var d=e.target.getAttribute&&e.target.getAttribute("data-del");if(d!=="x")return;e.stopImmediatePropagation();
   if(!confirm("Remover esta anotação?"))return;S.contrib.splice(+e.target.getAttribute("data-i"),1);salvar();desenhar()},true);
 document.getElementById("addContrib").onclick=function(){S.contrib=S.contrib||[];S.contrib.push({d:hojeISO(),v:0,o:""});salvar();desenhar();var L=document.querySelectorAll('[data-k="xv"]');if(L.length){L[L.length-1].focus();L[L.length-1].select()}};
