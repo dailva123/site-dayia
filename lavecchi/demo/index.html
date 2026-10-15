@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>La Vecchi · Demonstração</title>
+<link rel="icon" href="../../pedido/icon-192.png">
+<meta name="theme-color" content="#2F3A4A">
+<style>
+:root{--pri:#2F3A4A;--bg:#EFE9DF;--ink:#2A3340;--ink2:#5E6878;--acc:#B5623A;--line:#E0D6C6}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column}
+header{background:var(--pri);color:#fff;padding:10px 16px;display:flex;align-items:center;gap:12px}
+header img.lv{width:44px;height:44px;border-radius:50%;background:#fff;border:2px solid rgba(255,255,255,.6)}
+header h1{margin:0;font-size:16.5px;line-height:1.2}
+header p{margin:2px 0 0;font-size:13px;color:#D3DAE3}
+header .rec{margin-left:auto;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:999px;padding:7px 12px;font-weight:700;font-size:13px;cursor:pointer;white-space:nowrap}
+.dica{background:#FFF7E0;color:#6E4F0F;font-size:14px;padding:9px 16px;text-align:center;font-weight:600}
+.abas{display:none}
+.palco{flex:1;display:flex;gap:28px;justify-content:center;align-items:flex-start;padding:18px 16px;min-height:0}
+.lado{display:flex;flex-direction:column;align-items:center;gap:8px;height:100%}
+.rot{font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+.rot b{color:var(--acc)}
+.cel{width:390px;height:min(800px,calc(100vh - 230px));min-height:520px;border:10px solid #1F2630;border-radius:36px;overflow:hidden;background:#fff;box-shadow:0 20px 50px rgba(30,36,46,.3);position:relative}
+.cel iframe{width:100%;height:100%;border:0;display:block}
+.seta{align-self:center;font-size:34px;color:var(--acc);font-weight:900;padding-top:40px}
+footer{background:#fff;border-top:1px solid var(--line);padding:12px 16px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;text-align:center}
+footer span{font-weight:700;font-size:14.5px}
+footer a{background:#25D366;color:#fff;text-decoration:none;font-weight:800;border-radius:12px;padding:10px 14px;font-size:14px}
+footer small{display:flex;align-items:center;gap:6px;color:var(--ink2);font-size:12.5px}
+footer small img{height:16px}
+.toast{position:fixed;left:50%;top:76px;transform:translateX(-50%);background:var(--acc);color:#fff;font-weight:800;border-radius:14px;padding:12px 16px;box-shadow:0 12px 30px rgba(0,0,0,.3);z-index:20;cursor:pointer;max-width:calc(100% - 24px);text-align:center}
+@media (max-width:860px){
+  .abas{display:flex;background:#fff;border-bottom:1px solid var(--line)}
+  .abas button{flex:1;border:0;background:none;padding:12px 6px;font-weight:800;font-size:14.5px;color:var(--ink2);border-bottom:3px solid transparent;cursor:pointer;position:relative}
+  .abas button[aria-selected="true"]{color:var(--pri);border-bottom-color:var(--acc)}
+  .abas i{font-style:normal;background:var(--acc);color:#fff;border-radius:999px;padding:1px 7px;font-size:12px;margin-left:4px}
+  .palco{padding:0;gap:0}
+  .lado{width:100%;flex:1}
+  .rot,.seta{display:none}
+  .cel{width:100%;height:100%;min-height:0;border:0;border-radius:0;box-shadow:none}
+  .lado.esc{display:none}
+  .dica{font-size:13px;padding:7px 12px}
+  header .rec{padding:6px 10px;font-size:12px}
+  footer{padding:8px 12px;gap:10px;flex-wrap:nowrap;text-align:left}footer span{font-size:12.5px;line-height:1.3}footer a{padding:9px 11px;font-size:13px;white-space:nowrap}footer small{display:none}
+  header p{display:none}header h1{font-size:15.5px}header{padding:8px 12px}
+}
+</style>
+</head>
+<body>
+<header>
+  <img class="lv" src="../../pedido/icon-192.png" alt="">
+  <div><h1>La Vecchi · Demonstração</h1><p>Aplicativo de pedidos feito pela DayIA</p></div>
+  <button class="rec" id="rec" type="button">↺ Recomeçar</button>
+</header>
+<div class="dica" id="dica">Faça um pedido como cliente e veja ele chegar na hora no painel da La Vecchi.</div>
+<div class="abas" role="tablist">
+  <button role="tab" id="tCli" aria-selected="true" data-l="cli">📱 Cliente</button>
+  <button role="tab" id="tNeg" aria-selected="false" data-l="neg">🛎️ Painel La Vecchi</button>
+</div>
+<div class="palco">
+  <div class="lado" id="lCli"><div class="rot">📱 O que o <b>cliente</b> vê</div><div class="cel"><iframe id="fCli" title="Aplicativo do cliente" src="../../pedido/?n=la-vecchi&demo=1&embed=1"></iframe></div></div>
+  <div class="seta" aria-hidden="true">→</div>
+  <div class="lado esc" id="lNeg"><div class="rot">🛎️ O que a <b>La Vecchi</b> vê</div><div class="cel"><iframe id="fNeg" title="Painel da La Vecchi" src="../../pedido/?n=la-vecchi&demo=1&embed=1&auto=1#painel"></iframe></div></div>
+</div>
+<footer>
+  <span>Quer colocar mais alguma coisa no aplicativo ou mudar algo? A DayIA faz sob medida e entrega no mesmo dia.</span>
+  <a href="https://wa.me/5519999389118?text=Ol%C3%A1%2C%20Day!%20Vi%20a%20demonstra%C3%A7%C3%A3o%20do%20aplicativo%20da%20La%20Vecchi%20%F0%9F%98%8A" target="_blank" rel="noopener">💬 Falar com a Day</a>
+  <small>Feito por <img src="../../logo-dayia.png" alt="DayIA"></small>
+</footer>
+<script>
+(function(){
+  var aba="cli",novos=0,ctx=null;
+  function ls(){try{return JSON.parse(localStorage.getItem("pf-demo")||"null")}catch(e){return null}}
+  function qtd(){var s=ls();return s?s.pedidos.length:0}
+  var ultimo=ls()?qtd():null;
+  var mobile=function(){return matchMedia("(max-width:860px)").matches};
+  function mostra(l){aba=l;document.getElementById("tCli").setAttribute("aria-selected",l==="cli");document.getElementById("tNeg").setAttribute("aria-selected",l==="neg");
+    document.getElementById("lCli").classList.toggle("esc",l!=="cli");document.getElementById("lNeg").classList.toggle("esc",l!=="neg");
+    if(l==="neg"){novos=0;marca()}}
+  function marca(){var t=document.getElementById("tNeg");t.innerHTML="🛎️ Painel La Vecchi"+(novos?"<i>"+novos+"</i>":"")}
+  function aplica(){if(mobile())mostra(aba);else{document.getElementById("lCli").classList.remove("esc");document.getElementById("lNeg").classList.remove("esc")}}
+  document.querySelectorAll(".abas button").forEach(function(b){b.onclick=function(){mostra(b.dataset.l)}});
+  addEventListener("resize",aplica);aplica();
+  function bip(){try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();if(ctx.state==="suspended")ctx.resume();
+    [0,0.16,0.45,0.61].forEach(function(d,i){var o=ctx.createOscillator(),g=ctx.createGain();o.frequency.value=i%2?1175:880;o.connect(g);g.connect(ctx.destination);g.gain.setValueAtTime(0.0001,ctx.currentTime+d);g.gain.exponentialRampToValueAtTime(0.3,ctx.currentTime+d+0.02);g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+d+0.25);o.start(ctx.currentTime+d);o.stop(ctx.currentTime+d+0.3)})}catch(e){}}
+  function toast(t,ao){document.querySelectorAll(".toast").forEach(function(x){x.remove()});var d=document.createElement("div");d.className="toast";d.textContent=t;d.onclick=function(){d.remove();if(ao)ao()};document.body.appendChild(d);setTimeout(function(){d.remove()},6000)}
+  function confere(){var n=qtd();if(ultimo===null){if(n)ultimo=n;return}if(n>ultimo){var s=ls(),p=s.pedidos[s.pedidos.length-1];bip();
+      if(mobile()&&aba!=="neg"){novos+=n-ultimo;marca();toast("🛎️ O pedido #"+p.num+" chegou no painel da La Vecchi! Toque para ver.",function(){mostra("neg")})}
+      else toast("🛎️ Pedido #"+p.num+" chegou no painel da La Vecchi!")}
+    ultimo=n}
+  addEventListener("storage",function(e){if(e.key==="pf-demo")confere()});
+  setInterval(confere,1500);
+  document.getElementById("rec").onclick=function(){if(!confirm("Apagar os pedidos de teste e recomeçar?"))return;
+    try{Object.keys(localStorage).forEach(function(k){if(/^pf-/.test(k))localStorage.removeItem(k)})}catch(e){}
+    ultimo=null;novos=0;marca();document.getElementById("fCli").src=document.getElementById("fCli").src;document.getElementById("fNeg").src=document.getElementById("fNeg").src;mostra("cli")};
+})();
+</script>
+</body>
+</html>
