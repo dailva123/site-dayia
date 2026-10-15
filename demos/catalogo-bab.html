@@ -161,6 +161,14 @@ textarea{min-height:70px;resize:vertical}
 .brinde-ban img{width:64px;height:64px;border-radius:12px;object-fit:cover;flex:none}
 .brinde-ban span{font-size:13px;color:var(--brown)}
 .brinde-ban b{display:block;color:var(--brown-d);font-size:14px}
+.lojas{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin-top:14px;font-size:12.5px;color:var(--brown)}
+.lojas:empty{display:none}
+.loja{border:0;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:700;color:#fff}
+.loja.shopee{background:#EE4D2D}.loja.tiktok{background:#111}
+.mini.loja{padding:6px 10px;font-size:11.5px;border:0;color:#fff}
+.lojas span{flex-basis:100%;text-align:center}
+.share-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.share-sheet .link-box{margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:12.5px;color:var(--brown);word-break:break-all}
 .ended{position:fixed;inset:0;z-index:60;background:var(--cream);display:none;place-items:center;text-align:center;padding:24px}
 .ended.show{display:grid}
 .ended h2{font-size:32px;color:var(--brown-d);margin:0}
@@ -356,6 +364,7 @@ footer b{color:var(--brown)}
     <div class="step"><b>2</b>Personalize</div>
     <div class="step"><b>3</b>Envie no WhatsApp</div>
   </div>
+  <div class="lojas" id="lojas"></div>
   <button class="adm-open" id="admOpen" type="button">✏️ Sou a artesã · editar catálogo</button>
 </header>
 
@@ -500,6 +509,7 @@ function abrir(id){
     <div class="inner">
       <h2>${cur.nome}</h2>
       <p class="desc">${cur.desc}</p>
+      <div class="share-row"><button type="button" class="mini" id="sharePeca">🔗 Compartilhar esta peça</button>${lojasPeca(cur)}</div>
       ${c.nome ? `<div class="fld"><label for="fNome">${c.idade ? "Nome do aniversariante" : "Nome para escrever"}</label><input type="text" id="fNome" maxlength="60" placeholder="Ex.: Joana"></div>` : ''}
       ${c.data ? `<div class="fld"><label for="fData">Data na peça <span class="hint">(opcional)</span></label><input type="text" id="fData" maxlength="20" placeholder="Ex.: 27/11/2026"></div>` : ''}
       ${c.idade ? `<div class="fld"><label for="fIdade">Idade</label><input type="text" id="fIdade" inputmode="numeric" maxlength="3" placeholder="Ex.: 3"></div>` : ''}
@@ -533,6 +543,25 @@ function fotoPrev(){
   box.innerHTML = sel.fotoImg
     ? `<div class="fu-prev"><img src="${sel.fotoImg}" alt="Sua foto"><span>Foto escolhida ✅<small>Vai junto com o pedido</small></span><button type="button" id="fRm">Trocar</button></div>`
     : `<label class="fu-btn">📷 Escolher foto do celular<input type="file" id="fFoto" accept="image/*"></label><p class="hint">Escolha uma foto nítida e bem iluminada. Ela vai junto com o pedido.</p>`;
+}
+function linkBase(){ return location.href.split("#")[0]; }
+function linkPeca(p){ return linkBase() + "#p=" + p.id; }
+function lojaUrl(p, k){ return (p && p[k]) || (typeof DB!=="undefined" && DB && DB.cfg.lojas ? DB.cfg.lojas[k] : ""); }
+const LOJAS = [["shopee","🛒 Shopee"],["tiktok","🎵 TikTok Shop"]];
+function lojasPeca(p){ return LOJAS.filter(([k])=>lojaUrl(p,k)).map(([k,n])=>`<button type="button" class="mini loja ${k}" data-loja="${k}" data-pid="${p.id}">${n}</button>`).join(""); }
+function lojasBar(){
+  const el = $("#lojas"); if (!el) return;
+  const bts = LOJAS.filter(([k])=>lojaUrl(null,k)).map(([k,n])=>`<button type="button" class="loja ${k}" data-loja="${k}">${n}</button>`).join("");
+  el.innerHTML = bts ? `<span>Também estamos na</span>${bts}` : "";
+}
+function abrirLoja(k, pid){
+  const p = pid ? PRODUTOS.find(x=>x.id===pid) : null, u = lojaUrl(p, k), nome = k==="shopee" ? "Shopee" : "TikTok Shop";
+  if (DEMO || !u || u==="#demo"){ toast(`Na versão oficial, abre a ${p?"peça na ":""}loja ${nome} da B.A.B`); return; }
+  window.open(u, "_blank", "noopener");
+}
+async function compartilhar(titulo, url){
+  try { if (navigator.share){ await navigator.share({ title:titulo, text:titulo, url }); return; } } catch(e){ return; }
+  try { await navigator.clipboard.writeText(url); toast("Link copiado! É só colar na conversa 💛"); } catch(e){ prompt("Copie o link:", url); }
 }
 function atualiza(){
   const q = Math.max(1, parseInt($("#fQtd").value)||1); sel.qtd = q;
@@ -640,6 +669,8 @@ document.addEventListener("click", e => {
   if (t.closest("#qMais")){ const s = cur.campos.lembr && sel.qtd>=10 ? 5 : 1; $("#fQtd").value = sel.qtd + s; atualiza(); return; }
   if (t.closest("#addBag")){ addBag(); return; }
   if (t.closest("#fRm")){ sel.fotoImg = ""; fotoPrev(); return; }
+  if (t.closest("#sharePeca")){ compartilhar(`${cur.nome} · B.A.B Ateliê`, linkPeca(cur)); return; }
+  const lj = t.closest("[data-loja]"); if (lj){ abrirLoja(lj.dataset.loja, lj.dataset.pid); return; }
   if (t.closest("#bagBar")){ lista(); $("#bSheet").classList.add("open"); document.body.style.overflow="hidden"; return; }
   const rm = t.closest("[data-rm]"); if (rm){ bag.splice(+rm.dataset.rm,1); save(); barra(); lista(); return; }
   if (t.closest("#sendWa")){ enviar(); return; }
@@ -713,7 +744,7 @@ function seed(){
       { id:"p1", titulo:"Semana dos Laços", desc:10, alvo:"lacos", ate:addDias(6), ativa:true, msg:"" },
       { id:"p2", titulo:"Mês das Mamães", desc:15, alvo:"cadernetas", ate:addDias(-60), ativa:false, msg:"" }
     ],
-    cfg: { limite:20, hIni:9, hFim:19, descAniv:10,
+    cfg: { limite:20, hIni:9, hFim:19, descAniv:10, lojas:{ shopee:"#demo", tiktok:"#demo" },
       msgAniv:"Olá, {nome}! 🎉 A B.A.B Ateliê deseja um feliz aniversário! Para comemorar, você ganha {desconto}% de desconto na sua próxima peça. É só me chamar aqui 💛",
       envios:{ dia:"", n:0 }, enviados:{}, ultimo:0, seq: 127 }
   };
@@ -1057,9 +1088,15 @@ function rCat(){
   const tabs = `<div class="adm-tabs" style="margin-top:0"><button type="button" data-a="catSub" data-s="pecas" class="${catSub==='pecas'?'on':''}">Minhas peças</button><button type="button" data-a="catSub" data-s="descontos" class="${catSub==='descontos'?'on':''}">Descontos</button></div>`;
   if (catSub==="pecas"){
     $("#admMain").innerHTML = `${tabs}
+      <section class="box"><h4>📲 Mandar fotos para a cliente</h4><p class="tiny left" style="margin-top:0">Cliente pediu foto no WhatsApp? Em vez de procurar e mandar foto por foto, mande o link: ela abre direto na peça, com todas as fotos e os preços.</p>
+        <div class="two-btn" style="grid-template-columns:1fr 1fr"><button class="btn" data-a="shareCat" type="button">Catálogo inteiro</button><button class="btn ghost" data-a="shareCats" type="button">Uma categoria</button></div></section>
+      <section class="box"><h4>🛍️ Minhas lojas online</h4><p class="tiny left" style="margin-top:0">Os botões aparecem no catálogo para quem prefere comprar por lá.</p>
+        <div class="fld"><label for="ljShopee">Link da loja na Shopee</label><input type="text" id="ljShopee" value="${esc(DB.cfg.lojas.shopee==="#demo"?"":DB.cfg.lojas.shopee||"")}" placeholder="Ex.: shopee.com.br/babatelie"></div>
+        <div class="fld"><label for="ljTiktok">Link da loja no TikTok Shop</label><input type="text" id="ljTiktok" value="${esc(DB.cfg.lojas.tiktok==="#demo"?"":DB.cfg.lojas.tiktok||"")}" placeholder="Ex.: tiktok.com/@bab.atelie"></div>
+        <button class="btn ghost" style="width:100%;margin:12px 0 0" data-a="salvaLojas" type="button">Salvar lojas</button></section>
       <button class="btn" style="width:100%;margin:12px 0 0" data-a="nova" type="button">＋ Adicionar peça nova</button>
       ${PRODUTOS.map(p=>`<div class="adm-item ${p.ativo===false?'off':''}"><img src="${p.fotos[0]||''}" alt=""><div class="m"><b>${esc(p.nome)}</b>${brl(p.preco)} · ${(catOpts.find(c=>c[0]===p.cat)||['',''])[1]}${p.ativo===false?'<br><span style="color:#B4423A">Escondida</span>':''}</div>
-        <div class="adm-acts"><button class="mini" data-a="editar" data-id="${p.id}" type="button">Editar</button><button class="mini" data-a="toggle" data-id="${p.id}" type="button">${p.ativo===false?'Mostrar':'Esconder'}</button><button class="mini del" data-a="excluir" data-id="${p.id}" type="button">Excluir</button></div></div>`).join("")}
+        <div class="adm-acts"><button class="mini send" data-a="sharePeca" data-id="${p.id}" type="button">📲 Enviar</button><button class="mini" data-a="editar" data-id="${p.id}" type="button">Editar</button><button class="mini" data-a="toggle" data-id="${p.id}" type="button">${p.ativo===false?'Mostrar':'Esconder'}</button><button class="mini del" data-a="excluir" data-id="${p.id}" type="button">Excluir</button></div></div>`).join("")}
       ${DEMO?`<button class="btn ghost" style="width:100%;margin:16px 0 0" data-a="restaurar" type="button">Voltar a demonstração ao início</button>`:''}`;
   } else {
     $("#admMain").innerHTML = `${tabs}
@@ -1067,6 +1104,16 @@ function rCat(){
       ${FAIXAS.map((f,i)=>i===0?'':`<div class="tier-row">A partir de <input data-t="min" data-i="${i}" inputmode="numeric" value="${f.min}"> un. <input data-t="desc" data-i="${i}" inputmode="numeric" value="${Math.round(f.desc*100)}"> % off</div>`).join("")}
       <button class="btn" style="width:100%;margin:14px 0 0" data-a="salvar-faixas" type="button">Salvar descontos</button></section>`;
   }
+}
+function fixUrl(u){ u = (u||"").trim(); if (!u) return ""; return /^https?:\/\//i.test(u) ? u : "https://" + u; }
+function sheetShare(msg, url, titulo, img){
+  sheet(`<div class="inner share-sheet"><h2>Enviar para a cliente</h2><p class="desc">${esc(titulo)}</p>
+    ${img ? `<img src="${img}" alt="" style="width:100%;max-height:220px;object-fit:cover;border-radius:14px;margin-top:12px">` : ""}
+    <div class="fld"><label for="shMsg">Mensagem</label><textarea id="shMsg" style="min-height:90px">${esc(msg)}</textarea></div>
+    <div class="link-box">🔗 ${esc(url)}</div>
+    <p class="tiny left">Você escolhe a cliente e envia. É uma mensagem só, para uma pessoa: sem risco para o seu WhatsApp.</p></div>
+    <button class="btn wa" data-a="shareWa" data-url="${esc(url)}" type="button">📲 Enviar no WhatsApp</button>
+    <button class="btn ghost" data-a="shareCopy" data-url="${esc(url)}" type="button">Copiar mensagem e link</button>`);
 }
 function sheetPeca(){
   const c = ed.campos, catOpts = CATS.filter(x=>x[0]!=="todos");
@@ -1078,6 +1125,8 @@ function sheetPeca(){
     <div class="fld"><label for="eNome">Nome da peça</label><input type="text" id="eNome" maxlength="60" value="${esc(ed.nome)}" placeholder="Ex.: Chaveiro borboleta"></div>
     <div class="two"><div class="fld"><label for="ePreco">Preço (a partir de)</label><input type="text" id="ePreco" inputmode="decimal" value="${ed.preco?String(ed.preco).replace('.',','):''}" placeholder="Ex.: 25,00"></div>
     <div class="fld"><label for="eCat">Categoria</label><select id="eCat">${catOpts.map(([k,n])=>`<option value="${k}" ${k===ed.cat?'selected':''}>${n}</option>`).join("")}</select></div></div>
+    <div class="two"><div class="fld"><label for="eShopee">Link na Shopee <span class="hint">(opcional)</span></label><input type="text" id="eShopee" value="${esc(ed.shopee||'')}" placeholder="Cole o link"></div>
+    <div class="fld"><label for="eTiktok">Link no TikTok <span class="hint">(opcional)</span></label><input type="text" id="eTiktok" value="${esc(ed.tiktok||'')}" placeholder="Cole o link"></div></div>
     <div class="fld"><label for="eDesc">Descrição curta</label><textarea id="eDesc" maxlength="140" placeholder="Ex.: Com nome e glitter na cor que a cliente escolher.">${esc(ed.desc||'')}</textarea></div>
     <div class="fld"><span class="lb">O que perguntar para a cliente</span><div class="chks">
       ${ck('nome','Nome para escrever')}${ck('cor','Escolher a cor')}${ck('tema','Tema ou estampa')}${ck('idade','Idade (topo de bolo)')}${ck('data','Data na peça')}${ck('foto','Foto da cliente')}${ck('glitter','Com ou sem glitter')}${ck('lembr','Vende em quantidade (com desconto)')}</div></div>
@@ -1086,7 +1135,7 @@ function sheetPeca(){
 }
 function lerCampos(){
   if (!ed || !$("#eNome")) return;
-  ed.nome = $("#eNome").value; ed.desc = $("#eDesc").value; ed.cat = $("#eCat").value; ed.preco = num($("#ePreco").value);
+  ed.nome = $("#eNome").value; ed.desc = $("#eDesc").value; ed.cat = $("#eCat").value; ed.preco = num($("#ePreco").value); ed.shopee = fixUrl($("#eShopee").value); ed.tiktok = fixUrl($("#eTiktok").value);
   document.querySelectorAll("#aPanel [data-c]").forEach(k => ed.campos[k.dataset.c] = k.checked ? 1 : 0);
 }
 function reduzir(file){
@@ -1163,6 +1212,13 @@ async function acao(a, b){
     case "salvaCfg": DB.cfg.limite = +$("#cfLim").value; DB.cfg.hIni = +$("#cfIni").value; DB.cfg.hFim = +$("#cfFim").value; salvarDB(); rMkt(); toast("Regras salvas"); break;
     /* catálogo */
     case "catSub": catSub = b.dataset.s; rCat(); break;
+    case "sharePeca": { const p = PRODUTOS.find(x=>x.id===id); sheetShare(`Olá! 💛 Segue a ${p.nome} da B.A.B Ateliê, com todas as fotos, as opções e o preço. É só tocar no link:`, linkPeca(p), p.nome, p.fotos[0]); break; }
+    case "shareCat": sheetShare("Olá! 💛 Este é o catálogo da B.A.B Ateliê, com as fotos e os preços de todas as peças. Você escolhe, personaliza e já me manda o pedido prontinho:", linkBase(), "Catálogo inteiro", null); break;
+    case "shareCats": sheet(`<div class="inner"><h2>Enviar uma categoria</h2><p class="desc">A cliente abre o catálogo já mostrando só essas peças.</p>${CATS.filter(c=>c[0]!=="todos").map(([k,n])=>`<button class="row" data-a="shareC" data-c="${k}" type="button"><span><b>${n}</b>${PRODUTOS.filter(p=>p.cat===k && p.ativo!==false).length} peça(s)</span><em class="tag">Enviar →</em></button>`).join("")}</div>`); break;
+    case "shareC": { const n = (CATS.find(c=>c[0]===b.dataset.c)||["",""])[1]; sheetShare(`Olá! 💛 Separei para você os modelos de ${n.toLowerCase()} da B.A.B Ateliê, com fotos e preços:`, linkBase()+"#c="+b.dataset.c, n, null); break; }
+    case "shareWa": { const m = $("#shMsg").value + "\n" + b.dataset.url; if (DEMO){ toast("Demonstração: abriria o WhatsApp para você escolher a cliente"); break; } window.open(`https://wa.me/?text=${encodeURIComponent(m)}`, "_blank"); break; }
+    case "shareCopy": try { await navigator.clipboard.writeText($("#shMsg").value + "\n" + b.dataset.url); toast("Mensagem e link copiados 💛"); } catch(e){ prompt("Copie:", b.dataset.url); } break;
+    case "salvaLojas": DB.cfg.lojas = { shopee: fixUrl($("#ljShopee").value), tiktok: fixUrl($("#ljTiktok").value) }; salvarDB(); lojasBar(); toast("Lojas salvas · os botões já aparecem no catálogo"); break;
     case "nova": ed = {_novo:true, id:"", nome:"", cat:"lacos", fotos:[], preco:0, desc:"", campos:{nome:1,cor:1,tema:0,idade:0,glitter:0,data:0,foto:0,lembr:0,modelo:0}}; sheetPeca(); break;
     case "editar": { const p = PRODUTOS.find(x=>x.id===id); ed = JSON.parse(JSON.stringify(p)); ed.campos = Object.assign({nome:0,cor:0,tema:0,idade:0,glitter:0,data:0,foto:0,lembr:0,modelo:0}, ed.campos); sheetPeca(); break; }
     case "toggle": { const p = PRODUTOS.find(x=>x.id===id); p.ativo = p.ativo===false; salvarCat(); rCat(); toast(p.ativo===false?"Peça escondida do catálogo":"Peça de volta no catálogo"); break; }
@@ -1214,7 +1270,13 @@ $("#aPanel").addEventListener("change", async e => {
   if (e.target.id==="eFotos"){ lerCampos(); for (const f of [...e.target.files].slice(0,6)){ try { ed.fotos.push(await reduzir(f)); } catch(x){ toast("Não consegui abrir uma das fotos"); } } sheetPeca(); }
   if (e.target.id==="impArq" && e.target.files[0]){ const t = await e.target.files[0].text(); importar(/BEGIN:VCARD/i.test(t) ? lerVcf(t) : lerLinhas(t)); }
 });
-carregar(); grid(); promoBar();
+carregar(); if (!DB.cfg.lojas) { DB.cfg.lojas = { shopee:"#demo", tiktok:"#demo" }; salvarDB(); }
+grid(); promoBar(); lojasBar();
+(function(){ const h = decodeURIComponent(location.hash||"");
+  const mp = h.match(/^#p=(.+)$/), mc = h.match(/^#c=(.+)$/);
+  if (mc && CATS.some(c=>c[0]===mc[1])){ cat = mc[1]; chips(); grid(); setTimeout(()=>document.querySelector(".filters").scrollIntoView({behavior:"smooth"}), 400); }
+  if (mp && PRODUTOS.some(p=>p.id===mp[1] && p.ativo!==false)) setTimeout(()=>abrir(mp[1]), DEMO ? 3000 : 3000);
+})();
 
 </script>
 </body>
