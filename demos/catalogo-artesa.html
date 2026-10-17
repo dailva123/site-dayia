@@ -636,7 +636,7 @@ document.addEventListener("change", async e => {
 
 function falarDayIA(){
   const m = "Olá! Vi a demonstração do catálogo digital para artesãs (Ateliê Lumi) e quero saber mais sobre ter o meu ✨";
-  window.open(`https://wa.me/${WHATSAPP_DAYIA}?text=${encodeURIComponent(m)}`, "_blank");
+  window.open(`https://api.whatsapp.com/send?phone=${WHATSAPP_DAYIA}&text=${encodeURIComponent(m)}`, "_blank");
 }
 if (DEMO && new Date() > new Date(DEMO_ATE+"T23:59:59")) $("#ended").classList.add("show");
 chips(); grid(); barra();
@@ -743,7 +743,7 @@ function personaliza(msg, c, extra){
 }
 function abrirConversa(tel, msg, nome){
   if (DEMO){ toast(`Demonstração: abriria a conversa com ${nome.split(" ")[0]} já com a mensagem`); return; }
-  window.open(`https://wa.me/${tel}?text=${encodeURIComponent(msg)}`, "_blank");
+  window.open(`https://api.whatsapp.com/send?phone=${tel}&text=${encodeURIComponent(msg)}`, "_blank");
 }
 function envioMarketing(c, msg, chave){
   const r = podeEnviar(); if (!r.ok){ toast(r.motivo); return false; }
